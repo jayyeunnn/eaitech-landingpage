@@ -51,6 +51,19 @@ diputuskan agent.
 9. Setiap akhir sesi: entri baru di PROGRESS (dikerjakan, hasil, bukti,
    tindak lanjut) dan perbarui petunjuk lanjut.
 10. Commit/push hanya bila Jay meminta.
+11. Git dan contributor (arahan Jay 2026-10-30, dari skill
+    freelance-project-planning; lebih kuat dari kebiasaan bawaan agent):
+    - Author dan committer `jayyeunnn`, email
+      `4z9n99hknm@privaterelay.appleid.com` (sudah diatur di
+      `git config --local` repo ini; jangan ubah config global).
+    - Tanpa AI/bot sebagai author, committer, co-author, `Signed-off-by`,
+      "Generated with Claude/Codex", maupun contributor di README/docs.
+    - Pesan Conventional Commits `type(scope): ringkasan`, body berisi
+      perubahan, alasan, dampak, pemeriksaan yang benar-benar dilakukan atau
+      dilewati, dan rujukan F-ID/P-ID bila berguna.
+    - Jangan tulis ulang riwayat atau force-push tanpa permintaan Jay.
+    - Sebelum commit/push: cek akses pembaca repo dan isi sensitif (data
+      pribadi, harga, bahan klien).
 
 ## 3. Stack
 
@@ -120,7 +133,7 @@ PROGRESS. Fase berikut dimulai setelah Jay menyatakan GATE lolos.
 
 | Fase | PENDING yang berpengaruh | Cara kerja sementara |
 |---|---|---|
-| Fase 0 | P-004 (pemilik repo) | Repo git lokal dulu |
+| Fase 0 | P-004 (pemilik repo) | Repo git lokal dulu; sejak 2026-10-30 remote `origin` = github.com/jayyeunnn/eaitech-landingpage (atas permintaan Jay) |
 | Fase 1 | P-001 (nomor WA, pesan awal), P-002, P-008, P-016, P-012 | Nomor WA placeholder di satu konfigurasi dan ditandai; copy placeholder ditandai (BR-002) |
 | Fase 1-3 | P-011 (warna/font resmi, SVG, logo gelap) | Warna sampel, header logomark + teks dari kode, PNG dioptimasi |
 | Fase 3 | P-006 (hosting) | Header keamanan disiapkan generik, dipasang saat hosting dipilih |

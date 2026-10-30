@@ -871,6 +871,38 @@ perlu. Log historis tidak diubah agar terlihat mengikuti kondisi sekarang.
 - GATE 3: Jay menyatakan "Lolos" di chat, 2026-10-30. Semua fase development
   (0-3) selesai. Rilis menunggu syarat AGENTS bagian 4 (domain/hosting P-006,
   P-001, P-002, P-008, P-016, persetujuan tim P-003). Belum ada commit.
+- Commit (atas permintaan Jay, 2026-10-30): commit pertama `5cef472` di branch
+  `main` repo lokal - 54 file (dokumen planning, situs Astro, aset publik).
+  Tanpa remote (P-004). Entri PROGRESS ini sendiri ditulis sesudah commit,
+  jadi belum ikut di dalamnya.
+- Push (atas permintaan Jay, 2026-10-30): remote `origin` =
+  https://github.com/jayyeunnn/eaitech-landingpage.git (repo kosong sebelum
+  push); `main` dipush dan melacak `origin/main`. Visibilitas repo (publik/
+  privat) tidak dicek agent (`gh` tidak terpasang). PRD P-004 dan AGENTS
+  bagian 5 diperbarui. Catatan PROGRESS/PRD/AGENTS sesudah commit `5cef472`
+  belum di-commit.
+- Koreksi (Jay, 2026-10-30): tidak boleh ada nama AI agent di commit maupun
+  contributor. Fakta: aturan itu tidak tercantum di AGENTS.md (agent
+  memeriksa) dan skill freelance-project-planning tidak tersedia di sesi ini;
+  commit `5cef472` memuat `Co-Authored-By: Claude`. Atas persetujuan Jay:
+  pesan commit diubah tanpa baris itu (commit baru `364dde3`, isi file/tree
+  identik `1c82296`), lalu force-push dengan pengaman lease ke `origin/main`.
+  AGENTS.md aturan 11 ditambahkan agar tidak terulang. GitHub mungkin perlu
+  waktu untuk memperbarui daftar contributor.
+- Koreksi lanjutan (2026-10-30): agent membaca skill freelance-project-planning
+  dari disk (`C:\Users\giana\.claude\skills\freelance-project-planning\`) -
+  sebelumnya keliru disebut tidak tersedia. Skill mengatur identitas Git
+  `jayyeunnn` / email privaterelay, larangan atribusi AI, Conventional
+  Commits, larangan force-push tanpa permintaan; template AGENTS-nya punya
+  bagian "Git dan contributor" yang tidak terbawa saat finalisasi karena
+  skill tidak dibaca. Jay mengonfirmasi dan meminta kedua commit ditulis ulang.
+  Dikerjakan: `git config --local` = jayyeunnn / privaterelay (global tidak
+  diubah); AGENTS.md aturan 11 dilengkapi; kedua commit dibuat ulang dengan
+  identitas dan pesan Conventional Commits, isi file sama, lalu force-push
+  dengan pengaman lease.
+- Celah lain terhadap skill (belum dikerjakan, dicatat): tasklist ber-ID T-xxx
+  dengan fase QA/Quality/Security/Release, README, foundation HTML di
+  `previews/templates/`, Humanizer untuk teks, diagram Archify saat rilis.
 - Dokumentasi: VISUAL-DNA (arahan Layanan), LAYOUT (Layanan desktop/HP),
   DESIGN (token `dark-card`, kartu layanan, pengecualian sudut) diperbarui.
 
