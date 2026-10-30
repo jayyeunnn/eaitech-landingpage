@@ -1,0 +1,76 @@
+---
+// 2. Layanan (gelap), revisi Jay 2026-10-29: tanpa garis; lima kartu rounded
+// vertikal berjajar kiri → kanan. Atas: gambar penuh (placeholder dulu);
+// bawah: nomor, judul, deskripsi, tombol Discuss (BR-003).
+//
+// Dengan JS dan gerak normal, bagian ini menempel dan kartu bergeser mengikuti
+// scroll sambil muncul satu per satu mulai 01 (services-scroll.ts, Motion).
+// Tanpa JS atau dengan reduced motion: deretan kartu biasa yang bisa digeser.
+// Jarak atas HP/tablet lebih besar: separuh bawah logomark hero masuk ke sini.
+import Button from '../Button.astro';
+import SectionHeading from '../SectionHeading.astro';
+import PlaceholderTag from '../PlaceholderTag.astro';
+import { content } from '../../i18n/content';
+import { sectionIds, type Lang } from '../../i18n/ui';
+import { waLink } from '../../config/whatsapp';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = content[lang];
+const s = t.services;
+---
+
+<section
+  id={sectionIds[lang].services}
+  data-section="services"
+  data-mode="dark"
+  data-services
+  aria-labelledby="services-title"
+  class="group/svc overflow-x-clip bg-dark-bg pt-44 pb-20 text-dark-text pinned:pt-0 tablet:pt-48 tablet:pb-24 tablet:pinned:pt-0 desktop:pt-32 desktop:pb-32 desktop:pinned:pt-0"
+>
+  <div data-services-pin>
+    <div
+      class="relative flex flex-col justify-center pinned:sticky pinned:top-0 pinned:h-svh pinned:pt-32 tablet:pinned:pt-36 desktop:pinned:pt-0"
+    >
+      {/* Ekor logomark hero yang meleleh; ikut menempel bersama Layanan (hero-ribbon.ts). */}
+      <div data-ribbon-tail transition:persist="ribbon-tail" aria-hidden="true" class="pointer-events-none absolute inset-x-0 top-0 hidden pinned:block"></div>
+      <div class="relative z-10 mx-auto w-full max-w-content px-4 tablet:px-8 desktop:px-10">
+        {/* Desktop: judul dibatasi ±58% lebar agar tidak menimpa ekor logomark di kanan atas. */}
+        <SectionHeading id="services-title" lines={s.title} placeholder={s.placeholder} placeholderLabel={t.a11y.placeholderTag} class="desktop:max-w-[58%]" />
+
+        <div
+          data-services-viewport
+          class="mt-10 -mx-4 snap-x snap-mandatory overflow-x-auto px-4 pb-4 tablet:-mx-8 tablet:px-8 desktop:mt-12 desktop:-mx-10 desktop:px-10 pinned:mx-0 pinned:snap-none pinned:overflow-visible pinned:px-0 pinned:pb-0"
+        >
+          <ol data-services-track class="flex w-max gap-4 tablet:gap-6">
+            {
+              s.items.map((item, i) => (
+                <li
+                  data-service-card
+                  class="flex aspect-[3/4] w-[78vw] max-w-[18rem] shrink-0 snap-start flex-col overflow-hidden rounded-3xl bg-dark-card tablet:w-80 tablet:max-w-none"
+                >
+                  <div class="relative flex min-h-0 flex-1 items-center justify-center border-b border-dashed border-dark-line bg-dark-bg/40 p-6 text-center">
+                    <PlaceholderTag show={s.image.placeholder} label={s.image.label} class="text-dark-muted" />
+                  </div>
+                  <div class="flex flex-col gap-3 p-6">
+                    <span class="text-label font-medium text-accent" aria-hidden="true">
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                    <h3 class="text-title font-normal">{item.name}</h3>
+                    <p class="text-body text-dark-muted">{item.desc}</p>
+                    <Button href={waLink(lang, item.name)} variant="outline-dark" external srSuffix={`${item.name} ${t.a11y.newTab}`} class="mt-2 self-start">
+                      {s.discuss}
+                    </Button>
+                  </div>
+                </li>
+              ))
+            }
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

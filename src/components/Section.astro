@@ -1,0 +1,38 @@
+---
+// Pembungkus bagian: latar terang/gelap, kolom tengah bergaris rangka, jarak
+// atas-bawah per ukuran layar (LAYOUT bagian 1, DESIGN bagian 3).
+// `frame={false}` menghapus garis rangka (hero, revisi Jay 2026-10-29).
+import type { SectionKey } from '../i18n/ui';
+
+interface Props {
+  id: string;
+  sectionKey: SectionKey;
+  mode: 'light' | 'dark';
+  labelledby?: string;
+  frame?: boolean;
+  class?: string;
+}
+
+const { id, sectionKey, mode, labelledby, frame = true, class: className } = Astro.props;
+---
+
+<section
+  id={id}
+  data-section={sectionKey}
+  data-mode={mode}
+  aria-labelledby={labelledby}
+  class:list={[
+    mode === 'dark' ? 'bg-dark-bg text-dark-text' : 'bg-light-bg text-light-text',
+  ]}
+>
+  <div
+    class:list={[
+      'relative mx-auto max-w-content px-4 py-20 tablet:px-8 tablet:py-24 desktop:px-10 desktop:py-32',
+      frame && 'border-x',
+      frame && (mode === 'dark' ? 'border-dark-line' : 'border-light-line'),
+      className,
+    ]}
+  >
+    <slot />
+  </div>
+</section>

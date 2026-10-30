@@ -1,0 +1,75 @@
+---
+// Kerangka HTML bersama untuk `/` (EN) dan `/id` (ID). ClientRouter membuat
+// ganti bahasa menukar isi di tempat tanpa memuat ulang (revisi Jay 2026-10-30).
+// SEO dasar per bahasa (Fase 3, PRD bagian 4): canonical, hreflang, Open Graph,
+// ikon. URL absolut memakai `site` di astro.config.mjs (domain masih placeholder).
+import { ClientRouter } from 'astro:transitions';
+import '@fontsource/sora/latin-300.css';
+import '@fontsource/sora/latin-400.css';
+import '@fontsource/sora/latin-500.css';
+// 700: judul tebal ajakan WA dan nama di footer (revisi Jay 2026-10-30).
+import '@fontsource/sora/latin-700.css';
+import '../styles/global.css';
+import { content } from '../i18n/content';
+import { defaultLang, homePath, languages, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = content[lang];
+const codes = Object.keys(languages) as Lang[];
+const absolute = (path: string) => new URL(path, Astro.site).href;
+const canonical = absolute(homePath(lang));
+const ogImage = absolute(`/og-${lang}.png`);
+const ogLocale: Record<Lang, string> = { en: 'en_US', id: 'id_ID' };
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{t.meta.title}</title>
+    <meta name="description" content={t.meta.description} />
+    <link rel="canonical" href={canonical} />
+    {codes.map((code) => <link rel="alternate" hreflang={code} href={absolute(homePath(code))} />)}
+    <link rel="alternate" hreflang="x-default" href={absolute(homePath(defaultLang))} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="EAI Tech" />
+    <meta property="og:title" content={t.meta.title} />
+    <meta property="og:description" content={t.meta.description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={t.meta.title} />
+    <meta property="og:locale" content={ogLocale[lang]} />
+    {codes.filter((code) => code !== lang).map((code) => <meta property="og:locale:alternate" content={ogLocale[code]} />)}
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="theme-color" content="#f4f8f7" />
+
+    <ClientRouter />
+    <script is:inline>
+      // Keadaan awal animasi hanya dipasang saat JS aktif; dicabut bila skrip
+      // animasi tidak siap dalam 3 detik (DESIGN bagian 5.3).
+      // Kelas `pin` menyiapkan mode menempel sejak awal agar tidak ada
+      // pergeseran layout saat skrip animasi mulai.
+      var root = document.documentElement;
+      root.classList.add('js');
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) root.classList.add('pin');
+      setTimeout(function () {
+        if (!window.__motionReady) root.classList.remove('js', 'pin');
+      }, 3000);
+    </script>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

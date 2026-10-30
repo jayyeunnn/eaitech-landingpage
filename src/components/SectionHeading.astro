@@ -1,0 +1,24 @@
+---
+// Judul bagian: dua baris kapital, baris pertama Sora tipis dan baris kedua
+// Sora tebal - adaptasi gaya "FEATURED WORK" Aperios tanpa font serif
+// (REF-003, revisi Jay 2026-10-30). Sama untuk Services, How it works, FAQ.
+import PlaceholderTag from './PlaceholderTag.astro';
+
+interface Props {
+  id?: string;
+  lines: [string, string];
+  placeholder: boolean;
+  placeholderLabel: string;
+  class?: string;
+}
+
+const { id, lines, placeholder, placeholderLabel, class: className } = Astro.props;
+---
+
+<div data-reveal class={className}>
+  <PlaceholderTag show={placeholder} label={placeholderLabel} />
+  <h2 id={id} class="text-display uppercase">
+    <span class="block font-light">{lines[0]}</span>
+    <span class="block font-bold">{lines[1]}</span>
+  </h2>
+</div>

@@ -1,0 +1,54 @@
+---
+// Tombol bahasa berbentuk pil `( ID | EN )`; bahasa aktif terisi warna
+// (F-005, BR-004, revisi Jay 2026-10-29). Link menuju URL bahasa lain; skrip
+// di Header menambahkan anchor bagian yang sedang dibaca (FL-002).
+import { content } from '../i18n/content';
+import { homePath, otherLang, sectionIds, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+  tone: 'adaptive' | 'dark';
+}
+
+const { lang, tone } = Astro.props;
+const target = otherLang(lang);
+const t = content[lang];
+const order: Lang[] = ['id', 'en'];
+
+const frame =
+  tone === 'dark' ? 'border-dark-line' : 'border-light-line group-data-[mode=dark]:border-dark-line';
+const active =
+  tone === 'dark'
+    ? 'bg-accent text-light-text'
+    : 'bg-light-text text-dark-text group-data-[mode=dark]:bg-accent group-data-[mode=dark]:text-light-text';
+const idle =
+  tone === 'dark'
+    ? 'text-dark-muted hover:text-dark-text'
+    : 'text-light-muted hover:text-light-text group-data-[mode=dark]:text-dark-muted group-data-[mode=dark]:hover:text-dark-text';
+const item =
+  'flex h-8 min-w-11 items-center justify-center rounded-full px-3 text-label font-medium uppercase transition-colors duration-[var(--dur-base)] ease-brand';
+---
+
+<nav aria-label={t.a11y.langSwitch} class:list={['flex items-center rounded-full border p-0.5', frame]}>
+  {
+    order.map((code) =>
+      code === lang ? (
+        <span aria-current="true" class:list={[item, active]}>
+          {code.toUpperCase()}
+        </span>
+      ) : (
+        <a
+          href={homePath(target)}
+          hreflang={target}
+          lang={target}
+          data-lang-switch
+          data-base={homePath(target)}
+          data-target-ids={JSON.stringify(sectionIds[target])}
+          class:list={[item, idle]}
+        >
+          {code.toUpperCase()}
+        </a>
+      ),
+    )
+  }
+</nav>

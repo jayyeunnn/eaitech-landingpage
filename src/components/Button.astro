@@ -1,0 +1,44 @@
+---
+// Tombol pil (P-023) dengan panah Lucide. Varian mengikuti mode bagian
+// (DESIGN bagian 1 dan 4).
+import { ArrowUpRight } from '@lucide/astro';
+
+interface Props {
+  href: string;
+  variant: 'on-light' | 'on-dark' | 'outline-dark';
+  external?: boolean;
+  srSuffix?: string;
+  class?: string;
+}
+
+const { href, variant, external = false, srSuffix, class: className } = Astro.props;
+
+const variants = {
+  'on-light': 'h-12 px-6 bg-light-text text-dark-text',
+  'on-dark': 'h-12 px-6 bg-accent text-light-text',
+  'outline-dark':
+    'h-11 px-5 border border-dark-line text-dark-text hover:border-accent hover:bg-accent hover:text-light-text',
+};
+
+const arrowColor = variant === 'on-light' ? 'text-accent' : '';
+---
+
+<a
+  href={href}
+  class:list={[
+    'group/btn inline-flex shrink-0 items-center gap-2 rounded-full text-button font-medium whitespace-nowrap transition-colors duration-[var(--dur-fast)] ease-brand',
+    variants[variant],
+    className,
+  ]}
+  {...external ? { target: '_blank', rel: 'noopener noreferrer' } : {}}
+>
+  <slot />
+  {srSuffix && <span class="sr-only">{srSuffix}</span>}
+  <ArrowUpRight
+    class:list={[
+      'size-4 transition-transform duration-[var(--dur-fast)] ease-brand group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5',
+      arrowColor,
+    ]}
+    aria-hidden="true"
+  />
+</a>

@@ -1,0 +1,15 @@
+---
+// Penanda konten placeholder (BR-002). Revisi Jay 2026-10-30: tanda tidak lagi
+// tampil di halaman; penanda tetap ada di DOM (`data-placeholder`, tersembunyi)
+// dan di kode (`placeholder: true` di content.ts / whatsapp.ts) untuk dicek
+// sebelum publikasi.
+interface Props {
+  show: boolean;
+  label: string;
+  class?: string;
+}
+
+const { show, label } = Astro.props;
+---
+
+{show && <span data-placeholder={label} hidden></span>}

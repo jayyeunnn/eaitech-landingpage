@@ -1,0 +1,83 @@
+---
+// Footer gelap, revisi Jay 2026-10-30: kolom gaya Aperios (REF-003) - tiga
+// kolom (navigasi, kontak, bahasa) dengan label kecil dan link besar, garis
+// putus-putus, kepanjangan logo, copyright dan "kembali ke atas". Penutupnya
+// nama "eAI Tech" tebal selebar layar yang bagian bawahnya terpotong tepi
+// halaman, gaya footer Outway (REF-004; mengubah P-017). Nama memakai Sora 700,
+// bukan font logo.
+import { ArrowUp } from '@lucide/astro';
+import LangSwitch from './LangSwitch.astro';
+import PlaceholderTag from './PlaceholderTag.astro';
+import { content } from '../i18n/content';
+import { sectionIds, type Lang } from '../i18n/ui';
+import { waLink } from '../config/whatsapp';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = content[lang];
+const ids = sectionIds[lang];
+const navItems = [
+  { href: `#${ids.services}`, label: t.nav.services },
+  { href: `#${ids.process}`, label: t.nav.process },
+  { href: `#${ids.faq}`, label: t.nav.faq },
+];
+const titleClass = 'text-label font-medium uppercase text-dark-muted';
+const linkClass = 'text-title font-light text-dark-text transition-colors duration-[var(--dur-fast)] ease-brand hover:text-accent';
+---
+
+<footer data-mode="dark" class="overflow-hidden bg-dark-bg text-dark-text">
+  <div class="mx-auto max-w-content px-4 pt-16 tablet:px-8 desktop:px-10 desktop:pt-20">
+    <div class="grid gap-10 border-b border-dotted border-dark-muted/40 pb-12 tablet:grid-cols-3">
+      <nav aria-labelledby="footer-nav-title">
+        <p id="footer-nav-title" class={titleClass}>{t.footer.navTitle}</p>
+        <ul class="mt-4 space-y-1">
+          {navItems.map((item) => (
+            <li><a href={item.href} class={linkClass}>{item.label}</a></li>
+          ))}
+        </ul>
+      </nav>
+
+      <div>
+        <p class={titleClass}>{t.footer.contactTitle}</p>
+        <ul class="mt-4 space-y-1">
+          <li>
+            <a href={waLink(lang)} target="_blank" rel="noopener noreferrer" class={linkClass}>
+              {t.footer.whatsapp}<span class="sr-only"> {t.a11y.newTab}</span>
+            </a>
+          </li>
+          <li class="flex flex-wrap items-center gap-3 text-title font-light text-dark-muted">
+            {t.footer.otherContacts.label}
+            <PlaceholderTag show={t.footer.otherContacts.placeholder} label={t.a11y.placeholderTag} />
+          </li>
+        </ul>
+      </div>
+
+      <div class="tablet:justify-self-end">
+        <p class={titleClass}>{t.footer.langTitle}</p>
+        <div class="mt-4 flex">
+          <LangSwitch lang={lang} tone="dark" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mx-auto max-w-content px-4 tablet:px-8 desktop:px-10">
+    <p class="mt-12 text-center text-label font-medium uppercase text-dark-muted">{t.footer.tagline}</p>
+    <div class="mt-12 flex items-center justify-between gap-6 text-label text-dark-muted">
+      <p>{t.footer.copyright}</p>
+      <a href={`#${ids.hero}`} class="inline-flex items-center gap-2 text-dark-text transition-colors duration-[var(--dur-fast)] ease-brand hover:text-accent">
+        {t.footer.backToTop}
+        <ArrowUp class="size-4" aria-hidden="true" />
+      </a>
+    </div>
+  </div>
+
+  {/* Nama selebar layar; tinggi wadah lebih pendek dari huruf sehingga bagian bawahnya terpotong. */}
+  <p class="sr-only">EAI Tech</p>
+  <div data-footer-wordmark class="mt-8 h-[0.72em] overflow-hidden text-[23.4vw] tablet:mt-12 desktop:mt-20" aria-hidden="true">
+    <p class="text-center leading-none font-bold tracking-[-0.04em] whitespace-nowrap text-dark-text">eAI Tech</p>
+  </div>
+</footer>

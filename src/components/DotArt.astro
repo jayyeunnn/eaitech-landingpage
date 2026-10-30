@@ -1,0 +1,25 @@
+---
+// Ilustrasi titik untuk langkah Cara Kerja (VISUAL-DNA: titik/garis turunan
+// pita logo). Cincin titik terisi bertahap sesuai nomor langkah.
+interface Props {
+  step: number;
+  total: number;
+}
+
+const { step, total } = Astro.props;
+const count = 36;
+const filled = Math.round((count * step) / total);
+const dots = Array.from({ length: count }, (_, i) => {
+  const angle = (i / count) * Math.PI * 2 - Math.PI / 2;
+  return {
+    cx: (60 + Math.cos(angle) * 44).toFixed(2),
+    cy: (60 + Math.sin(angle) * 44).toFixed(2),
+    on: i < filled,
+  };
+});
+---
+
+<svg viewBox="0 0 120 120" class="size-28" aria-hidden="true" focusable="false">
+  {dots.map((d) => <circle cx={d.cx} cy={d.cy} r={d.on ? 3 : 2} class={d.on ? 'fill-ribbon-3' : 'fill-light-line'} />)}
+  <circle cx="60" cy="60" r="4" class="fill-ribbon-2" />
+</svg>

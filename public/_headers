@@ -1,0 +1,12 @@
+# Header keamanan dasar (Fase 3, PRD bagian 4). Format `_headers` dipakai
+# Cloudflare Pages dan Netlify. Hosting belum dipilih (P-006): bila memakai
+# layanan lain, pasang header yang sama lewat konfigurasi layanan itu.
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
+  Strict-Transport-Security: max-age=31536000
+
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable

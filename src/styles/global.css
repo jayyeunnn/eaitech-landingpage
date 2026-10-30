@@ -1,0 +1,160 @@
+@import "tailwindcss";
+
+/*
+  Mode menempel Services dan How it works. Kelas `pin` dipasang di <html> oleh
+  skrip di <head> sebelum halaman tampil (bila JS aktif dan tidak reduced
+  motion), jadi tata letak tidak bergeser saat skrip animasi mulai (CLS).
+*/
+@custom-variant pinned (&:where(.pin *));
+
+/*
+  Token DESIGN.md dipetakan ke tema Tailwind.
+  Warna masih turunan sampel logo sampai P-011 terjawab; ganti nilai di sini
+  tanpa mengubah nama/peran token.
+*/
+@theme {
+  /* Warna - DESIGN bagian 1 */
+  --color-*: initial;
+  --color-accent: #02e6df;
+  --color-accent-ink: #027a77;
+  --color-light-bg: #f4f8f7;
+  --color-light-text: #0b1f1e;
+  --color-light-muted: #4a5e5c;
+  --color-light-line: #d5e0de;
+  --color-dark-bg: #04201f;
+  --color-dark-text: #e8f5f3;
+  --color-dark-muted: #9ab3b0;
+  --color-dark-line: #1e3634;
+  --color-dark-card: #0a2b29;
+  /* Gradasi pita/titik saja, bukan latar bagian */
+  --color-ribbon-1: #73f9f0;
+  --color-ribbon-2: #02e6df;
+  --color-ribbon-3: #029492;
+  --color-ribbon-4: #025552;
+  --color-transparent: transparent;
+  --color-current: currentColor;
+
+  /* Font - DESIGN bagian 2 */
+  --font-sans: "Sora", ui-sans-serif, system-ui, sans-serif;
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+
+  /* Skala ukuran: HP 375 px -> desktop 1440 px - DESIGN bagian 2 */
+  --text-display: clamp(3rem, 1.42rem + 6.74vw, 9.5rem);
+  --text-display--line-height: 0.95;
+  --text-display--letter-spacing: -0.02em;
+  --text-hero: clamp(2.5rem, 1.796rem + 3.005vw, 4.5rem);
+  --text-hero--line-height: 1.05;
+  --text-hero--letter-spacing: -0.02em;
+  --text-section: clamp(2rem, 1.648rem + 1.502vw, 3rem);
+  --text-section--line-height: 1.1;
+  /* Revisi Jay 2026-10-30: ukuran pertanyaan FAQ, langkah How it works dan
+     kalimat ajakan dikecilkan sedikit. */
+  --text-numeral: clamp(3rem, 2.296rem + 3.005vw, 5rem);
+  --text-numeral--line-height: 1;
+  --text-subhead: clamp(1.5rem, 1.324rem + 0.751vw, 2.25rem);
+  --text-subhead--line-height: 1.25;
+  --text-lead: clamp(1.25rem, 1.074rem + 0.751vw, 1.75rem);
+  --text-lead--line-height: 1.4;
+  --text-title: clamp(1.25rem, 1.162rem + 0.376vw, 1.5rem);
+  --text-title--line-height: 1.3;
+  --text-body: clamp(1rem, 0.956rem + 0.188vw, 1.125rem);
+  --text-body--line-height: 1.6;
+  --text-button: 0.9375rem;
+  --text-button--line-height: 1;
+  --text-label: 0.8125rem;
+  --text-label--line-height: 1.4;
+  --text-label--letter-spacing: 0.06em;
+
+  /* Titik ganti layout - DESIGN bagian 3 */
+  --breakpoint-*: initial;
+  --breakpoint-tablet: 48rem;
+  --breakpoint-desktop: 75rem;
+  --breakpoint-wide: 120rem;
+
+  /* Lebar isi: hampir sampai tepi layar dengan jarak tepi 16/32/40 px (revisi
+     Jay 2026-10-30), dibatasi 1920 px untuk layar sangat lebar. Jarak dasar
+     4 px = --spacing bawaan. */
+  --container-content: 120rem;
+  --container-prose: 65ch;
+
+  /* Animasi - DESIGN bagian 5.2 */
+  --ease-brand: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-fast: 150ms;
+  --dur-base: 300ms;
+  --dur-slow: 700ms;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  /* Layar besar/TV: ukuran dasar naik sekitar x1,15 - DESIGN bagian 2 */
+  @media (width >= 120rem) {
+    html {
+      font-size: 115%;
+    }
+  }
+
+  body {
+    /* Pengaman: halaman tidak pernah bisa digeser ke samping. `clip` (bukan
+       `hidden`) tidak membuat wadah scroll, jadi header dan Layanan tetap
+       bisa menempel. */
+    overflow-x: clip;
+    background-color: var(--color-light-bg);
+    color: var(--color-light-text);
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
+  }
+
+  /* Cincin fokus - DESIGN bagian 4 */
+  :focus-visible {
+    outline: 2px solid var(--color-accent-ink);
+    outline-offset: 2px;
+  }
+
+  [data-mode="dark"] :focus-visible {
+    outline-color: var(--color-accent);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+      interpolate-size: allow-keywords;
+    }
+
+    /* Keadaan awal animasi Fase 2, hanya saat JS aktif - DESIGN bagian 5.2 */
+    .js [data-reveal] {
+      opacity: 0.25;
+      transform: translateY(16px);
+    }
+
+    /* Tinggi jawaban FAQ beranimasi di browser yang mendukung; lainnya langsung buka */
+    details::details-content {
+      block-size: 0;
+      overflow: hidden;
+      transition:
+        block-size var(--dur-base) var(--ease-brand),
+        content-visibility var(--dur-base) allow-discrete;
+    }
+
+    details[open]::details-content {
+      block-size: auto;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}

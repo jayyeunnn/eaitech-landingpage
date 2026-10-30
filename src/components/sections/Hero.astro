@@ -1,0 +1,53 @@
+---
+// 1. Hero (terang), revisi Jay 2026-10-29/30: tanpa garis rangka, satu kalimat
+// judul (tombol WA dihapus 2026-10-30), dan logomark duduk tepat di batas Hero → Layanan.
+// Separuh bawah logomark "meleleh" ke latar gelap Layanan (konsep B, gaya
+// sambungan footer REF-001/REF-002). Gambar diam ini juga fallback animasi.
+import { Image } from 'astro:assets';
+import logomark from '../../assets/logomark.png';
+import Section from '../Section.astro';
+import PlaceholderTag from '../PlaceholderTag.astro';
+import { content } from '../../i18n/content';
+import { sectionIds, type Lang } from '../../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = content[lang];
+---
+
+<Section
+  id={sectionIds[lang].hero}
+  sectionKey="hero"
+  mode="light"
+  labelledby="hero-title"
+  frame={false}
+  class="grid gap-8 pb-0! desktop:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] desktop:gap-16"
+>
+  <div class="pb-8 desktop:self-center desktop:pb-32">
+    <PlaceholderTag show={t.hero.placeholder} label={t.a11y.placeholderTag} class="mb-6 text-light-muted" />
+    <h1 id="hero-title" class="text-hero font-light text-balance">{t.hero.title}</h1>
+  </div>
+
+  {
+    /* Separuh tinggi logomark (rasio 1091:975) masuk ke Layanan. HP/tablet memakai
+       margin negatif agar tidak ada ruang kosong di atas logomark; desktop memakai
+       translate karena tinggi baris ditentukan kolom teks. */
+  }
+  <div
+    data-ribbon-stage
+    transition:persist="hero-ribbon"
+    class="relative z-10 mx-auto -mb-32 w-full max-w-72 self-end tablet:-mb-36 tablet:max-w-80 desktop:mb-0 desktop:max-w-none desktop:translate-y-1/2"
+  >
+    <Image
+      src={logomark}
+      alt={t.hero.visualAlt}
+      widths={[320, 480, 720]}
+      sizes="(min-width: 75rem) 28rem, 20rem"
+      loading="eager"
+      class="h-auto w-full [mask-image:linear-gradient(to_bottom,#000_50%,transparent_96%)]"
+    />
+  </div>
+</Section>

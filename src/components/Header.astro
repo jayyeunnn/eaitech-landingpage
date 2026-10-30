@@ -1,0 +1,63 @@
+---
+// Header tidak menempel: tetap di atas halaman dan ikut tergulir (revisi Jay
+// 2026-10-30, menggantikan P-024), jadi selalu terang di atas hero. Menu aktif
+// dan ganti bahasa diatur src/scripts/header-nav.ts dan lang-switch.ts.
+// Logo: logomark + teks "eAI Tech" di kode (revisi Jay 2026-10-29; teks pakai
+// Sora sampai ada logo vektor resmi, P-011). Menu di kanan bersama pil bahasa;
+// tanpa tombol WA di header (revisi Jay). HP: logo + pil bahasa saja (P-018).
+import { Image } from 'astro:assets';
+import logomark from '../assets/logomark.png';
+import LangSwitch from './LangSwitch.astro';
+import { content } from '../i18n/content';
+import { sectionIds, type Lang, type SectionKey } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = content[lang];
+const ids = sectionIds[lang];
+const links: { key: SectionKey; label: string }[] = [
+  { key: 'services', label: t.nav.services },
+  { key: 'process', label: t.nav.process },
+  { key: 'faq', label: t.nav.faq },
+];
+---
+
+<header
+  data-site-header
+  data-mode="light"
+  class="group relative z-40 bg-light-bg text-light-text transition-colors duration-[var(--dur-base)] ease-brand data-[mode=dark]:bg-dark-bg data-[mode=dark]:text-dark-text"
+>
+  <div
+    class="mx-auto flex h-15 max-w-content items-center justify-between gap-6 px-4 tablet:px-8 desktop:h-18 desktop:px-10"
+  >
+    <a href={`#${ids.hero}`} aria-label={t.a11y.home} class="flex shrink-0 items-center gap-2.5">
+      <Image src={logomark} alt="" height={32} densities={[1, 2]} class="h-8 w-auto" />
+      <span aria-hidden="true" class="text-title font-light tracking-wide">eAI Tech</span>
+    </a>
+
+    <div class="flex items-center gap-6 desktop:gap-8">
+    <nav aria-label={t.a11y.primaryNav} class="hidden tablet:block">
+      <ul class="flex items-center gap-6 desktop:gap-8">
+        {
+          links.map((link) => (
+            <li>
+              <a
+                href={`#${ids[link.key]}`}
+                data-nav-key={link.key}
+                class="text-button text-light-muted underline-offset-8 transition-colors duration-[var(--dur-fast)] ease-brand hover:text-light-text aria-[current=true]:text-light-text aria-[current=true]:underline group-data-[mode=dark]:text-dark-muted group-data-[mode=dark]:hover:text-dark-text group-data-[mode=dark]:aria-[current=true]:text-dark-text"
+              >
+                {link.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <LangSwitch lang={lang} tone="adaptive" />
+    </div>
+  </div>
+</header>

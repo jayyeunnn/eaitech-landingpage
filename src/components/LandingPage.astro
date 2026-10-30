@@ -1,0 +1,40 @@
+---
+// S-001: urutan enam bagian sesuai LAYOUT, sama untuk `/` (EN) dan `/id` (ID).
+import Header from './Header.astro';
+import Footer from './Footer.astro';
+import Hero from './sections/Hero.astro';
+import Services from './sections/Services.astro';
+import Process from './sections/Process.astro';
+import Faq from './sections/Faq.astro';
+import Cta from './sections/Cta.astro';
+import { content } from '../i18n/content';
+import type { Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = content[lang];
+const mainId = lang === 'id' ? 'konten' : 'content';
+---
+
+<a
+  href={`#${mainId}`}
+  class="sr-only rounded-full bg-light-text px-5 py-3 text-button font-medium text-dark-text focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50"
+>
+  {t.a11y.skip}
+</a>
+<Header lang={lang} />
+<main id={mainId} tabindex="-1" class="focus:outline-none">
+  <Hero lang={lang} />
+  <Services lang={lang} />
+  <Process lang={lang} />
+  <Faq lang={lang} />
+  <Cta lang={lang} />
+</main>
+<Footer lang={lang} />
+
+<script>
+  import '../scripts/motion';
+</script>

@@ -1,0 +1,50 @@
+---
+// 4. FAQ (gelap), revisi Jay 2026-10-30: adaptasi FAQ Aperios (konsep, bukan
+// salinan). Tanpa garis rangka; judul raksasa huruf kapital Sora tipis;
+// di bawahnya label "FAQ" di kiri dan daftar pertanyaan di kanan.
+// Revisi 2026-10-30: judul besar tebal (sama dengan bagian lain), semua
+// diperbesar, isi melebar ke tepi. Pertanyaan redup, terang saat disorot; ikon + menjadi − saat dibuka;
+// jawaban terang. Elemen buka-tutup bawaan HTML agar jalan tanpa JS (P-008).
+import { Minus, Plus } from '@lucide/astro';
+import Section from '../Section.astro';
+import SectionHeading from '../SectionHeading.astro';
+import PlaceholderTag from '../PlaceholderTag.astro';
+import { content } from '../../i18n/content';
+import { sectionIds, type Lang } from '../../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = content[lang];
+const f = t.faq;
+---
+
+<Section id={sectionIds[lang].faq} sectionKey="faq" mode="dark" labelledby="faq-title" frame={false}>
+  <SectionHeading id="faq-title" lines={f.title} placeholder={false} placeholderLabel={t.a11y.placeholderTag} />
+
+  <div class="mt-12 grid gap-8 desktop:mt-20 desktop:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] desktop:gap-16">
+    <div class="flex flex-wrap items-start gap-3 desktop:flex-col">
+      <p class="text-title font-bold uppercase text-dark-text">{f.label}</p>
+      <PlaceholderTag show={f.placeholder} label={t.a11y.placeholderTag} class="text-dark-muted" />
+    </div>
+
+    <div class="border-t border-dark-line">
+      {
+        f.items.map((item) => (
+          <details class="group/faq border-b border-dark-line">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-8 py-7 text-lead font-normal text-dark-muted desktop:py-8 transition-colors duration-[var(--dur-fast)] ease-brand hover:text-dark-text [&::-webkit-details-marker]:hidden">
+              {item.q}
+              <span class="shrink-0 text-dark-text" aria-hidden="true">
+                <Plus class="size-6 group-open/faq:hidden desktop:size-7" />
+                <Minus class="hidden size-6 group-open/faq:block desktop:size-7" />
+              </span>
+            </summary>
+            <p class="max-w-prose pb-8 text-title font-light text-dark-text">{item.a}</p>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</Section>
