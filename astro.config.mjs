@@ -5,9 +5,9 @@ import tailwindcss from '@tailwindcss/vite';
 // Output statis (SSG) dan dua bahasa: `/` Inggris (default), `/id` Indonesia.
 // Rujukan: PRD bagian 4, F-005, BR-004 (revisi Jay 2026-10-29).
 export default defineConfig({
-  // PLACEHOLDER (BR-002): domain asli belum diketahui agent (dipegang teman tim,
-  // P-006). Dipakai untuk URL canonical, hreflang, Open Graph dan sitemap.
-  site: 'https://example.com',
+  // Domain dibeli Jay 2026-11-06. Dipakai untuk URL canonical, hreflang, Open
+  // Graph dan sitemap.
+  site: 'https://eaitech.id',
   output: 'static',
   i18n: {
     defaultLocale: 'en',

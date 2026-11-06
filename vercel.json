@@ -1,0 +1,44 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    {
+      "source": "/",
+      "has": [{ "type": "cookie", "key": "lang", "value": "id" }],
+      "destination": "/id/",
+      "permanent": false
+    },
+    {
+      "source": "/projects{/}?",
+      "has": [{ "type": "cookie", "key": "lang", "value": "id" }],
+      "destination": "/id/projects/",
+      "permanent": false
+    },
+    {
+      "source": "/projects/:slug{/}?",
+      "has": [{ "type": "cookie", "key": "lang", "value": "id" }],
+      "destination": "/id/projects/:slug/",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [{ "type": "header", "key": "x-vercel-ip-country", "value": "ID" }],
+      "missing": [{ "type": "cookie", "key": "lang" }],
+      "destination": "/id/",
+      "permanent": false
+    },
+    {
+      "source": "/projects{/}?",
+      "has": [{ "type": "header", "key": "x-vercel-ip-country", "value": "ID" }],
+      "missing": [{ "type": "cookie", "key": "lang" }],
+      "destination": "/id/projects/",
+      "permanent": false
+    },
+    {
+      "source": "/projects/:slug{/}?",
+      "has": [{ "type": "header", "key": "x-vercel-ip-country", "value": "ID" }],
+      "missing": [{ "type": "cookie", "key": "lang" }],
+      "destination": "/id/projects/:slug/",
+      "permanent": false
+    }
+  ]
+}

@@ -27,6 +27,8 @@ export function initLangSwitch() {
     if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return;
     const link = event.currentTarget as HTMLAnchorElement;
     event.preventDefault();
+    // Pilihan pengunjung mengalahkan pengalihan negara di vercel.json.
+    document.cookie = `lang=${link.hreflang}; path=/; max-age=31536000; samesite=lax`;
     // Halaman tanpa bagian bernama (List, Detail) memakai posisi scroll apa adanya.
     const section = currentSection();
     pending = section

@@ -136,7 +136,7 @@ ClientRouter). Tanpa JS: link membuka halaman bahasa lain di bagian yang sama.
 | BR-001 | Pesan awal WhatsApp mengikuti bahasa yang sedang aktif | F-002, F-005 | - |
 | BR-002 | Konten placeholder ditandai jelas dan wajib diganti konten final sebelum halaman dipublikasikan. Revisi Jay 2026-10-30: tanda tidak lagi tampil di halaman; penanda tetap di kode (`placeholder: true`) dan DOM tersembunyi (`data-placeholder`) untuk dicek sebelum publikasi | F-003, F-004, copy F-001 | Publikasi ditahan sampai konten final tersedia atau tim memutuskan lain |
 | BR-003 | Pesan awal dari tombol layanan menyebut nama layanan tersebut; tombol umum memakai pesan umum. Revisi 2026-11-06: tombol per layanan menjadi tombol per kategori dan menyebut nama kategori | F-002 | - |
-| BR-004 | Bahasa default Inggris (revisi Jay 2026-10-29; sebelumnya Indonesia); pergantian bahasa hanya lewat tombol ID/EN, tidak mengikuti setelan browser | F-005 | - |
+| BR-004 | Bahasa mengikuti negara pengunjung (revisi Jay 2026-11-06): pengunjung dari Indonesia yang membuka alamat EN dialihkan ke versi ID, pengunjung lain mendapat EN. Pilihan lewat tombol ID/EN disimpan di cookie `lang` dan mengalahkan pengalihan. Alamat `/id` tidak pernah dialihkan. Tidak mengikuti setelan browser | F-005 | Pengalihan memakai header negara Vercel (`vercel.json`); bila pindah hosting perlu dibuat ulang (P-006). Negara bisa keliru bila pengunjung memakai VPN; tombol ID/EN tetap tersedia |
 
 ### Role & Permission
 

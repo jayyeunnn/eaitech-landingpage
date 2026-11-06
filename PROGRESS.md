@@ -2052,3 +2052,38 @@ perlu. Log historis tidak diubah agar terlihat mengikuti kondisi sekarang.
 
 - Label kecil "Selected work" dan "Our process" serta kalimat pengantar kedua
   bagian dihapus dari homepage, di EN dan ID.
+
+### 2026-11-06 WIB - Deploy | Percobaan Vercel (permintaan Jay)
+
+- Project Vercel `eaitech` (nama awal `eaitech-landingpage`) dibuat di akun Jay lewat CLI dan file
+  `.vercel` masuk .gitignore. Sambungan GitHub gagal karena akun Vercel belum
+  punya Login Connection ke GitHub; deploy lewat CLI tetap jalan.
+- Agent berniat deploy preview memakai `vercel deploy`, tetapi deploy pertama
+  project baru tercatat target production dan alamat
+  https://eaitech.vercel.app terbuka untuk publik (alamat awal dengan kata landingpage dilepas atas permintaan Jay). Commit 5eb5c2c.
+- Hosting tetap P-006, belum diputuskan. Header keamanan di public/_headers tidak
+  terbaca di Vercel. Status lanjut alamat publik menunggu keputusan Jay.
+
+### 2026-11-06 WIB - Deploy | Pindah akun Vercel dan domain eaitech.id (permintaan Jay)
+
+- Jay menghapus project di akun lama dan login ke akun `eaitechweb-2428`. Project
+  `eaitech` dibuat ulang di akun itu, deploy produksi READY, alamat
+  https://eaitech.vercel.app aktif.
+- `site` di astro.config.mjs diganti ke https://eaitech.id. Domain eaitech.id dan
+  www.eaitech.id sudah ditambahkan ke project, tetapi belum aktif: DNS perlu diatur
+  Jay di penyedia domain (A eaitech.id dan A www.eaitech.id ke 76.76.21.21).
+- Sambungan GitHub ke Vercel masih gagal (belum ada Login Connection). Deploy
+  lewat CLI dari working tree; perubahan astro.config.mjs belum di-commit.
+
+### 2026-11-06 WIB - Revisi | Bahasa mengikuti negara pengunjung (arahan Jay)
+
+- BR-004 direvisi. vercel.json mengalihkan pengunjung Indonesia dari alamat EN ke
+  versi ID lewat header `x-vercel-ip-country`, kecuali sudah ada cookie `lang`.
+  Tombol ID/EN menyimpan cookie itu selama satu tahun.
+- Pilihan ID juga dipatuhi lewat cookie `lang=id`. Sudah di-deploy dan diuji di https://eaitech.vercel.app dari koneksi Indonesia; sisi luar Indonesia belum diuji.
+
+### 2026-11-06 WIB - Deploy | eaitech.id aktif (permintaan Jay)
+
+- DNS A eaitech.id dan www.eaitech.id ke 76.76.21.21 terbaca di resolver publik
+  (nameserver idwebhost). Vercel memverifikasi kedua domain, sertifikat HTTPS
+  terbit, www dialihkan 308 ke eaitech.id.
