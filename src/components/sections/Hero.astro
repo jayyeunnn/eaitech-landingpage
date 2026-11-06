@@ -1,14 +1,20 @@
 ---
-// 1. Hero (terang), revisi Jay 2026-10-29/30: tanpa garis rangka, satu kalimat
-// judul (tombol WA dihapus 2026-10-30), dan logomark duduk tepat di batas Hero → Layanan.
-// Separuh bawah logomark "meleleh" ke latar gelap Layanan (konsep B, gaya
-// sambungan footer REF-001/REF-002). Gambar diam ini juga fallback animasi.
+// 1. Hero (terang), frame 09 (revisi Jay 2026-11-06): judul serif di tengah,
+// tombol WA dan tombol ke Project, HP di kiri dan laptop di kanan yang terpotong
+// tepi. Gambar sudah miring dari FigCraft, jadi animasi hanya menambah selisih.
+// Isi layar perangkat: screenshot demo sementara selama pengembangan, wajib
+// diganti sebelum rilis (lihat SOURCES.md di folder FigCraft).
+//
+// Tiga lapis per perangkat agar animasi tidak saling menimpa:
+// [data-hero-device] scroll > [data-hero-tilt] kursor > [data-hero-intro] masuk.
 import { Image } from 'astro:assets';
-import logomark from '../../assets/logomark.png';
-import Section from '../Section.astro';
+import phone from '../../assets/design/hero-phone.png';
+import laptop from '../../assets/design/hero-laptop.png';
+import Button from '../Button.astro';
 import PlaceholderTag from '../PlaceholderTag.astro';
 import { content } from '../../i18n/content';
 import { sectionIds, type Lang } from '../../i18n/ui';
+import { waLink } from '../../config/whatsapp';
 
 interface Props {
   lang: Lang;
@@ -16,38 +22,61 @@ interface Props {
 
 const { lang } = Astro.props;
 const t = content[lang];
+const ids = sectionIds[lang];
 ---
 
-<Section
-  id={sectionIds[lang].hero}
-  sectionKey="hero"
-  mode="light"
-  labelledby="hero-title"
-  frame={false}
-  class="grid gap-8 pb-0! desktop:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] desktop:gap-16"
+<section
+  id={ids.hero}
+  data-section="hero"
+  data-mode="light"
+  data-hero
+  aria-labelledby="hero-title"
+  class="relative h-svh min-h-160 overflow-hidden bg-light-bg text-light-text"
 >
-  <div class="pb-8 desktop:self-center desktop:pb-32">
-    <PlaceholderTag show={t.hero.placeholder} label={t.a11y.placeholderTag} class="mb-6 text-light-muted" />
-    <h1 id="hero-title" class="text-hero font-light text-balance">{t.hero.title}</h1>
+  <div
+    data-hero-device="phone"
+    class="absolute top-[max(56%,26rem)] left-[-22%] w-[66%] tablet:top-[50%] tablet:left-[-14%] tablet:w-[52%] desktop:top-[27.1%] desktop:left-[-14.49%] desktop:w-[40.94%]"
+  >
+    <div data-hero-tilt>
+      <Image
+        src={phone}
+        alt=""
+        data-hero-intro
+        widths={[400, 600, 900, 1179]}
+        sizes="(min-width: 75rem) 41vw, 60vw"
+        loading="eager"
+        class="h-auto w-full"
+      />
+    </div>
   </div>
 
-  {
-    /* Separuh tinggi logomark (rasio 1091:975) masuk ke Layanan. HP/tablet memakai
-       margin negatif agar tidak ada ruang kosong di atas logomark; desktop memakai
-       translate karena tinggi baris ditentukan kolom teks. */
-  }
   <div
-    data-ribbon-stage
-    transition:persist="hero-ribbon"
-    class="relative z-10 mx-auto -mb-32 w-full max-w-72 self-end tablet:-mb-36 tablet:max-w-80 desktop:mb-0 desktop:max-w-none desktop:translate-y-1/2"
+    data-hero-device="laptop"
+    class="absolute top-[max(58%,27rem)] left-[40%] w-[104%] tablet:top-[52%] tablet:left-[46%] tablet:w-[88%] desktop:top-[28.1%] desktop:left-[66.66%] desktop:w-[68.58%]"
   >
-    <Image
-      src={logomark}
-      alt={t.hero.visualAlt}
-      widths={[320, 480, 720]}
-      sizes="(min-width: 75rem) 28rem, 20rem"
-      loading="eager"
-      class="h-auto w-full [mask-image:linear-gradient(to_bottom,#000_50%,transparent_96%)]"
-    />
+    <div data-hero-tilt>
+      <Image
+        src={laptop}
+        alt=""
+        data-hero-intro
+        widths={[600, 900, 1400, 1975]}
+        sizes="(min-width: 75rem) 69vw, 100vw"
+        loading="eager"
+        class="h-auto w-full"
+      />
+    </div>
   </div>
-</Section>
+
+  <div class="relative z-10 mx-auto flex h-full max-w-content flex-col items-center px-4 pt-24 text-center tablet:pt-32 desktop:justify-center desktop:pt-[7svh]">
+    <PlaceholderTag show={t.hero.placeholder} label={t.a11y.placeholderTag} />
+    <h1 id="hero-title" class="font-serif text-hero font-normal">
+      <span class="block">{t.hero.title[0]}</span>
+      <span class="block">{t.hero.title[1]}</span>
+    </h1>
+    <p class="mt-4 max-w-155 text-body text-light-muted tablet:mt-6 desktop:mt-[5.5svh]">{t.hero.lead}</p>
+    <div class="mt-6 flex flex-wrap items-center justify-center gap-2 desktop:mt-[4.5svh] desktop:gap-6">
+      <Button href={waLink(lang)} variant="solid" external srSuffix={t.a11y.newTab}>{t.hero.discuss}</Button>
+      <Button href={`#${ids.project}`} variant="text">{t.hero.work}</Button>
+    </div>
+  </div>
+</section>

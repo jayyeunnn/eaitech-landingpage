@@ -1,44 +1,39 @@
 ---
-// Tombol pil (P-023) dengan panah Lucide. Varian mengikuti mode bagian
-// (DESIGN bagian 1 dan 4).
-import { ArrowUpRight } from '@lucide/astro';
-
+// Tombol pil (P-023). Hero dan kategori layanan memakai tombol tanpa panah
+// sesuai frame 09 (revisi Jay 2026-11-06). Tanpa `href`, tombol tampil tetapi
+// belum mengarah ke mana pun (halaman tujuan menyusul).
 interface Props {
-  href: string;
-  variant: 'on-light' | 'on-dark' | 'outline-dark';
+  href?: string;
+  variant: 'solid' | 'mint' | 'text' | 'outline';
   external?: boolean;
   srSuffix?: string;
   class?: string;
+  [key: `data-${string}`]: unknown;
 }
 
-const { href, variant, external = false, srSuffix, class: className } = Astro.props;
+const { href, variant, external = false, srSuffix, class: className, ...rest } = Astro.props;
+
+const Tag = href ? 'a' : 'span';
 
 const variants = {
-  'on-light': 'h-12 px-6 bg-light-text text-dark-text',
-  'on-dark': 'h-12 px-6 bg-accent text-light-text',
-  'outline-dark':
-    'h-11 px-5 border border-dark-line text-dark-text hover:border-accent hover:bg-accent hover:text-light-text',
+  solid: 'h-13.5 px-8 bg-dark-bg text-dark-text font-semibold',
+  mint: 'h-10.5 px-8 bg-mint text-light-text font-semibold',
+  text: 'h-13.5 px-4 text-light-text font-medium underline-offset-4 hover:underline',
+  outline: 'h-11 px-5 border border-route text-light-text font-medium',
 };
-
-const arrowColor = variant === 'on-light' ? 'text-accent' : '';
 ---
 
-<a
+<Tag
   href={href}
+  data-press
   class:list={[
-    'group/btn inline-flex shrink-0 items-center gap-2 rounded-full text-button font-medium whitespace-nowrap transition-colors duration-[var(--dur-fast)] ease-brand',
+    'inline-flex shrink-0 items-center justify-center rounded-full text-button whitespace-nowrap',
     variants[variant],
     className,
   ]}
   {...external ? { target: '_blank', rel: 'noopener noreferrer' } : {}}
+  {...rest}
 >
   <slot />
-  {srSuffix && <span class="sr-only">{srSuffix}</span>}
-  <ArrowUpRight
-    class:list={[
-      'size-4 transition-transform duration-[var(--dur-fast)] ease-brand group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5',
-      arrowColor,
-    ]}
-    aria-hidden="true"
-  />
-</a>
+  {srSuffix && <span class="sr-only">&nbsp;{srSuffix}</span>}
+</Tag>

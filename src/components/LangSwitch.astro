@@ -8,10 +8,13 @@ import { homePath, otherLang, sectionIds, type Lang } from '../i18n/ui';
 interface Props {
   lang: Lang;
   tone: 'adaptive' | 'dark';
+  // Alamat halaman ini di bahasa lain; bawaan homepage.
+  altPath?: string;
 }
 
-const { lang, tone } = Astro.props;
+const { lang, tone, altPath } = Astro.props;
 const target = otherLang(lang);
+const targetPath = altPath ?? homePath(target);
 const t = content[lang];
 const order: Lang[] = ['id', 'en'];
 
@@ -38,11 +41,11 @@ const item =
         </span>
       ) : (
         <a
-          href={homePath(target)}
+          href={targetPath}
           hreflang={target}
           lang={target}
           data-lang-switch
-          data-base={homePath(target)}
+          data-base={targetPath}
           data-target-ids={JSON.stringify(sectionIds[target])}
           class:list={[item, idle]}
         >

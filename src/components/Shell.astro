@@ -1,0 +1,38 @@
+---
+// Kerangka bersama homepage, List Project dan Detail Project: link lompat ke
+// konten, navigasi, isi, footer dan skrip animasi.
+import Header from './Header.astro';
+import DetailNav from './DetailNav.astro';
+import Footer from './Footer.astro';
+import { content } from '../i18n/content';
+import { homePath, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+  page: 'home' | 'list' | 'detail';
+  // Alamat halaman ini di bahasa lain, untuk tombol ID/EN.
+  altPath?: string;
+}
+
+const { lang, page, altPath } = Astro.props;
+const t = content[lang];
+const mainId = lang === 'id' ? 'konten' : 'content';
+const target = altPath ?? homePath(lang === 'id' ? 'en' : 'id');
+---
+
+<span id="top"></span>
+<a
+  href={`#${mainId}`}
+  class="sr-only rounded-full bg-light-text px-5 py-3 text-button font-medium text-dark-text focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50"
+>
+  {t.a11y.skip}
+</a>
+{page === 'detail' ? <DetailNav lang={lang} /> : <Header lang={lang} page={page} altPath={target} />}
+<main id={mainId} tabindex="-1" class="focus:outline-none">
+  <slot />
+</main>
+<Footer lang={lang} page={page} altPath={target} />
+
+<script>
+  import '../scripts/motion';
+</script>

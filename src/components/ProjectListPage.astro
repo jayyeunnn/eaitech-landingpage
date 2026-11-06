@@ -1,0 +1,93 @@
+---
+// S-002 List Project, frame 07 (revisi Jay 2026-11-06): judul, tab kategori dan
+// galeri dua kolom. Tab hanya tampil saat JS aktif; tanpa JS semua project terlihat.
+// Project dibagi selang-seling ke dua kolom agar tinggi kartu berbeda tetap rapat.
+import { Image } from 'astro:assets';
+import Shell from './Shell.astro';
+import Cta from './sections/Cta.astro';
+import PlaceholderTag from './PlaceholderTag.astro';
+import { content } from '../i18n/content';
+import { projects } from '../data/projects';
+import { otherLang, projectPath, projectsPath, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = content[lang];
+const p = t.projectPages;
+// Kategori layanan yang punya project saja.
+const categories = t.services.items
+  .map((item) => ({
+    key: item.key as string,
+    label: item.name,
+    total: projects.filter((project) => project.category === item.key).length,
+  }))
+  .filter((category) => category.total > 0);
+const filters = [{ key: 'all', label: p.all, total: projects.length }, ...categories];
+const columns = [projects.filter((_, i) => i % 2 === 0), projects.filter((_, i) => i % 2 === 1)];
+---
+
+<Shell lang={lang} page="list" altPath={projectsPath(otherLang(lang))}>
+  <div class="mx-auto max-w-content px-4 pt-20 pb-16 tablet:px-8 tablet:pt-24 desktop:px-10 desktop:pt-30">
+    <PlaceholderTag show={true} label={t.a11y.placeholderTag} />
+    <h1 class="font-serif text-display-lg font-normal">{t.project.title}</h1>
+
+    <div data-project-filter class="mt-8 hidden border-b border-light-line [.js_&]:block desktop:mt-10">
+      <div role="group" aria-label={p.filter} class="-mb-px flex gap-7 overflow-x-auto [scrollbar-width:none] desktop:gap-10">
+        {
+          filters.map((filter, i) => (
+            <button
+              type="button"
+              data-filter={filter.key}
+              aria-pressed={i === 0 ? 'true' : 'false'}
+              class="shrink-0 cursor-pointer border-b-2 border-transparent pb-4 text-body whitespace-nowrap text-light-muted transition-colors duration-[var(--dur-fast)] ease-out hover:text-light-text aria-pressed:border-dark-bg aria-pressed:text-light-text"
+            >
+              {filter.label}{' '}<sup class="text-eyebrow tracking-normal">{filter.total}</sup>
+            </button>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="mt-10 grid gap-10 tablet:grid-cols-2 desktop:mt-11">
+      {
+        columns.map((column) => (
+          <div class="grid content-start gap-10 desktop:gap-12">
+            {column.map((project) => {
+              const copy = project.copy[lang];
+              return (
+                <article data-project-card data-category={project.category}>
+                  <a href={projectPath(lang, project.slug)} data-cover-link class="block">
+                    <div
+                      transition:name={`project-${project.slug}`}
+                      style="view-transition-class: project-cover"
+                      class="overflow-hidden rounded-[1.25rem]"
+                    >
+                      <Image
+                        src={project.images.list}
+                        alt={copy.coverAlt}
+                        data-cover-image
+                        widths={[480, 800, 1320]}
+                        sizes="(min-width: 48rem) 46vw, 100vw"
+                        class="h-auto w-full"
+                      />
+                    </div>
+                    <div class="mt-6 flex items-baseline justify-between gap-4">
+                      <h2 class="text-title font-medium">{copy.name}</h2>
+                      <p class="shrink-0 text-eyebrow text-light-muted uppercase">{t.project.concept}</p>
+                    </div>
+                    <p class="mt-2 text-label tracking-normal text-light-muted">{copy.services}</p>
+                  </a>
+                </article>
+              );
+            })}
+          </div>
+        ))
+      }
+    </div>
+  </div>
+
+  <Cta lang={lang} />
+</Shell>

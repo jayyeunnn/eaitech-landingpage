@@ -1,0 +1,14 @@
+---
+import Base from '../../layouts/Base.astro';
+import ProjectListPage from '../../components/ProjectListPage.astro';
+import { content } from '../../i18n/content';
+import { languages, projectsPath, type Lang } from '../../i18n/ui';
+
+const lang: Lang = 'en';
+const meta = content[lang].projectPages.meta;
+const paths = Object.fromEntries((Object.keys(languages) as Lang[]).map((code) => [code, projectsPath(code)])) as Record<Lang, string>;
+---
+
+<Base lang={lang} title={meta.title} description={meta.description} paths={paths}>
+  <ProjectListPage lang={lang} />
+</Base>

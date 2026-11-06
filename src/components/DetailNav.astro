@@ -1,0 +1,34 @@
+---
+// Navigasi ringkas Detail Project (revisi Jay 2026-11-06): kembali ke daftar di
+// kiri, logo di tengah, Contact di kanan. Pilihan bahasa ada di footer. HP: tombol
+// kembali memakai ikon agar logo tetap di tengah.
+import { Image } from 'astro:assets';
+import { ArrowLeft } from '@lucide/astro';
+import logomark from '../assets/logomark.png';
+import Button from './Button.astro';
+import { content } from '../i18n/content';
+import { homePath, projectsPath, sectionIds, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = content[lang];
+---
+
+<header data-mode="light" class="text-light-text">
+  <div class="mx-auto grid h-16 max-w-content grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-3 px-4 tablet:h-20 tablet:px-8 desktop:h-25 desktop:px-10">
+    <div class="justify-self-start">
+      <Button href={projectsPath(lang)} variant="outline" class="max-tablet:w-11 max-tablet:px-0!">
+        <ArrowLeft class="size-4 tablet:hidden" aria-hidden="true" />
+        <span class="max-tablet:sr-only">{t.projectPages.back}</span>
+      </Button>
+    </div>
+    <a href={homePath(lang)} aria-label={t.a11y.logoAlt} class="flex items-center gap-2.5">
+      <Image src={logomark} alt="" height={36} densities={[1, 2]} class="h-8 w-auto desktop:h-9" />
+      <span aria-hidden="true" class="text-title font-light desktop:text-[1.5625rem]">eAI Tech</span>
+    </a>
+    <a href={`#${sectionIds[lang].contact}`} class="justify-self-end text-nav font-medium underline-offset-8 hover:underline">{t.projectPages.contact}</a>
+  </div>
+</header>

@@ -1,0 +1,160 @@
+---
+// S-003 Detail Project, frame 08: satu template untuk semua project. Judul, chip,
+// gambar utama, tiga baris cerita, galeri, project berikutnya, ajakan dan footer.
+// Gambar adalah link ke versi besar, jadi tetap berfungsi tanpa JS; dengan JS
+// terbuka di tampilan besar (src/scripts/lightbox.ts).
+import { Image, getImage } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import { X } from '@lucide/astro';
+import Shell from './Shell.astro';
+import Button from './Button.astro';
+import Cta from './sections/Cta.astro';
+import PlaceholderTag from './PlaceholderTag.astro';
+import { content } from '../i18n/content';
+import { nextProject, type Project } from '../data/projects';
+import { otherLang, projectPath, projectsPath, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+  project: Project;
+}
+
+const { lang, project } = Astro.props;
+const t = content[lang];
+const p = t.projectPages;
+const copy = project.copy[lang];
+const next = nextProject(project.slug);
+const nextCopy = next.copy[lang];
+
+const large = async (src: ImageMetadata) =>
+  (await getImage({ src, width: Math.min(src.width, 2000), format: 'webp' })).src;
+
+const coverLarge = await large(project.images.cover);
+const gallery = await Promise.all(
+  project.images.gallery.map(async (src, i) => ({ src, large: await large(src), ...copy.gallery[i] })),
+);
+const [first, second, wide] = gallery;
+const story = [
+  { title: p.about, body: copy.about },
+  { title: p.challenge, body: copy.challenge },
+  { title: p.solution, body: copy.solution },
+];
+const captionClass = 'mt-3 block text-eyebrow text-light-muted uppercase';
+---
+
+<Shell lang={lang} page="detail" altPath={projectPath(otherLang(lang), project.slug)}>
+  <PlaceholderTag show={project.placeholder} label={t.a11y.placeholderTag} />
+  <div class="mx-auto max-w-content px-4 tablet:px-8 desktop:px-10">
+    <div class="pt-8 pb-14 text-center tablet:pt-10 desktop:pb-16">
+      <p class="text-eyebrow font-medium text-accent-ink uppercase">{copy.name} / {t.project.concept}</p>
+      <h1 class="mt-6 font-serif text-display font-normal text-balance">
+        <span class="block">{copy.headline[0]}</span>
+        <span class="block">{copy.headline[1]}</span>
+      </h1>
+      <ul class="mt-8 flex flex-wrap justify-center gap-3">
+        {copy.chips.map((chip) => <li class="flex h-8 items-center rounded-full border border-route px-3 text-[0.75rem]">{chip}</li>)}
+      </ul>
+    </div>
+
+    <a href={coverLarge} data-lightbox-open data-alt={copy.coverAlt} data-caption={copy.coverCaption} data-cover-link class="block">
+      <div
+        transition:name={`project-${project.slug}`}
+        style="view-transition-class: project-cover"
+        class="overflow-hidden rounded-[1.125rem]"
+      >
+        <Image
+          src={project.images.cover}
+          alt={copy.coverAlt}
+          data-cover-image
+          widths={[600, 1000, 1500, 2000, 2720]}
+          sizes="100vw"
+          loading="eager"
+          class="h-auto w-full"
+        />
+      </div>
+      <span class={captionClass}>{copy.coverCaption} / {p.closer}</span>
+    </a>
+
+    <div class="mt-14 desktop:mt-20">
+      {
+        story.map((row) => (
+          <section data-reveal class="grid gap-4 border-t border-light-line pt-6 pb-10 desktop:grid-cols-[29.5rem_minmax(0,1fr)] desktop:pb-30">
+            <h2 class="font-serif text-[2.125rem] leading-tight font-normal">{row.title}</h2>
+            <p class="text-body">{row.body}</p>
+          </section>
+        ))
+      }
+    </div>
+
+    <div class="mt-6 grid gap-x-6 gap-y-10 tablet:grid-cols-2 desktop:gap-y-20">
+      {
+        [first, second, wide].map((item, i) => (
+          <a
+            href={item.large}
+            data-lightbox-open
+            data-alt={item.alt}
+            data-caption={item.caption}
+            data-cover-link
+            class:list={['block', i === 2 && 'tablet:col-span-2']}
+          >
+            <div class="overflow-hidden rounded-[1.125rem]">
+              <Image
+                src={item.src}
+                alt={item.alt}
+                data-cover-image
+                widths={[480, 800, 1336, 2000].filter((w) => w <= item.src.width)}
+                sizes={i === 2 ? '100vw' : '(min-width: 48rem) 50vw, 100vw'}
+                class="h-auto w-full"
+              />
+            </div>
+            <span class={captionClass}>{item.caption} / {p.closer}</span>
+          </a>
+        ))
+      }
+    </div>
+
+    <section aria-labelledby="next-project" class="mt-16 grid items-center gap-10 border-t border-light-line pt-10 pb-16 desktop:mt-22 desktop:grid-cols-[minmax(0,1fr)_22.5rem] desktop:gap-20 desktop:pr-20">
+      <div data-reveal>
+        <p class="text-eyebrow font-medium text-accent-ink uppercase">{p.next} / {t.project.concept}</p>
+        <h2 id="next-project" class="mt-5 font-serif text-[clamp(3rem,6.1vw,5.5rem)] leading-tight font-normal">{nextCopy.name}</h2>
+        <p class="mt-5 max-w-120 text-light-muted">{nextCopy.teaser}</p>
+        <div class="mt-8 flex flex-wrap gap-4">
+          <Button href={projectPath(lang, next.slug)} variant="solid" class="h-11! px-6!">{p.view}</Button>
+          <Button href={projectsPath(lang)} variant="outline">{p.back}</Button>
+        </div>
+      </div>
+      <a href={projectPath(lang, next.slug)} data-cover-link class="block">
+        <div class="overflow-hidden rounded-[1.125rem]">
+          <Image
+            src={next.images.list}
+            alt={nextCopy.coverAlt}
+            data-cover-image
+            widths={[400, 720]}
+            sizes="(min-width: 75rem) 22.5rem, 100vw"
+            class="h-auto w-full"
+          />
+        </div>
+        <span class={captionClass}>{nextCopy.name} / {t.project.concept}</span>
+      </a>
+    </section>
+  </div>
+
+  <Cta lang={lang} />
+
+  <dialog
+    data-lightbox
+    aria-label={p.preview}
+    class="m-0 size-full max-h-none max-w-none overflow-hidden bg-transparent text-dark-text backdrop:bg-dark-bg/90"
+  >
+    <div class="relative flex size-full items-center justify-center p-4 tablet:p-8">
+      <button type="button" data-lightbox-close data-press class="absolute top-4 right-4 z-10 flex h-11 cursor-pointer items-center gap-2 rounded-full border border-dark-pill bg-dark-bg px-5 text-label tracking-normal text-dark-text tablet:top-6 tablet:right-6">
+        <X class="size-4" aria-hidden="true" />
+        {p.close}
+      </button>
+      <figure class="flex max-w-full flex-col gap-3">
+        <img data-lightbox-image alt="" class="max-h-[84svh] max-w-[min(92vw,90rem)] rounded-[1.125rem] object-contain" />
+        <figcaption data-lightbox-caption class="text-eyebrow text-dark-muted uppercase"></figcaption>
+      </figure>
+    </div>
+  </dialog>
+</Shell>

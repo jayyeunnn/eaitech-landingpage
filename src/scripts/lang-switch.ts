@@ -27,13 +27,11 @@ export function initLangSwitch() {
     if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return;
     const link = event.currentTarget as HTMLAnchorElement;
     event.preventDefault();
+    // Halaman tanpa bagian bernama (List, Detail) memakai posisi scroll apa adanya.
     const section = currentSection();
-    if (section) {
-      pending = {
-        key: section.dataset.section ?? 'footer',
-        offset: window.scrollY - sectionTop(section),
-      };
-    }
+    pending = section
+      ? { key: section.dataset.section ?? 'footer', offset: window.scrollY - sectionTop(section) }
+      : { key: '', offset: window.scrollY };
     navigate(link.dataset.base ?? link.href);
   };
 
@@ -46,7 +44,7 @@ export function initLangSwitch() {
 // Dipanggil setelah isi baru terpasang dan area menempel sudah diukur ulang.
 export function restoreLangScroll() {
   if (!pending) return;
-  const target = findSection(pending.key);
-  if (target) window.scrollTo({ top: sectionTop(target) + pending.offset, behavior: 'instant' });
+  const target = pending.key ? findSection(pending.key) : null;
+  window.scrollTo({ top: (target ? sectionTop(target) : 0) + pending.offset, behavior: 'instant' });
   pending = null;
 }

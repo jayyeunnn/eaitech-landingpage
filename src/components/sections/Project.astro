@@ -1,0 +1,78 @@
+---
+// 3. Project (terang), frame 09 (revisi Jay 2026-11-06, F-006): satu karya lebar
+// lalu dua karya asimetris. Ketiganya dummy berlabel Concept Project (data di
+// src/data/projects.ts). Kartu membuka Detail Project, View All membuka List.
+import { Image } from 'astro:assets';
+import Button from '../Button.astro';
+import PlaceholderTag from '../PlaceholderTag.astro';
+import { content } from '../../i18n/content';
+import { projects } from '../../data/projects';
+import { projectPath, projectsPath, sectionIds, type Lang } from '../../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = content[lang];
+const p = t.project;
+const [first, second, third] = projects;
+const cards = [
+  { project: first, class: 'tablet:col-span-3', sizes: '100vw' },
+  { project: second, class: 'tablet:col-start-1 tablet:mt-16', sizes: '(min-width: 48rem) 38vw, 100vw' },
+  { project: third, class: 'tablet:col-start-3 tablet:row-start-2', sizes: '(min-width: 48rem) 46vw, 100vw' },
+];
+---
+
+<section
+  id={sectionIds[lang].project}
+  data-section="project"
+  data-mode="light"
+  aria-labelledby="project-title"
+  class="bg-light-bg text-light-text"
+>
+  <div class="mx-auto max-w-content px-4 pt-14 pb-12 tablet:px-8 desktop:px-10">
+    <PlaceholderTag show={p.placeholder} label={t.a11y.placeholderTag} />
+    <h2 data-reveal id="project-title" class="font-serif text-display font-normal">{p.title}</h2>
+
+    <div class="mt-10 grid gap-10 tablet:grid-cols-[40fr_11.76fr_48.24fr] tablet:gap-x-0 tablet:gap-y-16 desktop:mt-12">
+      {
+        cards.map(({ project, class: cardClass, sizes }) => {
+          const copy = project.copy[lang];
+          const image = project.images.home;
+          return (
+            <article class={cardClass}>
+              <a href={projectPath(lang, project.slug)} data-cover-link class="block">
+                <div
+                  data-cover
+                  transition:name={`project-${project.slug}`}
+                  style="view-transition-class: project-cover"
+                  class="overflow-hidden rounded-[1.125rem]"
+                >
+                  <Image
+                    src={image}
+                    alt={copy.coverAlt}
+                    data-cover-image
+                    widths={[480, 800, 1200, 1800, 2720].filter((w) => w <= image.width)}
+                    sizes={sizes}
+                    class="h-auto w-full"
+                  />
+                </div>
+                <div class="mt-6 flex items-baseline justify-between gap-4">
+                  <h3 class="text-title font-medium">{copy.name}</h3>
+                  <p class="shrink-0 text-eyebrow text-light-muted uppercase">{p.concept}</p>
+                </div>
+                <p class="mt-2 text-label tracking-normal text-light-muted">{copy.services}</p>
+              </a>
+            </article>
+          );
+        })
+      }
+    </div>
+
+    <div class="mt-12 flex justify-center">
+      <Button href={projectsPath(lang)} variant="solid" class="h-12!">{p.viewAll}</Button>
+    </div>
+    <div class="mt-12 h-px bg-light-line"></div>
+  </div>
+</section>

@@ -1,63 +1,65 @@
 ---
-// Header tidak menempel: tetap di atas halaman dan ikut tergulir (revisi Jay
-// 2026-10-30, menggantikan P-024), jadi selalu terang di atas hero. Menu aktif
-// dan ganti bahasa diatur src/scripts/header-nav.ts dan lang-switch.ts.
-// Logo: logomark + teks "eAI Tech" di kode (revisi Jay 2026-10-29; teks pakai
-// Sora sampai ada logo vektor resmi, P-011). Menu di kanan bersama pil bahasa;
-// tanpa tombol WA di header (revisi Jay). HP: logo + pil bahasa saja (P-018).
+// Navbar frame 09 (revisi Jay 2026-11-06): logo di tengah, dua menu di kiri, dua
+// di kanan, pil bahasa di tepi kanan. Melayang di atas hero dan ikut tergulir
+// (tidak menempel). Logo: logomark + teks di kode sampai ada logo vektor resmi
+// (P-011). HP: logo + pil bahasa saja (P-018).
 import { Image } from 'astro:assets';
 import logomark from '../assets/logomark.png';
 import LangSwitch from './LangSwitch.astro';
 import { content } from '../i18n/content';
-import { sectionIds, type Lang, type SectionKey } from '../i18n/ui';
+import { homePath, projectsPath, sectionIds, type Lang, type SectionKey } from '../i18n/ui';
 
 interface Props {
   lang: Lang;
+  page: 'home' | 'list';
+  altPath?: string;
 }
 
-const { lang } = Astro.props;
+const { lang, page, altPath } = Astro.props;
 const t = content[lang];
 const ids = sectionIds[lang];
-const links: { key: SectionKey; label: string }[] = [
-  { key: 'services', label: t.nav.services },
-  { key: 'process', label: t.nav.process },
-  { key: 'faq', label: t.nav.faq },
-];
+const isHome = page === 'home';
+// Di homepage menu melompat ke bagian; di halaman lain kembali ke homepage dulu.
+const anchor = (key: SectionKey) => `${isHome ? '' : homePath(lang)}#${ids[key]}`;
+const link = (key: SectionKey, label: string) => ({
+  key,
+  label,
+  href: key === 'project' && !isHome ? projectsPath(lang) : anchor(key),
+  current: key === 'project' && !isHome,
+});
+const left = [link('services', t.nav.services), link('project', t.nav.project)];
+const right = [link('process', t.nav.process), link('faq', t.nav.faq)];
+const linkClass =
+  'text-nav font-medium text-light-text underline-offset-8 hover:underline aria-[current=true]:underline';
+const listClass = 'hidden items-center gap-5 tablet:flex desktop:gap-8';
 ---
 
-<header
-  data-site-header
-  data-mode="light"
-  class="group relative z-40 bg-light-bg text-light-text transition-colors duration-[var(--dur-base)] ease-brand data-[mode=dark]:bg-dark-bg data-[mode=dark]:text-dark-text"
->
-  <div
-    class="mx-auto flex h-15 max-w-content items-center justify-between gap-6 px-4 tablet:px-8 desktop:h-18 desktop:px-10"
-  >
-    <a href={`#${ids.hero}`} aria-label={t.a11y.home} class="flex shrink-0 items-center gap-2.5">
-      <Image src={logomark} alt="" height={32} densities={[1, 2]} class="h-8 w-auto" />
-      <span aria-hidden="true" class="text-title font-light tracking-wide">eAI Tech</span>
-    </a>
+<header data-site-header data-mode="light" class="group absolute inset-x-0 top-0 z-40 text-light-text">
+  <div class="relative mx-auto flex h-16 max-w-content items-center px-4 tablet:h-20 tablet:px-8 desktop:h-27.5 desktop:px-10">
+    <nav
+      aria-label={t.a11y.primaryNav}
+      class="grid flex-1 items-center tablet:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)]"
+    >
+      <ul class:list={[listClass, 'justify-end pr-[3vw] desktop:pr-[11.5vw]']}>
+        {left.map((item) => (
+          <li><a href={item.href} data-nav-key={isHome ? item.key : undefined} aria-current={item.current ? 'true' : undefined} class={linkClass}>{item.label}</a></li>
+        ))}
+      </ul>
 
-    <div class="flex items-center gap-6 desktop:gap-8">
-    <nav aria-label={t.a11y.primaryNav} class="hidden tablet:block">
-      <ul class="flex items-center gap-6 desktop:gap-8">
-        {
-          links.map((link) => (
-            <li>
-              <a
-                href={`#${ids[link.key]}`}
-                data-nav-key={link.key}
-                class="text-button text-light-muted underline-offset-8 transition-colors duration-[var(--dur-fast)] ease-brand hover:text-light-text aria-[current=true]:text-light-text aria-[current=true]:underline group-data-[mode=dark]:text-dark-muted group-data-[mode=dark]:hover:text-dark-text group-data-[mode=dark]:aria-[current=true]:text-dark-text"
-              >
-                {link.label}
-              </a>
-            </li>
-          ))
-        }
+      <a href={isHome ? `#${ids.hero}` : homePath(lang)} aria-label={t.a11y.home} class="flex w-fit items-center gap-2.5">
+        <Image src={logomark} alt="" height={36} densities={[1, 2]} class="h-8 w-auto desktop:h-9" />
+        <span aria-hidden="true" class="text-title font-light desktop:text-[1.5625rem]">eAI Tech</span>
+      </a>
+
+      <ul class:list={[listClass, 'pl-[3vw] desktop:pl-[11.5vw]']}>
+        {right.map((item) => (
+          <li><a href={item.href} data-nav-key={isHome ? item.key : undefined} class={linkClass}>{item.label}</a></li>
+        ))}
       </ul>
     </nav>
 
-    <LangSwitch lang={lang} tone="adaptive" />
+    <div class="absolute top-1/2 right-4 -translate-y-1/2 tablet:right-8 desktop:right-10">
+      <LangSwitch lang={lang} tone="adaptive" altPath={altPath} />
     </div>
   </div>
 </header>

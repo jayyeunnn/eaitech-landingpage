@@ -1,14 +1,15 @@
 ---
-// 2. Layanan (gelap), revisi Jay 2026-10-29: tanpa garis; lima kartu rounded
-// vertikal berjajar kiri → kanan. Atas: gambar penuh (placeholder dulu);
-// bawah: nomor, judul, deskripsi, tombol Discuss (BR-003).
-//
-// Dengan JS dan gerak normal, bagian ini menempel dan kartu bergeser mengikuti
-// scroll sambil muncul satu per satu mulai 01 (services-scroll.ts, Motion).
-// Tanpa JS atau dengan reduced motion: deretan kartu biasa yang bisa digeser.
-// Jarak atas HP/tablet lebih besar: separuh bawah logomark hero masuk ke sini.
+// 2. What We Do (gelap), revisi Jay 2026-11-06: bagian menahan layar, tiap kategori
+// berupa kartu yang naik menimpa kartu sebelumnya mengikuti scroll, tidak bisa
+// diklik. Tanpa JS atau dengan reduced motion: empat kartu tampil berurutan.
+// Gambar contoh adalah konsep, ditandai di halaman (BR-002, Jujur sebagai tim baru).
+import { Image } from 'astro:assets';
+import { AppWindow, Bot, Box, Clapperboard, LayoutGrid, PenTool, Share2, Smartphone, Workflow } from '@lucide/astro';
+import digital from '../../assets/design/service-digital.png';
+import ai from '../../assets/design/service-ai.png';
+import design from '../../assets/design/service-design.png';
+import contentArt from '../../assets/design/service-content.png';
 import Button from '../Button.astro';
-import SectionHeading from '../SectionHeading.astro';
 import PlaceholderTag from '../PlaceholderTag.astro';
 import { content } from '../../i18n/content';
 import { sectionIds, type Lang } from '../../i18n/ui';
@@ -21,6 +22,20 @@ interface Props {
 const { lang } = Astro.props;
 const t = content[lang];
 const s = t.services;
+const art = { digital, ai, design, content: contentArt };
+const icons = {
+  website: AppWindow,
+  apps: Smartphone,
+  erp: LayoutGrid,
+  automation: Workflow,
+  agent: Bot,
+  graphic: PenTool,
+  'three-d': Box,
+  video: Clapperboard,
+  social: Share2,
+};
+const number = (i: number) => String(i + 1).padStart(2, '0');
+const total = number(s.items.length - 1);
 ---
 
 <section
@@ -29,47 +44,72 @@ const s = t.services;
   data-mode="dark"
   data-services
   aria-labelledby="services-title"
-  class="group/svc overflow-x-clip bg-dark-bg pt-44 pb-20 text-dark-text pinned:pt-0 tablet:pt-48 tablet:pb-24 tablet:pinned:pt-0 desktop:pt-32 desktop:pb-32 desktop:pinned:pt-0"
+  class="bg-dark-bg text-dark-text pinned:h-[400svh]"
 >
-  <div data-services-pin>
-    <div
-      class="relative flex flex-col justify-center pinned:sticky pinned:top-0 pinned:h-svh pinned:pt-32 tablet:pinned:pt-36 desktop:pinned:pt-0"
-    >
-      {/* Ekor logomark hero yang meleleh; ikut menempel bersama Layanan (hero-ribbon.ts). */}
-      <div data-ribbon-tail transition:persist="ribbon-tail" aria-hidden="true" class="pointer-events-none absolute inset-x-0 top-0 hidden pinned:block"></div>
-      <div class="relative z-10 mx-auto w-full max-w-content px-4 tablet:px-8 desktop:px-10">
-        {/* Desktop: judul dibatasi ±58% lebar agar tidak menimpa ekor logomark di kanan atas. */}
-        <SectionHeading id="services-title" lines={s.title} placeholder={s.placeholder} placeholderLabel={t.a11y.placeholderTag} class="desktop:max-w-[58%]" />
+  <div class="mx-auto flex max-w-content flex-col px-4 py-16 tablet:px-8 desktop:px-10 pinned:sticky pinned:top-0 pinned:h-svh pinned:overflow-hidden pinned:py-6 tablet:pinned:py-8 desktop:pinned:py-[5svh]">
+    <PlaceholderTag show={s.placeholder} label={t.a11y.placeholderTag} />
+    <h2 id="services-title" class="font-serif text-display font-normal">{s.title}</h2>
 
-        <div
-          data-services-viewport
-          class="mt-10 -mx-4 snap-x snap-mandatory overflow-x-auto px-4 pb-4 tablet:-mx-8 tablet:px-8 desktop:mt-12 desktop:-mx-10 desktop:px-10 pinned:mx-0 pinned:snap-none pinned:overflow-visible pinned:px-0 pinned:pb-0"
-        >
-          <ol data-services-track class="flex w-max gap-4 tablet:gap-6">
-            {
-              s.items.map((item, i) => (
-                <li
-                  data-service-card
-                  class="flex aspect-[3/4] w-[78vw] max-w-[18rem] shrink-0 snap-start flex-col overflow-hidden rounded-3xl bg-dark-card tablet:w-80 tablet:max-w-none"
-                >
-                  <div class="relative flex min-h-0 flex-1 items-center justify-center border-b border-dashed border-dark-line bg-dark-bg/40 p-6 text-center">
-                    <PlaceholderTag show={s.image.placeholder} label={s.image.label} class="text-dark-muted" />
-                  </div>
-                  <div class="flex flex-col gap-3 p-6">
-                    <span class="text-label font-medium text-accent" aria-hidden="true">
-                      {String(i + 1).padStart(2, '0')}
-                    </span>
-                    <h3 class="text-title font-normal">{item.name}</h3>
-                    <p class="text-body text-dark-muted">{item.desc}</p>
-                    <Button href={waLink(lang, item.name)} variant="outline-dark" external srSuffix={`${item.name} ${t.a11y.newTab}`} class="mt-2 self-start">
-                      {s.discuss}
-                    </Button>
-                  </div>
-                </li>
-              ))
-            }
-          </ol>
-        </div>
+    <div class="mt-5 grid min-h-0 flex-1 gap-16 desktop:mt-[4svh] desktop:pinned:grid-cols-[35%_minmax(0,1fr)]">
+      {/* Penanda kategori, hanya tampilan: isi yang sama dibacakan dari panel di kanan. */}
+      <ol aria-hidden="true" class="hidden desktop:pinned:block">
+        {
+          s.items.map((item, i) => (
+            <li
+              data-service-step={i}
+              data-active={i === 0 ? '' : undefined}
+              class="group/step relative flex items-center gap-5 rounded-[0.875rem] px-5 py-[2.8svh] not-last:mb-3 data-active:bg-dark-card"
+            >
+              <span class="absolute top-1/4 bottom-1/4 left-0 w-0.75 rounded-full bg-mint opacity-0 transition-opacity duration-[var(--dur-base)] group-data-active/step:opacity-100"></span>
+              <span class="w-16 text-[2.375rem] leading-none font-medium text-dark-dim transition-colors duration-[var(--dur-base)] group-data-active/step:text-mint">{number(i)}</span>
+              <span class="text-[1.6875rem] leading-tight font-medium text-dark-soft transition-colors duration-[var(--dur-base)] group-data-active/step:text-dark-text">{item.name}</span>
+            </li>
+          ))
+        }
+      </ol>
+
+      <div class="grid gap-6 pinned:relative pinned:block">
+        {
+          s.items.map((item, i) => (
+            <article
+              data-service-panel={i}
+              data-active={i === 0 ? '' : undefined}
+              class="flex flex-col overflow-hidden rounded-[1.25rem] bg-showcase p-4 text-light-text tablet:p-6 pinned:absolute pinned:inset-x-0 pinned:top-0 pinned:origin-top"
+            >
+              <div class="flex items-start justify-between gap-4">
+                <div>
+                  <h3 class="mb-1 flex items-baseline gap-2 text-title font-medium desktop:pinned:sr-only">
+                    <span class="text-accent-ink">{number(i)}</span>
+                    {item.name}
+                  </h3>
+                  <p class="text-eyebrow text-light-muted uppercase">{s.concept}</p>
+                </div>
+                <p class="shrink-0 text-eyebrow text-light-muted">{number(i)} / {total}</p>
+              </div>
+              <Image
+                src={art[item.key]}
+                alt={item.alt}
+                widths={[480, 800, 1200, 1584]}
+                sizes="(min-width: 75rem) 55vw, 100vw"
+                class="my-3 h-auto w-full [clip-path:inset(0_2.6%)]"
+              />
+              <div class="flex flex-wrap items-center justify-between gap-3">
+                <ul class="flex flex-wrap gap-2">
+                  {item.list.map((service) => {
+                    const Icon = icons[service.icon];
+                    return (
+                      <li class="flex h-9 items-center gap-2 rounded-full border border-route bg-white px-4 text-[0.75rem] font-medium">
+                        <Icon class="size-3.5 shrink-0 text-accent-ink" aria-hidden="true" />
+                        {service.name}
+                      </li>
+                    );
+                  })}
+                </ul>
+                <Button href={waLink(lang, item.name)} variant="solid" class="h-10.5! px-6!" external srSuffix={t.a11y.newTab}>{s.discuss}</Button>
+              </div>
+            </article>
+          ))
+        }
       </div>
     </div>
   </div>

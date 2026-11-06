@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 /*
-  Mode menempel Services dan How it works. Kelas `pin` dipasang di <html> oleh
-  skrip di <head> sebelum halaman tampil (bila JS aktif dan tidak reduced
+  Mode animasi What We Do, How It Works dan hero. Kelas `pin` dipasang di <html>
+  oleh skrip di <head> sebelum halaman tampil (bila JS aktif dan tidak reduced
   motion), jadi tata letak tidak bergeser saat skrip animasi mulai (CLS).
 */
 @custom-variant pinned (&:where(.pin *));
@@ -13,48 +13,53 @@
   tanpa mengubah nama/peran token.
 */
 @theme {
-  /* Warna - DESIGN bagian 1 */
+  /* Warna - DESIGN bagian 1, ditambah warna frame 09 (revisi Jay 2026-11-06) */
   --color-*: initial;
   --color-accent: #02e6df;
   --color-accent-ink: #027a77;
+  --color-mint: #73f9f0;
+  --color-white: #ffffff;
   --color-light-bg: #f4f8f7;
   --color-light-text: #0b1f1e;
   --color-light-muted: #4a5e5c;
   --color-light-line: #d5e0de;
+  --color-route: #c5d9d3;
+  --color-route-strong: #8abdb3;
+  --color-tint: #e8f5f0;
+  --color-showcase: #edf3ef;
   --color-dark-bg: #04201f;
   --color-dark-text: #e8f5f3;
+  --color-dark-soft: #b8cbc6;
   --color-dark-muted: #9ab3b0;
+  --color-dark-dim: #78978f;
   --color-dark-line: #1e3634;
+  --color-dark-pill: #38514b;
   --color-dark-card: #0a2b29;
-  /* Gradasi pita/titik saja, bukan latar bagian */
-  --color-ribbon-1: #73f9f0;
-  --color-ribbon-2: #02e6df;
-  --color-ribbon-3: #029492;
-  --color-ribbon-4: #025552;
   --color-transparent: transparent;
   --color-current: currentColor;
 
-  /* Font - DESIGN bagian 2 */
-  --font-sans: "Sora", ui-sans-serif, system-ui, sans-serif;
+  /* Font - DESIGN bagian 2 (revisi Jay 2026-11-01) */
+  --font-sans: "Manrope Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Instrument Serif", ui-serif, Georgia, serif;
   --font-weight-light: 300;
   --font-weight-normal: 400;
   --font-weight-medium: 500;
+  --font-weight-semibold: 600;
   --font-weight-bold: 700;
 
-  /* Skala ukuran: HP 375 px -> desktop 1440 px - DESIGN bagian 2 */
-  --text-display: clamp(3rem, 1.42rem + 6.74vw, 9.5rem);
-  --text-display--line-height: 0.95;
-  --text-display--letter-spacing: -0.02em;
-  --text-hero: clamp(2.5rem, 1.796rem + 3.005vw, 4.5rem);
-  --text-hero--line-height: 1.05;
-  --text-hero--letter-spacing: -0.02em;
-  --text-section: clamp(2rem, 1.648rem + 1.502vw, 3rem);
-  --text-section--line-height: 1.1;
-  /* Revisi Jay 2026-10-30: ukuran pertanyaan FAQ, langkah How it works dan
-     kalimat ajakan dikecilkan sedikit. */
-  --text-numeral: clamp(3rem, 2.296rem + 3.005vw, 5rem);
-  --text-numeral--line-height: 1;
-  --text-subhead: clamp(1.5rem, 1.324rem + 0.751vw, 2.25rem);
+  /* Skala ukuran: acuan frame 09 pada 1440 px. Judul besar ikut lebar dan
+     tinggi layar agar muat di layar pendek. */
+  --text-hero: clamp(3.75rem, min(10.42vw, 16.7svh), 13rem);
+  --text-hero--line-height: 0.95;
+  --text-display-lg: clamp(3.75rem, 8.32vw, 10rem);
+  --text-display-lg--line-height: 0.95;
+  --text-display-lg--letter-spacing: -0.02em;
+  --text-display: clamp(3.25rem, min(7.5vw, 13svh), 9rem);
+  --text-display--line-height: 1.04;
+  --text-display--letter-spacing: -0.015em;
+  --text-card: clamp(1.5rem, 1.324rem + 0.751vw, 2rem);
+  --text-card--line-height: 1.35;
+  --text-subhead: clamp(1.5rem, 1.324rem + 0.751vw, 2rem);
   --text-subhead--line-height: 1.25;
   --text-lead: clamp(1.25rem, 1.074rem + 0.751vw, 1.75rem);
   --text-lead--line-height: 1.4;
@@ -62,11 +67,18 @@
   --text-title--line-height: 1.3;
   --text-body: clamp(1rem, 0.956rem + 0.188vw, 1.125rem);
   --text-body--line-height: 1.6;
+  --text-small: 1rem;
+  --text-small--line-height: 1.55;
   --text-button: 0.9375rem;
   --text-button--line-height: 1;
+  --text-nav: 0.875rem;
+  --text-nav--line-height: 1.5;
   --text-label: 0.8125rem;
   --text-label--line-height: 1.4;
   --text-label--letter-spacing: 0.06em;
+  --text-eyebrow: 0.6875rem;
+  --text-eyebrow--line-height: 1.45;
+  --text-eyebrow--letter-spacing: 0.11em;
 
   /* Titik ganti layout - DESIGN bagian 3 */
   --breakpoint-*: initial;
@@ -78,6 +90,7 @@
      Jay 2026-10-30), dibatasi 1920 px untuk layar sangat lebar. Jarak dasar
      4 px = --spacing bawaan. */
   --container-content: 120rem;
+  --container-flow: 67rem;
   --container-prose: 65ch;
 
   /* Animasi - DESIGN bagian 5.2 */
@@ -102,8 +115,7 @@
 
   body {
     /* Pengaman: halaman tidak pernah bisa digeser ke samping. `clip` (bukan
-       `hidden`) tidak membuat wadah scroll, jadi header dan Layanan tetap
-       bisa menempel. */
+       `hidden`) tidak membuat wadah scroll, jadi bagian menempel tetap jalan. */
     overflow-x: clip;
     background-color: var(--color-light-bg);
     color: var(--color-light-text);
@@ -127,7 +139,7 @@
       interpolate-size: allow-keywords;
     }
 
-    /* Keadaan awal animasi Fase 2, hanya saat JS aktif - DESIGN bagian 5.2 */
+    /* Keadaan awal animasi, hanya saat JS aktif - DESIGN bagian 5 */
     .js [data-reveal] {
       opacity: 0.25;
       transform: translateY(16px);
@@ -156,5 +168,99 @@
       transition-duration: 0.01ms !important;
       scroll-behavior: auto !important;
     }
+  }
+}
+
+/* Gambar project membesar saat pindah ke Detail Project - DESIGN bagian 5.0 */
+::view-transition-group(.project-cover) {
+  animation-duration: 500ms;
+  animation-timing-function: var(--ease-brand);
+}
+
+::view-transition-old(.project-cover),
+::view-transition-new(.project-cover) {
+  height: 100%;
+  object-fit: cover;
+  animation-duration: 500ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
+
+/* Keadaan animasi landing page frame 09 - DESIGN bagian 5.0 */
+@layer components {
+  /* Hero: HP dan laptop menunggu animasi masuk, hanya saat halaman pertama dibuka */
+  .pin:not(.intro-done) [data-hero-intro] {
+    opacity: 0;
+  }
+
+  /* What We Do: kartu berikutnya menunggu di bawah layar sampai skrip menggerakkannya */
+  .pin [data-service-panel]:not(:first-child) {
+    transform: translateY(100svh);
+  }
+
+  /* What We Do: daftar kosong di awal, tiap kategori muncul saat scroll sampai */
+  [data-service-step] {
+    transition:
+      opacity var(--dur-base) ease-out,
+      transform 500ms var(--ease-brand),
+      background-color var(--dur-base) ease-out;
+  }
+
+  .pin [data-service-step]:not([data-shown]) {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  /* Project: gambar terbuka dari atas ke bawah saat masuk layar */
+  .pin:not(.swapped) [data-cover] {
+    clip-path: inset(0 0 100% 0 round 18px);
+  }
+
+  /* How It Works: kartu dan titik menyala saat garis sampai */
+  .pin [data-flow-item] {
+    transition:
+      opacity var(--dur-base) ease-out,
+      transform 500ms var(--ease-brand);
+  }
+
+  .pin [data-flow-item]:not([data-on]) {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  [data-flow-node] {
+    transition:
+      background-color var(--dur-base) ease-out,
+      border-color var(--dur-base) ease-out,
+      color var(--dur-base) ease-out;
+  }
+
+  /* Hover hanya untuk perangkat dengan mouse */
+  [data-cover-image] {
+    transition: transform 240ms ease-out;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    [data-cover-link]:hover [data-cover-image] {
+      transform: scale(1.018);
+    }
+  }
+
+  /* Umpan balik tekan */
+  [data-press] {
+    transition:
+      transform 160ms ease-out,
+      background-color var(--dur-fast) ease-out,
+      color var(--dur-fast) ease-out;
+  }
+
+  [data-press]:active {
+    transform: scale(0.97);
   }
 }

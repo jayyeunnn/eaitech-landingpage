@@ -1,17 +1,29 @@
 // Semua teks halaman ID dan EN (AGENTS aturan 6). Ubah keduanya bersamaan.
 //
-// PLACEHOLDER (BR-002): setiap blok dengan `placeholder: true` belum final dan
-// tampil dengan tanda "Placeholder" di halaman. Cari `placeholder: true` di file
-// ini dan di src/config/whatsapp.ts untuk daftar lengkap sebelum publikasi.
-// - Judul bagian dan ajakan WA: copy final dari tim (P-002). Judul hero
-//   sudah dipilih Jay (2026-10-29).
-// - Penjelasan layanan: draft teman tim, bukan copy final (P-002)
-// - Gambar kartu layanan: menunggu gambar dari Jay/tim (revisi 2026-10-29)
-// - Cara Kerja dan FAQ: menunggu tim (P-008)
+// PLACEHOLDER (BR-002): setiap blok dengan `placeholder: true` belum final. Cari
+// `placeholder: true` di file ini dan di src/config/whatsapp.ts untuk daftar
+// lengkap sebelum publikasi.
+// - Teks EN berasal dari frame 09 FigCraft (revisi Jay 2026-11-06); teks ID
+//   terjemahan agent, perlu ditinjau Jay.
+// - Copy layanan: menunggu tim (P-002)
+// - Project: tiga karya dummy di src/data/projects.ts, diganti project asli Jay dan tim (F-006)
+// - Cara Kerja dan jawaban FAQ: menunggu tim (P-008)
 // - Kontak lain di footer: menunggu tim (P-016)
 // - Penulisan "EAI Tech" vs "eAI Tech" dan ejaan "Intelegens": P-012
 
 import type { Lang } from './ui';
+
+export type ServiceKey = 'digital' | 'ai' | 'design' | 'content';
+export type ServiceIcon =
+  | 'website'
+  | 'apps'
+  | 'erp'
+  | 'automation'
+  | 'agent'
+  | 'graphic'
+  | 'three-d'
+  | 'video'
+  | 'social';
 
 export interface Content {
   meta: { title: string; description: string; placeholder: boolean };
@@ -24,19 +36,44 @@ export interface Content {
     newTab: string;
     placeholderTag: string;
   };
-  nav: { services: string; process: string; faq: string };
-  hero: { title: string; visualAlt: string; placeholder: boolean };
-  // Judul bagian dua baris: [baris tipis, baris tebal] (revisi Jay 2026-10-30).
+  nav: { services: string; project: string; process: string; faq: string };
+  hero: { title: [string, string]; lead: string; discuss: string; work: string; placeholder: boolean };
   services: {
-    title: [string, string];
+    title: string;
+    concept: string;
     discuss: string;
-    image: { label: string; placeholder: boolean };
-    items: { name: string; desc: string }[];
+    items: {
+      key: ServiceKey;
+      name: string;
+      alt: string;
+      list: { icon: ServiceIcon; name: string }[];
+    }[];
     placeholder: boolean;
   };
+  project: {
+    title: string;
+    concept: string;
+    viewAll: string;
+    placeholder: boolean;
+  };
+  projectPages: {
+    meta: { title: string; description: string };
+    all: string;
+    filter: string;
+    back: string;
+    contact: string;
+    about: string;
+    challenge: string;
+    solution: string;
+    closer: string;
+    next: string;
+    view: string;
+    preview: string;
+    close: string;
+  };
   process: {
-    title: [string, string];
-    steps: { title: string; body: string }[];
+    title: string;
+    stages: { title: string; body: string }[];
     placeholder: boolean;
   };
   faq: {
@@ -45,7 +82,7 @@ export interface Content {
     items: { q: string; a: string }[];
     placeholder: boolean;
   };
-  cta: { title: string; big: string; via: string; button: string; placeholder: boolean };
+  cta: { title: [string, string]; big: string; via: string; button: string; placeholder: boolean };
   footer: {
     tagline: string;
     navTitle: string;
@@ -62,9 +99,9 @@ export interface Content {
 export const content: Record<Lang, Content> = {
   id: {
     meta: {
-      title: 'EAI Tech - Website, Aplikasi, Automation dan AI',
+      title: 'EAI Tech - Produk Digital, AI, Desain dan Konten',
       description:
-        'EAI Tech mengerjakan website, aplikasi, automation, agentic AI dan ERP. Ceritakan kebutuhanmu lewat WhatsApp.',
+        'EAI Tech mengerjakan website, aplikasi, sistem berbasis AI, desain dan konten. Ceritakan kebutuhanmu lewat WhatsApp.',
       placeholder: true,
     },
     a11y: {
@@ -76,49 +113,108 @@ export const content: Record<Lang, Content> = {
       newTab: '(membuka WhatsApp)',
       placeholderTag: 'Placeholder',
     },
-    nav: { services: 'Layanan', process: 'Cara Kerja', faq: 'FAQ' },
+    nav: { services: 'Layanan', project: 'Project', process: 'Cara Kerja', faq: 'FAQ' },
     hero: {
-      title: 'Dari ide jadi sistem yang berjalan.',
-      visualAlt: '',
-      placeholder: false,
+      title: ['Desain bertemu', 'teknologi.'],
+      lead: 'Dari website dan aplikasi hingga visual 3D dan sistem berbasis AI, kami mewujudkan idemu.',
+      discuss: 'Diskusikan proyekmu',
+      work: 'Lihat karya kami',
+      placeholder: true,
     },
     services: {
-      title: ['Yang kami', 'kerjakan'],
-      discuss: 'Diskusikan',
-      image: { label: 'Gambar layanan menyusul', placeholder: true },
+      title: 'Yang Kami Kerjakan',
+      concept: 'Demo konsep / contoh ilustrasi',
+      discuss: 'Diskusikan proyekmu',
       items: [
-        { name: 'Website', desc: 'Website yang ringan dan membuat pengunjung bertindak.' },
-        { name: 'Aplikasi', desc: 'Aplikasi web dan mobile untuk alur kerja nyata penggunanya.' },
-        { name: 'Automation', desc: 'Proses manual yang berulang diubah menjadi alur otomatis.' },
-        { name: 'Agentic AI', desc: 'Agent AI yang terhubung ke sistem bisnis dan menindaklanjuti pekerjaan.' },
-        { name: 'ERP System', desc: 'Satu sistem untuk mengelola operasional bisnis dari ujung ke ujung.' },
+        {
+          key: 'digital',
+          name: 'Produk Digital',
+          alt: 'Contoh konsep dashboard workspace dan aplikasi di HP.',
+          list: [
+            { icon: 'website', name: 'Website' },
+            { icon: 'apps', name: 'Aplikasi' },
+            { icon: 'erp', name: 'ERP System' },
+          ],
+        },
+        {
+          key: 'ai',
+          name: 'AI & Automation',
+          alt: 'Contoh konsep alur automation yang menghubungkan beberapa langkah kerja.',
+          list: [
+            { icon: 'automation', name: 'Automation' },
+            { icon: 'agent', name: 'Agentic AI' },
+          ],
+        },
+        {
+          key: 'design',
+          name: 'Desain & Visualisasi',
+          alt: 'Contoh konsep poster dan render 3D benda keramik.',
+          list: [
+            { icon: 'graphic', name: 'Desain Grafis' },
+            { icon: 'three-d', name: 'Desain & Visualisasi 3D' },
+          ],
+        },
+        {
+          key: 'content',
+          name: 'Konten & Media Sosial',
+          alt: 'Contoh konsep linimasa editing video dan papan rencana konten.',
+          list: [
+            { icon: 'video', name: 'Editing Video & Multimedia' },
+            { icon: 'social', name: 'Strategi & Konsultasi Media Sosial' },
+          ],
+        },
       ],
       placeholder: true,
     },
+    project: {
+      title: 'Project',
+      concept: 'Concept Project',
+      viewAll: 'Lihat Semua',
+      placeholder: true,
+    },
+    projectPages: {
+      meta: {
+        title: 'Project - EAI Tech',
+        description: 'Project konsep EAI Tech di bidang produk digital, desain grafis dan visualisasi 3D.',
+      },
+      all: 'Semua Project',
+      filter: 'Saring project',
+      back: 'Kembali ke Project',
+      contact: 'Kontak',
+      about: 'Tentang project',
+      challenge: 'Tantangannya',
+      solution: 'Solusinya',
+      closer: 'Klik untuk memperbesar',
+      next: 'Project berikutnya',
+      view: 'Lihat project',
+      preview: 'Pratinjau gambar',
+      close: 'Tutup',
+    },
     process: {
-      title: ['Cara', 'kerja'],
-      steps: [
-        { title: 'Diskusi kebutuhan', body: 'Langkah placeholder. Isi menunggu tim EAI Tech.' },
-        { title: 'Rancangan', body: 'Langkah placeholder. Isi menunggu tim EAI Tech.' },
-        { title: 'Pengerjaan', body: 'Langkah placeholder. Isi menunggu tim EAI Tech.' },
-        { title: 'Serah terima', body: 'Langkah placeholder. Isi menunggu tim EAI Tech.' },
+      title: 'Cara kerja.',
+      stages: [
+        { title: 'Discover', body: 'Ceritakan idemu, kebutuhanmu, atau masalah yang ingin diselesaikan. Ide yang masih kasar pun tidak apa-apa.' },
+        { title: 'Plan', body: 'Bentuk arah, cakupan dan perpaduan layanan yang tepat bersama-sama, sesuai proyekmu.' },
+        { title: 'Create', body: 'Wujudkan arah yang disepakati menjadi desain, konten atau solusi digital yang berjalan.' },
+        { title: 'Review & Refine', body: 'Tinjau hasilnya bersama, sampaikan masukan dan rapikan detail yang penting.' },
+        { title: 'Deliver', body: 'Terima hasil akhirnya, beserta file atau akses yang relevan dengan proyekmu.' },
       ],
       placeholder: true,
     },
     faq: {
       label: 'FAQ',
-      // Judul raksasa dipilih Jay 2026-10-30 (adaptasi FAQ Aperios).
       title: ['Perlu', 'diketahui'],
       items: [
-        { q: 'Berapa biaya untuk sebuah proyek?', a: 'Jawaban placeholder. Isi menunggu tim EAI Tech.' },
-        { q: 'Berapa lama pengerjaannya?', a: 'Jawaban placeholder. Isi menunggu tim EAI Tech.' },
-        { q: 'Apakah bisa mulai dari skala kecil?', a: 'Jawaban placeholder. Isi menunggu tim EAI Tech.' },
-        { q: 'Bagaimana setelah proyek selesai?', a: 'Jawaban placeholder. Isi menunggu tim EAI Tech.' },
+        { q: 'Apa itu eAI Tech?', a: 'Jawaban placeholder. Isi menunggu tim EAI Tech.' },
+        { q: 'Bisakah kita berdiskusi kalau ide proyekku masih belum matang?', a: 'Jawaban placeholder. Isi menunggu tim EAI Tech.' },
+        { q: 'Bisakah aku menggabungkan beberapa layanan dalam satu proyek?', a: 'Jawaban placeholder. Isi menunggu tim EAI Tech.' },
+        { q: 'Apa yang perlu aku siapkan sebelum memulai proyek?', a: 'Jawaban placeholder. Isi menunggu tim EAI Tech.' },
+        { q: 'Bagaimana cara mulai bekerja dengan eAI Tech?', a: 'Jawaban placeholder. Isi menunggu tim EAI Tech.' },
       ],
       placeholder: true,
     },
     cta: {
-      title: 'Punya ide atau masalah yang ingin diselesaikan? Ceritakan ke kami.',
+      title: ['Punya ide atau masalah', 'yang ingin diselesaikan? Ceritakan ke kami.'],
       // Judul raksasa dipilih Jay 2026-10-30 (adaptasi penutup Aperios).
       big: 'Ayo ngobrol',
       // Teks di kotak hover judul ajakan (arahan Jay 2026-10-30).
@@ -143,9 +239,9 @@ export const content: Record<Lang, Content> = {
   },
   en: {
     meta: {
-      title: 'EAI Tech - Websites, Apps, Automation and AI',
+      title: 'EAI Tech - Digital Products, AI, Design and Content',
       description:
-        'EAI Tech builds websites, apps, automation, agentic AI and ERP. Tell us what you need on WhatsApp.',
+        'EAI Tech builds websites, apps, AI-powered systems, design and content. Tell us what you need on WhatsApp.',
       placeholder: true,
     },
     a11y: {
@@ -157,32 +253,91 @@ export const content: Record<Lang, Content> = {
       newTab: '(opens WhatsApp)',
       placeholderTag: 'Placeholder',
     },
-    nav: { services: 'Services', process: 'How it works', faq: 'FAQ' },
+    nav: { services: 'Services', project: 'Project', process: 'How it works', faq: 'FAQ' },
     hero: {
-      title: 'From idea to a working system.',
-      visualAlt: '',
-      placeholder: false,
+      title: ['Design meets', 'technology.'],
+      lead: 'From websites and apps to 3D visuals and AI-powered systems, we bring your ideas to life.',
+      discuss: 'Discuss your project',
+      work: 'View our work',
+      placeholder: true,
     },
     services: {
-      title: ['What we', 'build'],
-      discuss: 'Discuss',
-      image: { label: 'Service image coming soon', placeholder: true },
+      title: 'What We Do',
+      concept: 'Concept demo / illustrative example',
+      discuss: 'Discuss your project',
       items: [
-        { name: 'Website', desc: 'Lightweight websites that get visitors to take action.' },
-        { name: 'Apps', desc: 'Web and mobile apps built around how people really work.' },
-        { name: 'Automation', desc: 'Repetitive manual work turned into automated flows.' },
-        { name: 'Agentic AI', desc: 'AI agents connected to your business systems that follow work through.' },
-        { name: 'ERP System', desc: 'One system to run business operations end to end.' },
+        {
+          key: 'digital',
+          name: 'Digital Products',
+          alt: 'Concept example of a workspace dashboard and a phone app.',
+          list: [
+            { icon: 'website', name: 'Website' },
+            { icon: 'apps', name: 'Apps' },
+            { icon: 'erp', name: 'ERP System' },
+          ],
+        },
+        {
+          key: 'ai',
+          name: 'AI & Automation',
+          alt: 'Concept example of an automation flow connecting several work steps.',
+          list: [
+            { icon: 'automation', name: 'Automation' },
+            { icon: 'agent', name: 'Agentic AI' },
+          ],
+        },
+        {
+          key: 'design',
+          name: 'Design & Visualization',
+          alt: 'Concept example of a poster and a 3D render of ceramic objects.',
+          list: [
+            { icon: 'graphic', name: 'Graphic Design' },
+            { icon: 'three-d', name: '3D Design & Visualization' },
+          ],
+        },
+        {
+          key: 'content',
+          name: 'Content & Social Media',
+          alt: 'Concept example of a video editing timeline and a content planning board.',
+          list: [
+            { icon: 'video', name: 'Video & Multimedia Editing' },
+            { icon: 'social', name: 'Social Media Strategy & Consulting' },
+          ],
+        },
       ],
       placeholder: true,
     },
+    project: {
+      title: 'Project',
+      concept: 'Concept Project',
+      viewAll: 'View All',
+      placeholder: true,
+    },
+    projectPages: {
+      meta: {
+        title: 'Project - EAI Tech',
+        description: 'EAI Tech concept projects across digital products, graphic design and 3D visualization.',
+      },
+      all: 'All Projects',
+      filter: 'Filter projects',
+      back: 'Back to Projects',
+      contact: 'Contact',
+      about: 'About the project',
+      challenge: 'The challenge',
+      solution: 'The solution',
+      closer: 'Click for a closer look',
+      next: 'Next project',
+      view: 'View project',
+      preview: 'Image preview',
+      close: 'Close',
+    },
     process: {
-      title: ['How it', 'works'],
-      steps: [
-        { title: 'Discuss your needs', body: 'Placeholder step. Content waits for the EAI Tech team.' },
-        { title: 'Plan', body: 'Placeholder step. Content waits for the EAI Tech team.' },
-        { title: 'Build', body: 'Placeholder step. Content waits for the EAI Tech team.' },
-        { title: 'Handover', body: 'Placeholder step. Content waits for the EAI Tech team.' },
+      title: 'How it works.',
+      stages: [
+        { title: 'Discover', body: 'Tell us your idea, what you need, or the problem you want to solve. It is okay to start with a rough idea.' },
+        { title: 'Plan', body: 'Shape the direction, scope and right mix of services together, around your project.' },
+        { title: 'Create', body: 'Turn the agreed direction into designs, content or a working digital solution.' },
+        { title: 'Review & Refine', body: 'Look at the work together, share feedback and refine the details that matter.' },
+        { title: 'Deliver', body: 'Receive the final work, along with the files or access relevant to your project.' },
       ],
       placeholder: true,
     },
@@ -190,15 +345,16 @@ export const content: Record<Lang, Content> = {
       label: 'FAQ',
       title: ['Good to', 'know'],
       items: [
-        { q: 'How much does a project cost?', a: 'Placeholder answer. Content waits for the EAI Tech team.' },
-        { q: 'How long does it take?', a: 'Placeholder answer. Content waits for the EAI Tech team.' },
-        { q: 'Can we start small?', a: 'Placeholder answer. Content waits for the EAI Tech team.' },
-        { q: 'What happens after the project ends?', a: 'Placeholder answer. Content waits for the EAI Tech team.' },
+        { q: 'What is eAI Tech?', a: 'Placeholder answer. Content waits for the EAI Tech team.' },
+        { q: 'Can we talk if my project idea is still taking shape?', a: 'Placeholder answer. Content waits for the EAI Tech team.' },
+        { q: 'Can I combine several services in one project?', a: 'Placeholder answer. Content waits for the EAI Tech team.' },
+        { q: 'What should I prepare before starting a project?', a: 'Placeholder answer. Content waits for the EAI Tech team.' },
+        { q: 'How do I start working with eAI Tech?', a: 'Placeholder answer. Content waits for the EAI Tech team.' },
       ],
       placeholder: true,
     },
     cta: {
-      title: 'Have an idea or a problem to solve? Tell us about it.',
+      title: ['Have an idea or a problem', 'to solve? Tell us about it.'],
       big: "Let's talk",
       via: 'Via WhatsApp',
       button: 'Chat on WhatsApp',

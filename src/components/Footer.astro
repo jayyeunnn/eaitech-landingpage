@@ -3,26 +3,30 @@
 // kolom (navigasi, kontak, bahasa) dengan label kecil dan link besar, garis
 // putus-putus, kepanjangan logo, copyright dan "kembali ke atas". Penutupnya
 // nama "eAI Tech" tebal selebar layar yang bagian bawahnya terpotong tepi
-// halaman, gaya footer Outway (REF-004; mengubah P-017). Nama memakai Sora 700,
-// bukan font logo.
+// halaman, gaya footer Outway (REF-004; mengubah P-017). Nama memakai Manrope 700,
+// bukan font logo. Menu Project ditambahkan (keputusan Jay 2026-11-06).
 import { ArrowUp } from '@lucide/astro';
 import LangSwitch from './LangSwitch.astro';
 import PlaceholderTag from './PlaceholderTag.astro';
 import { content } from '../i18n/content';
-import { sectionIds, type Lang } from '../i18n/ui';
+import { homePath, projectsPath, sectionIds, type Lang } from '../i18n/ui';
 import { waLink } from '../config/whatsapp';
 
 interface Props {
   lang: Lang;
+  page: 'home' | 'list' | 'detail';
+  altPath?: string;
 }
 
-const { lang } = Astro.props;
+const { lang, page, altPath } = Astro.props;
 const t = content[lang];
 const ids = sectionIds[lang];
+const base = page === 'home' ? '' : homePath(lang);
 const navItems = [
-  { href: `#${ids.services}`, label: t.nav.services },
-  { href: `#${ids.process}`, label: t.nav.process },
-  { href: `#${ids.faq}`, label: t.nav.faq },
+  { href: `${base}#${ids.services}`, label: t.nav.services },
+  { href: page === 'home' ? `#${ids.project}` : projectsPath(lang), label: t.nav.project },
+  { href: `${base}#${ids.process}`, label: t.nav.process },
+  { href: `${base}#${ids.faq}`, label: t.nav.faq },
 ];
 const titleClass = 'text-label font-medium uppercase text-dark-muted';
 const linkClass = 'text-title font-light text-dark-text transition-colors duration-[var(--dur-fast)] ease-brand hover:text-accent';
@@ -58,7 +62,7 @@ const linkClass = 'text-title font-light text-dark-text transition-colors durati
       <div class="tablet:justify-self-end">
         <p class={titleClass}>{t.footer.langTitle}</p>
         <div class="mt-4 flex">
-          <LangSwitch lang={lang} tone="dark" />
+          <LangSwitch lang={lang} tone="dark" altPath={altPath} />
         </div>
       </div>
     </div>
@@ -68,7 +72,7 @@ const linkClass = 'text-title font-light text-dark-text transition-colors durati
     <p class="mt-12 text-center text-label font-medium uppercase text-dark-muted">{t.footer.tagline}</p>
     <div class="mt-12 flex items-center justify-between gap-6 text-label text-dark-muted">
       <p>{t.footer.copyright}</p>
-      <a href={`#${ids.hero}`} class="inline-flex items-center gap-2 text-dark-text transition-colors duration-[var(--dur-fast)] ease-brand hover:text-accent">
+      <a href="#top" class="inline-flex items-center gap-2 text-dark-text transition-colors duration-[var(--dur-fast)] ease-brand hover:text-accent">
         {t.footer.backToTop}
         <ArrowUp class="size-4" aria-hidden="true" />
       </a>

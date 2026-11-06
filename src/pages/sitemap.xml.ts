@@ -1,17 +1,25 @@
 // Sitemap statis dua bahasa dengan tautan hreflang (Fase 3, PRD bagian 4).
 // Domain dari `site` di astro.config.mjs (placeholder sampai domain diketahui).
 import type { APIRoute } from 'astro';
-import { defaultLang, homePath, languages, type Lang } from '../i18n/ui';
+import { projects } from '../data/projects';
+import { defaultLang, homePath, languages, projectPath, projectsPath, type Lang } from '../i18n/ui';
 
 export const GET: APIRoute = ({ site }) => {
   const codes = Object.keys(languages) as Lang[];
-  const url = (code: Lang) => new URL(homePath(code), site).href;
-  const alternates = [
-    ...codes.map((code) => `    <xhtml:link rel="alternate" hreflang="${code}" href="${url(code)}"/>`),
-    `    <xhtml:link rel="alternate" hreflang="x-default" href="${url(defaultLang)}"/>`,
-  ].join('\n');
-  const entries = codes
-    .map((code) => `  <url>\n    <loc>${url(code)}</loc>\n${alternates}\n  </url>`)
+  const pages: ((code: Lang) => string)[] = [
+    homePath,
+    projectsPath,
+    ...projects.map((project) => (code: Lang) => projectPath(code, project.slug)),
+  ];
+  const entries = pages
+    .flatMap((path) => {
+      const url = (code: Lang) => new URL(path(code), site).href;
+      const alternates = [
+        ...codes.map((code) => `    <xhtml:link rel="alternate" hreflang="${code}" href="${url(code)}"/>`),
+        `    <xhtml:link rel="alternate" hreflang="x-default" href="${url(defaultLang)}"/>`,
+      ].join('\n');
+      return codes.map((code) => `  <url>\n    <loc>${url(code)}</loc>\n${alternates}\n  </url>`);
+    })
     .join('\n');
 
   const body = `<?xml version="1.0" encoding="UTF-8"?>

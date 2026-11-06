@@ -1,98 +1,95 @@
-// Cara Kerja menempel selayar penuh; cincin titik terisi halus mengikuti scroll
-// dan teks langkah berganti 01 → 04 di tiap tahap (revisi Jay 2026-10-30).
-// Motion: `scroll` membaca progres, `animate` mengganti teks (lama naik dan
-// memudar, baru masuk dari bawah).
-//
-// Tidak berjalan dengan reduced motion: daftar langkah biasa tetap tampil
-// (keadaan bawaan HTML, juga saat JS gagal).
+// How It Works: garis tergambar mengikuti scroll, titik tahap menyala dan teks
+// muncul saat ujung garis sampai (DESIGN bagian 5.0). Ujung garis berada di 62%
+// tinggi layar. Reduced motion: tidak dipasang, alur tampil utuh.
 
-import { animate, scroll } from 'motion';
+import { scroll } from 'motion';
 
-const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
+const clamp = (value: number) => Math.min(1, Math.max(0, value));
 
-interface Step {
-  title: string;
-  body: string;
-}
+// Garis cabang memakai `non-scaling-stroke`, jadi panjang dash tidak persis sama
+// dengan panjang garis. Celah 2 mencegah dash berulang di ujung, dan saat penuh
+// dash dilepas agar garis utuh.
+const drawPaths = (paths: SVGPathElement[], amount: number) => {
+  for (const path of paths) {
+    path.style.strokeDasharray = amount >= 1 ? 'none' : '1 2';
+    path.style.strokeDashoffset = String(1 - amount);
+  }
+};
 
 export function initProcessScroll() {
-  const section = document.querySelector<HTMLElement>('[data-process]');
-  if (!section) return;
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const flow = document.querySelector<HTMLElement>('[data-flow]');
+  if (!flow || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-  const pin = section.querySelector<HTMLElement>('[data-process-pin]');
-  const stage = section.querySelector<HTMLElement>('[data-process-stage]');
-  const panel = section.querySelector<HTMLElement>('[data-process-panel]');
-  const text = section.querySelector<HTMLElement>('[data-step-text]');
-  const number = section.querySelector<HTMLElement>('[data-step-number]');
-  const ringNumber = section.querySelector<HTMLElement>('[data-ring-number]');
-  const title = section.querySelector<HTMLElement>('[data-step-title]');
-  const body = section.querySelector<HTMLElement>('[data-step-body]');
-  if (!pin || !stage || !panel || !text || !number || !ringNumber || !title || !body) return;
+  const lines = Array.from(flow.querySelectorAll<HTMLElement>('[data-flow-line]'));
+  const branch = flow.querySelector<HTMLElement>('[data-flow-branch]');
+  const branchIn = Array.from(flow.querySelectorAll<SVGPathElement>('[data-branch-in]'));
+  const branchOut = Array.from(flow.querySelectorAll<SVGPathElement>('[data-branch-out]'));
+  const nodes = Array.from(flow.querySelectorAll<HTMLElement>('[data-flow-node]'));
+  const items = Array.from(flow.querySelectorAll<HTMLElement>('[data-flow-item]'));
 
-  const steps = JSON.parse(panel.dataset.steps ?? '[]') as Step[];
-  const dots = Array.from(section.querySelectorAll<SVGCircleElement>('[data-ring-dot]'));
-  if (steps.length === 0 || dots.length === 0) return;
+  // Posisi diukur dari dokumen agar transform kartu tidak ikut terhitung.
+  const pageTop = (el: Element) => el.getBoundingClientRect().top + window.scrollY;
 
-  section.dataset.pinned = '';
+  let flowTop = 0;
+  let flowHeight = 0;
+  let segments: { bar: HTMLElement; top: number; height: number }[] = [];
+  let triggers: { el: HTMLElement; at: number }[] = [];
+  let branchTop = 0;
+  let branchHeight = 0;
 
-  // Panjang scroll selama menempel: sekitar 60% tinggi layar per langkah.
   const measure = () => {
-    pin.style.height = `${stage.offsetHeight + window.innerHeight * 0.6 * steps.length}px`;
+    flowTop = pageTop(flow);
+    flowHeight = flow.offsetHeight;
+    segments = lines
+      .filter((line) => line.offsetParent !== null)
+      .map((line) => ({
+        bar: line.querySelector<HTMLElement>('[data-flow-bar]')!,
+        top: pageTop(line) - flowTop,
+        height: line.offsetHeight,
+      }));
+    if (branch) {
+      branchTop = pageTop(branch) - flowTop;
+      branchHeight = branch.offsetHeight;
+    }
+    // `offsetTop` berantai mengabaikan transform; kartu yang belum muncul
+    // tergeser 16 px, jadi titik pemicu tidak boleh dibaca dari rect-nya.
+    const offsetIn = (el: HTMLElement) => {
+      let top = 0;
+      let node: HTMLElement | null = el;
+      while (node && node !== flow) {
+        top += node.offsetTop;
+        node = node.offsetParent as HTMLElement | null;
+      }
+      return top;
+    };
+    triggers = [...nodes, ...items].map((el) => ({ el, at: offsetIn(el) + Math.min(el.offsetHeight / 2, 40) }));
   };
 
-  let lit = -1;
-  const paintRing = (p: number) => {
-    const count = Math.round(p * dots.length);
-    if (count === lit) return;
-    lit = count;
-    dots.forEach((dot, i) => {
-      const on = i < count;
-      const head = i === count - 1;
-      dot.setAttribute('class', head ? 'fill-ribbon-2' : on ? 'fill-ribbon-3' : 'fill-light-line');
-      dot.setAttribute('r', head ? '3.2' : on ? '2.3' : '1.9');
-    });
+  const render = (progress: number) => {
+    const head = progress * flowHeight;
+    for (const { bar, top, height } of segments) {
+      // Keadaan awal memakai properti `scale` dari Tailwind, jadi ini yang diubah.
+      bar.style.scale = `1 ${clamp((head - top) / height)}`;
+    }
+    // Pil berada di tengah cabang: 36% garis masuk, 36% garis keluar.
+    const inner = clamp((head - branchTop) / (branchHeight * 0.36));
+    const outer = clamp((head - branchTop - branchHeight * 0.64) / (branchHeight * 0.36));
+    drawPaths(branchIn, inner);
+    drawPaths(branchOut, outer);
+    for (const { el, at } of triggers) el.toggleAttribute('data-on', head >= at);
   };
 
-  let current = 0;
-  let displayed = 0;
-  let swap: Promise<unknown> = Promise.resolve();
-  const showStep = (index: number) => {
-    if (index === current) return;
-    current = index;
-    ringNumber.textContent = String(index + 1);
-    // Antre agar pergantian tidak bertabrakan; langkah yang terlewati saat
-    // scroll cepat tidak ditampilkan, langsung ke langkah terbaru.
-    swap = swap.then(async () => {
-      if (displayed === current) return;
-      await animate(text, { opacity: 0, transform: 'translateY(-16px)' }, { duration: 0.22, ease: EASE });
-      const target = current;
-      displayed = target;
-      number.textContent = String(target + 1);
-      title.textContent = steps[target].title;
-      body.textContent = steps[target].body;
-      text.style.transform = 'translateY(16px)';
-      await animate(text, { opacity: 1, transform: 'translateY(0px)' }, { duration: 0.3, ease: EASE });
-    });
-  };
-
-  const cancelScroll = scroll(
-    (p: number) => {
-      paintRing(p);
-      showStep(Math.min(steps.length - 1, Math.floor(p * steps.length)));
-    },
-    // trackContentSize: posisi ikut diperbarui saat tinggi halaman berubah
-    // (font selesai dimuat, area menempel lain diukur ulang).
-    { target: pin, offset: ['start start', 'end end'], trackContentSize: true },
-  );
-
-  const resizeObserver = new ResizeObserver(measure);
-  resizeObserver.observe(stage);
   measure();
+  const stop = scroll(render, { target: flow, offset: ['start 62%', 'end 62%'] });
+  const onResize = () => measure();
+  window.addEventListener('resize', onResize);
+  // Ukuran berubah setelah font dan gambar selesai dimuat.
+  const observer = new ResizeObserver(onResize);
+  observer.observe(flow);
 
-  // Pembersih sebelum isi halaman ditukar (ganti bahasa).
   return () => {
-    cancelScroll();
-    resizeObserver.disconnect();
+    stop();
+    window.removeEventListener('resize', onResize);
+    observer.disconnect();
   };
 }

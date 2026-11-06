@@ -1,0 +1,23 @@
+---
+import Base from '../../../layouts/Base.astro';
+import ProjectDetailPage from '../../../components/ProjectDetailPage.astro';
+import { projects, type Project } from '../../../data/projects';
+import { languages, projectPath, type Lang } from '../../../i18n/ui';
+
+export function getStaticPaths() {
+  return projects.map((project) => ({ params: { slug: project.slug }, props: { project } }));
+}
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+const lang: Lang = 'id';
+const copy = project.copy[lang];
+const paths = Object.fromEntries((Object.keys(languages) as Lang[]).map((code) => [code, projectPath(code, project.slug)])) as Record<Lang, string>;
+---
+
+<Base lang={lang} title={`${copy.name} - EAI Tech`} description={copy.teaser} paths={paths}>
+  <ProjectDetailPage lang={lang} project={project} />
+</Base>
