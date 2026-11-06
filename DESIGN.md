@@ -50,12 +50,20 @@ Rasio kontras dihitung agent (rumus WCAG 2.x) pada 2026-10-29.
 
 ## 2. Tipografi
 
-- Font: **Sora** untuk judul dan isi, satu keluarga (P-021, P-022, Jay).
-  Lisensi OFL, di-self-host (PRD bagian 4) lewat Fontsource, format WOFF2.
-- Ketebalan yang dimuat: 300 (judul, mengikuti wordmark logo yang tipis),
-  400 (isi), 500 (tombol dan label kecil), dan 700 (judul ajakan WA dan nama
-  di footer; ditambahkan atas arahan Jay 2026-10-30). Empat file WOFF2 per
-  subset Latin (masing-masing sekitar 15 KB), cukup untuk ID dan EN.
+- **Revisi Jay, 2026-11-01:** pasangan **Instrument Serif + Manrope** dipilih
+  untuk kedua bahasa setelah perbandingan di FigCraft (menggantikan pilihan
+  satu keluarga Sora pada P-021/P-022).
+- **Instrument Serif Regular (400):** judul hero dan judul display besar,
+  termasuk judul bagian dan ajakan kontak.
+- **Manrope:** paragraf, navigasi, tombol, nama/deskripsi layanan, FAQ,
+  judul langkah, angka dan nama besar `eAI Tech` di footer. Ketebalan
+  mengikuti peran teks yang sudah ada.
+- Ukuran, jarak huruf dan posisi dasar belum dirombak pada tahap pemilihan
+  ini. Penyebutan Sora 300/700 di spesifikasi lama di bawah merupakan
+  riwayat; pembagian keluarga terbaru pada bagian ini menjadi acuan font.
+- Status penerapan: FigCraft EN/ID sudah menggunakan pasangan terpilih.
+  Kode website masih memakai Sora self-host (Fontsource, WOFF2); penerapan
+  font baru pada website belum dikerjakan pada langkah ini.
 
 Skala ukuran (usulan; nilai HP → desktop, bertambah halus sesuai lebar layar):
 
@@ -121,6 +129,32 @@ Skala ukuran (usulan; nilai HP → desktop, bertambah halus sesuai lebar layar):
 
 Library: **Motion** untuk animasi dan transisi (PRD bagian 4, disetujui di
 Arsitektur; ditegaskan Jay 2026-10-29).
+
+### 5.0 Revisi Jay 2026-11-06 - animasi landing page frame 09
+
+Bagian ini mengalahkan 5.1 dan aturan lama yang bertentangan. Logomark titik,
+logomark meleleh, kartu Services menempel dan cincin Cara Kerja tidak dipakai
+lagi.
+
+| Bagian | Perilaku |
+|---|---|
+| Hero, buka halaman | HP dan laptop muncul sambil membesar dan berputar ke posisinya. Judul dan tombol tampil langsung. Hanya saat halaman pertama dibuka, tidak saat ganti bahasa |
+| Hero, kursor | Mengacu northeasttomato.com. Kursor atas/bawah: HP dan laptop ikut naik/turun sedikit. Kursor kiri: geser dan miring keluar. Kursor kanan: geser dan miring ke dalam. Gerakan menyusul kursor dengan pegas halus. Hanya perangkat dengan mouse |
+| Hero, scroll | HP dan laptop turun dan melebar keluar sampai terpotong tepi bawah hero |
+| What We Do | Menahan layar; daftar kiri kosong di awal, 01 muncul saat bagian naik ke layar, lalu 02, 03, 04 muncul satu per satu. Di kanan, tiap kategori berupa kartu yang naik menimpa kartu sebelumnya mengikuti scroll; kartu lama mengecil sedikit dan tepinya masih terlihat. Tanpa label kecil, kalimat pengantar, judul dan deskripsi kategori, serta garis di bawah judul (revisi Jay 2026-11-06) |
+| Project | Gambar terbuka saat masuk layar, sekali. Hover zoom 1,8% |
+| How It Works | Garis tergambar mengikuti scroll, titik tahap menyala, teks muncul saat garis sampai, cabang pil kategori terbuka setelah Plan |
+| FAQ, Ajakan WhatsApp, Footer | Tetap seperti sebelumnya |
+| Pindah ke Detail Project | Gambar kartu yang diklik membesar menjadi gambar utama (500 ms). Pindah halaman lain memakai fade bawaan ClientRouter |
+| Filter List Project | Kartu lama memudar 120 ms, kartu baru muncul 200 ms bergantian berjarak 40 ms |
+| Galeri Detail Project | Klik gambar membuka tampilan besar: buka 200 ms, tutup 150 ms, tombol Close di pojok kanan atas, Esc dan klik di luar menutup. Baris cerita muncul halus saat di-scroll |
+
+Nilai kursor pada layar 1440 px (hasil ukur referensi): HP geser 12 px dan
+miring 2,4°, laptop geser 14 px dan miring 3,8°, naik-turun 9 dan 11 px. Scroll
+sepanjang tinggi hero: HP -15% / 30%, laptop 15% / 40% dari ukurannya sendiri.
+
+Reduced motion atau JS gagal: tidak ada gerak kursor dan scroll, perangkat di
+posisi akhir, What We Do dan How It Works tampil utuh berurutan.
 
 ### 5.1 Animasi utama (pilihan Jay)
 

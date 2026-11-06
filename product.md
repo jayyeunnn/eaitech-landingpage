@@ -61,7 +61,7 @@ di desktop, HP, tablet dan layar besar (PRD bagian 4).
 | Elemen | Keputusan yang berlaku | Sumber/approval |
 |---|---|---|
 | Palet brand | Diambil dari logo (lihat tabel di bawah). Nilai resmi menunggu pembuat logo (P-011) | Sampel pixel oleh agent, 2026-10-28; belum disetujui |
-| Font identity | Mengikuti gaya logo: sans-serif geometris, juga untuk judul (bukan serif). Nama font logo belum diketahui (P-011); font web: Sora (DESIGN bagian 2, P-021) | Keputusan Jay, 2026-10-29 |
+| Font identity | Pasangan Instrument Serif untuk hero/judul display dan Manrope untuk teks/UI, kedua bahasa. Nama font logo masih belum diketahui (P-011). Pembagian peran dan status penerapan di DESIGN bagian 2 | Revisi Jay, 2026-11-01; sebelumnya Sora |
 | Mood/treatment umum | Modern, bersih, profesional, tidak pasaran | Jay, 2026-10-28 |
 | Mode | Bagian terang dan gelap berselang-seling. Di bagian terang, logo perlu varian bertulisan gelap atau cukup logomark (P-011) | Keputusan Jay, 2026-10-29 |
 

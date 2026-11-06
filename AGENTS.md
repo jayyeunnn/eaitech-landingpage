@@ -34,8 +34,9 @@ diputuskan agent.
 ## 2. Aturan Kerja Agent
 
 1. Mulai sesi dengan membaca "Satu Petunjuk Lanjut Aktif" di PROGRESS.
-2. Kerjakan hanya scope PRD. Fitur di luar scope (form, booking, portofolio,
-   testimoni, halaman lain) tidak ditambahkan tanpa keputusan Jay.
+2. Kerjakan hanya scope PRD. Fitur di luar scope (form, booking, testimoni,
+   halaman lain selain S-001 s.d. S-003) tidak ditambahkan tanpa keputusan
+   Jay. Portofolio masuk scope sejak keputusan Jay 2026-11-06 (F-006).
 3. PENDING tidak diputuskan agent. Bila pekerjaan butuh jawaban PENDING,
    pakai placeholder yang ditandai atau tanyakan ke Jay.
 4. Usulan agent selalu ditanyakan terpisah dan jelas ditandai sebagai usulan,
@@ -73,7 +74,7 @@ diputuskan agent.
 | Styling | Tailwind CSS; token DESIGN dipetakan ke tema Tailwind | PRD bagian 4, DESIGN |
 | Animasi | Motion (API JavaScript) + Canvas 2D untuk titik/pita | PRD bagian 4, DESIGN bagian 5 |
 | Ikon | Lucide | PRD bagian 4, DESIGN bagian 4 |
-| Font | Sora 300/400/500, self-host (Fontsource, WOFF2) | DESIGN bagian 2 |
+| Font | Instrument Serif 400 dan Manrope, self-host (Fontsource, WOFF2); revisi Jay 2026-11-01, sebelumnya Sora | DESIGN bagian 2 |
 | Dua bahasa | i18n routing Astro: `/` (EN, default) dan `/id`; ganti bahasa tanpa memuat ulang lewat ClientRouter (skrip dipasang ulang di `astro:after-swap`, dibersihkan di `astro:before-swap`; visual hero `transition:persist`) | PRD F-005, BR-004, FL-002 |
 | WhatsApp | Link `wa.me` dengan pesan awal per bahasa dan per layanan | PRD F-002, BR-001, BR-003 |
 | Hosting | Belum dipilih (P-006) | PRD bagian 4 |

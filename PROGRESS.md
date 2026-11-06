@@ -13,7 +13,215 @@ perlu. Log historis tidak diubah agar terlihat mengikuti kondisi sekarang.
 
 ## Satu Petunjuk Lanjut Aktif
 
-- Diperbarui: 2026-10-29.
+- Diperbarui: 2026-11-06.
+- Landing page, List Project dan Detail Project sudah dibangun dan menunggu
+  tinjauan Jay. Data project ada di src/data/projects.ts dan masih dummy.
+  Belum di-commit. Sisa: tinjau teks ID, ganti gambar demo hero sebelum rilis,
+  perbarui og-en.png dan og-id.png.
+- Catatan di bawah adalah riwayat 2026-11-02.
+- Pemulihan shortcut lanjutan: Desktop dan pinned FigCraft - AI MCP kini
+  memakai ~/.codex/helpers/Start-FigCraft-AI.ps1. Launcher mencari instalasi
+  terbaru melalui registry/lokasi umum, membuka --control 7979 atau memakai
+  sesi MCP aktif. Pembatas folder outputs EAI dihapus dari launcher umum;
+  file proyek lain di D dapat dibuka. Uji fresh launch dan klik ulang lulus.
+  mini-erp.figcraft berhasil dibuka via MCP tanpa perubahan desain; laporan
+  work/figcraft-repair/launcher-report.json. Desain EAI tetap tersimpan di file utama.
+- Jay menilai keseluruhan desain sudah bagus, lalu meminta eksperimen
+  How It Works vertikal pada duplikat desain 03. Versi baru sudah dibuat:
+  `09 · How It Works · Vertical Flow · English` (5643), x=9840,
+  1440 × 8211,91, di kanan detail 08 dalam file dan kanvas yang sama.
+- Section proses baru (5867) setinggi 2176 px: Start with an idea →
+  Discover → Plan → Create → Review & Refine → Deliver. Kartu bergantian
+  kiri/kanan; empat kategori layanan bercabang di bawah Plan dan menyatu
+  kembali sebelum Create. Latar putih eAI, Instrument Serif + Manrope.
+- Desain 03 tetap memakai cincin. Enam frame lama, halaman komponen dan
+  34 variable lama identik dengan snapshot sebelum eksperimen. Section lain
+  pada duplikat sama secara visual; FAQ/kontak/footer bergeser 1276 px.
+- FAQ duplikat memakai collection tersendiri dan variable 35–44. Uji native
+  semua jawaban terbuka/tertutup lulus; FAQ asli tetap tertutup. Tujuh flow,
+  0 target terputus, 0 font hilang. Tidak mengklaim uji klik GUI.
+- Preview How-It-Works-09-Vertical-Flow-EN.png dan
+  Design-09-Vertical-Flow-Overview-EN.png; report work/process-vertical-09/.
+  File disimpan dan kanvas fokus ke section baru. Ini komposisi FigCraft;
+  animasi scroll dengan Motion menunggu implementasi website. Copy proses
+  ditandai DRAFT; P-008 final tim tetap terbuka. Lanjut tinjauan Jay atas 09.
+- Detail Project sudah dibuat atas permintaan Jay, terinspirasi struktur
+  GG Design. Frame `08 · Project Detail · Studio Workspace · English`
+  (5222), x=8200, 1440 × 5517,34, di kanan List Project dalam file kerja
+  EAI-Tech.figcraft yang sama. Inggris/desktop, memakai label Concept Project.
+- Koreksi Jay: latar utama memakai putih eAI Tech #F4F8F7, menggantikan
+  usulan hijau gelap. Teks/garis/tombol disesuaikan; Instrument Serif dan
+  Manrope dipertahankan. Struktur: hero deskriptif, chip layanan, cover,
+  tiga baris cerita, galeri, Next Project, kontak dan footer.
+- Studio Workspace pada homepage 03 dan List Project membuka detail 08.
+  Tersedia Back to Projects, Contact, Home, Back to top dan empat preview
+  gambar yang bisa ditutup. Morrow di Next Project baru concept preview,
+  belum halaman detail lengkap. Semua karya dan cerita tetap konsep demo.
+- Verifikasi native: 11 tautan preview, tombol Close/Escape, target navigasi,
+  enam flow, serta 0 font hilang. Tidak mengklaim uji klik GUI. Bukti di
+  work/project-detail/report.json; preview Project-Detail-Studio-Overview-EN.png.
+  Website tidak diubah. Detail 08 termasuk desain yang dinilai bagus oleh Jay.
+- Update FigCraft 0.14.0 memindahkan aplikasi ke
+  C:\Program Files\ArtCraft\FigCraft. Shortcut Desktop FigCraft - AI MCP
+  dan command MCP di ~/.codex/config.toml sudah diperbarui. Aplikasi dibuka
+  kembali dengan port 7979; native MCP berhasil membaca file kerja. Font
+  pilihan dipasang per pengguna. Backup dan laporan work/figcraft-repair/.
+- Halaman List Project sudah dibuat atas permintaan Jay, dalam file dan
+  kanvas workspace yang sama: frame `07 · Project List · English` (4958),
+  x=6560, 1440 × 2827,34 pada filter All. Letaknya di kanan desain 06.
+  Navbar, judul Project, breadcrumb Home, galeri dua kolom, kontak dan footer
+  memakai Instrument Serif + Manrope serta palet yang sama.
+- Galeri menggunakan tiga konsep yang sudah ada (Studio Workspace, Morrow,
+  Forma Material Studies). Filter aktif: All Projects (3), Digital Products
+  (1), Design & Visualization (2), sesuai kategori yang punya karya. Hasil
+  dan tinggi halaman berubah mengikuti filter. Komponen 4957, instance 5012.
+- View All pada homepage 03 sekarang navigate ke List Project; logo/Home
+  kembali ke homepage, menu Services/How it works/FAQ kembali ke section
+  terkait, Back to top menuju navbar List. Kartu/judul Studio Workspace
+  sekarang membuka detail 08. Halaman baru masih Inggris/desktop.
+- Verifikasi saat pembuatan List: native kategori, layout dan target
+  interaksi lulus; 0 font hilang, 0 target terputus, lima flow saat itu.
+  Desain 01/02/06 identik; homepage 03 identik selain nama/interaksi View All;
+  lima komponen lama identik. Detail 08 menambah navigasi Studio dan satu flow.
+  Tidak mengklaim uji klik GUI. Report work/project-list/report.json,
+  preview Project-List-EN.png dan Project-List-Overview-EN.png. File disimpan.
+- FAQ desain 03 sudah diubah menjadi lima pertanyaan pilihan Jay, dalam
+  bahasa Inggris mengikuti frame 03. Biaya/durasi dihapus dari FAQ ini.
+  Tata letak pertanyaan panjang dibungkus rapi; kelima accordion mempunyai
+  pasangan variable terpisah agar tidak memengaruhi desain lain. Jawaban
+  masih placeholder karena belum dibahas/disetujui.
+- Preview FAQ-03-Five-Questions-EN.png. FAQ tertutup sekarang 1162,56 px,
+  total desain 03 = 6935,91 px; kontak/footer bergeser 181,25 px. Isi section
+  lain, desain 01/02/06, halaman komponen dan 24 variable lama tidak berubah.
+  Verifikasi binding buka/tutup dan layout kelima jawaban lulus; uji klik UI
+  tidak diklaim karena sesi Present sempat tidak memiliki viewport valid.
+  Laporan di work/faq-draft/. File kerja tunggal disimpan; website tidak diubah.
+- Jay meminta ide galeri List Project dituangkan ke FigCraft. Layout dua
+  kolom frame 07 sudah dinilai pas oleh Jay untuk dilanjutkan.
+  Referensi alternatif daftar interaktif Aperios /projects tetap catatan
+  eksplorasi. Draft detail Studio Workspace mengikuti arah GG Design pilihan Jay.
+- Jay memilih How It Works versi cincin sebelumnya dan meminta pengembalian.
+  Percobaan diagram flow sudah dibatalkan dengan 12 undo yang diverifikasi
+  terhadap riwayat; seluruh halaman workspace, halaman komponen, dan empat
+  desain identik dengan snapshot sebelum percobaan flow. Section 1949 tetap
+  1440 × 900 di y=3720, dengan state cincin lama beserta interaksinya.
+- Empat klik cincin (1 → 2 → 3 → 4 → 1) lulus. 0 font hilang. Preview
+  aktif How-It-Works-03-Ring-EN.png, laporan work/process-restore/. PNG flow
+  tetap arsip eksperimen; komponen flow tidak lagi ada di kanvas aktif.
+  What We Do dan Project dipertahankan. File FigCraft yang sama disimpan.
+- FAQ: Jay memilih lima pertanyaan dari usulan sebelumnya, nomor 1/2/3/5/8:
+  Apa itu eAI Tech; konsultasi saat ide belum matang; beberapa layanan dalam
+  satu proyek; persiapan sebelum proyek dimulai; cara mulai bekerja sama.
+  Pertanyaan biaya dan durasi tidak dimasukkan. Pertanyaannya sudah dipasang
+  di FigCraft 03; jawaban belum disusun/disetujui, website belum diubah.
+  Materi final tim tetap mengikuti P-008.
+- Draft section `Project` sudah dibuat hanya di desain 03, setelah What We
+  Do dan sebelum How It Works, sesuai permintaan Jay. Tiga konsep: Studio
+  Workspace (utama lebar), Morrow (poster kiri), Forma Material Studies
+  (render 3D kanan). Pasangan bawah berbeda ukuran dan bergeser vertikal;
+  semuanya diberi label Concept Project. Preview `Project-03-Homepage-EN.png`.
+- Project berukuran 1440 × 1920, di y=1800. Menu Work dan CTA hero View our
+  work sudah scroll ke section baru. Hover ketiga cover aktif (zoom 1,8%,
+  SmartAnimate 240 ms). View All sudah menuju frame List Project 07.
+  Reveal mengikuti scroll belum disimulasikan.
+- Pemeriksaan Project: empat tautan navigasi, tiga render hover, dan CTA
+  layanan ke kontak lulus. Desain 01/02/06 serta What We Do tidak berubah;
+  isi section bawah 03 bergeser 1920 px saat Project ditambahkan. Setelah
+  revisi FAQ, total tinggi 03 sekarang 6935,91 px.
+  0 font hilang, 0 target terputus. Laporan di work/project-draft/. File
+  kerja FigCraft tunggal disimpan; website belum diubah.
+- Jay menyetujui posisi portofolio setelah What We Do dan sebelum How It
+  Works. Judul yang diminta `Project`, dengan beberapa karya pilihan dan
+  tombol `View All` menuju halaman khusus Project yang akan dibahas nanti.
+  Pembahasan saat ini khusus section di halaman utama; sudah dicoba pada
+  FigCraft desain 03, belum diterapkan ke website.
+- Referensi Project: Aperios Design diperiksa langsung pada 2026-11-01,
+  melalui web dan browser 1440 × 900. Featured Work memakai gambar pertama
+  besar, pasangan visual asimetris/berbeda tinggi, judul/ringkasan di bawah,
+  dan View all work di akhir. Usulan adaptasi eAI Tech: tiga karya (satu
+  utama lebar, dua pendamping asimetris), latar terang, judul Project dengan
+  Instrument Serif dan metadata Manrope. Jay meminta rancangan ini dicoba;
+  tiga proyek saat ini merupakan contoh konsep, belum pilihan karya final.
+- Penyempurnaan What We Do pada desain 03 sesuai anotasi Jay: teks sekunder
+  di bawah empat kategori dihapus; nomor 01–04 diperbesar menjadi 38 px dan
+  disejajarkan dengan judul. Sembilan label layanan sekarang memakai ikon
+  vector native yang sesuai, tinggi pil 36 px, teks 12 px, lebar diukur dari
+  font agar tetap satu baris. Diterapkan pada keempat state kategori.
+  Preview utama dan empat state diperbarui. Lima klik kategori + CTA tetap
+  lulus; desain lain dan section lain pada 03 tetap identik. File kerja sama.
+- Jay menyetujui judul section `What We Do` lalu meminta draft tampilannya
+  dicoba hanya pada desain `03 · New Hero · English`. Section layanan 03
+  sekarang memakai empat kategori di kiri, visual/rincian/layanan/CTA di kanan:
+  Digital Products, AI & Automation, Design & Visualization, serta Content &
+  Social Media. Kategori bisa diklik di Present dengan dissolve 180 ms;
+  Digital Products terbuka secara default. Penamaan dan copy masih draft.
+- Draft What We Do tersimpan dalam file kerja FigCraft tunggal. Section
+  tetap 1440 × 900; hero dan section lain pada 03, serta seluruh desain
+  01/02/06, terbukti identik dengan snapshot sebelum revisi. Lima klik kategori
+  (empat state dan kembali ke awal) serta CTA ke kontak berhasil diuji.
+  Preview `outputs\EAI-Tech\Services-03-What-We-Do-EN.png`; laporan di
+  `work\services-draft\`. Website belum diubah.
+- Pembahasan beralih ke Layanan; eksplorasi hero dihentikan sementara sesuai
+  arahan Jay. Empat tambahan yang disebut Jay: Desain Grafis, 3D, editing
+  (multimedia), dan social media consulting. Cakupan rinci dan nama publik
+  belum dikunci; usulan nama sudah dicoba pada draft FigCraft desain 03,
+  belum diterapkan ke kode website.
+- Hero awal/kandidat 1: Jay memilih mencoba kolase hasil karya, lalu meminta
+  penerapannya di FigCraft beserta preview efek cursor. Hero awal ID dan EN
+  sudah diperbarui menjadi kolase website, aplikasi, dan studi bentuk 3D,
+  seluruhnya di dalam hero. Snapshot logo yang melintasi Hero → Layanan
+  dihapus dari kedua versi. Judul, navbar, font, dan section lain dipertahankan.
+- Hover kolase sudah aktif di Present: tiap panel terangkat, membesar 2%,
+  sedikit berubah kemiringan dan bayangannya menguat. Empat state komponen:
+  Rest/Website/App/3D, transisi 220–240 ms. Uji akhir 12/12 lulus di EN dan ID,
+  termasuk perpindahan langsung antar-panel dan reset pada celah/keluar.
+  Parallax kontinu mengikuti posisi cursor masih untuk implementasi website.
+- Master komponen disimpan pada halaman `Components · Hero Collage` dalam
+  file yang sama; keempat desain pembanding tetap di satu halaman workspace.
+  Preview `Hero-01-Collage-ID.png`, `Hero-01-Collage-EN.png`, dan
+  `Hero-01-Collage-Comparison.png`. Render 3D dan prompt ada di Assets/
+  hero01-ceramic-study-v1*. Seluruh karya ditandai sebagai konsep demo.
+- Hero pilihan Jay untuk dilanjutkan: nomor 6, foto penggunaan aplikasi.
+  Frame sekarang bernama `06 · Hero 03 · Rounded Product · English`.
+  Versi 4 (studio gelap) dan 5 (studio terang) sudah dihapus dari kanvas
+  beserta flow-nya, sesuai permintaan Jay.
+- Bentuk versi 6: halaman putih dengan navbar 100 px sebagai saudara hero,
+  di luar bidang rounded. Foto, fade, headline, paragraf, dan CTA berada di
+  frame dalam 1376 × 756, radius 32 px, margin sisi 32 px. Total navbar dan
+  area hero tetap 1440 × 900. Teks kiri, Instrument Serif + Manrope, CTA
+  tanpa ikon panah. Preview terkini `outputs\EAI-Tech\Hero-06-Rounded-EN.png`.
+- Aset versi 6: `outputs\EAI-Tech\Assets\hero03-lifestyle-light-v1.png`,
+  dengan prompt pada `hero03-lifestyle-light-v1-prompt.md`. Foto menampilkan
+  tangan menggunakan aplikasi demo di sisi kanan. Aset dan PNG studio lama
+  tetap sebagai arsip; galeri hanya eksplorasi gambar. Website belum diubah.
+- File kerja FigCraft tunggal: `C:\Users\giana\Documents\Codex\2026-10-31\v\outputs\EAI-Tech\EAI-Tech.figcraft`.
+  Halaman `EAI Tech · Design Workspace` berisi empat desain penuh berdampingan:
+  `01 · Hero 01 · Collage · Indonesia`, `02 · Hero 01 · Collage · English`,
+  `03 · New Hero · English` (kandidat 2), dan
+  `06 · Hero 03 · Rounded Product · English` (pilihan yang dilanjutkan).
+  Keempatnya memakai Instrument Serif + Manrope. Nomor 6 dipertahankan
+  sebagai penanda versi, posisinya sekarang x=4920 setelah frame ketiga.
+  Revisi berikutnya dilanjutkan di file dan kanvas ini; tidak dibuat file
+  kerja terpisah untuk setiap percobaan. File lama tetap sebagai arsip.
+- Hero: kandidat 2 (komposisi tengah, referensi Northeast Tomato). Jay
+  menyetujui HP di kiri dan laptop di kanan; untuk contoh FigCraft memakai
+  konsep demo dengan screenshot dari internet sementara. Draft **Inggris
+  saja** sudah dibuat dan digabung ke frame ketiga pada kanvas kerja,
+  acuan satu layar desktop 1440 × 900 termasuk navbar.
+- Navbar hero baru: Jay memilih logo di tengah mengikuti referensi Tomato.
+  Judul hero opsi A dipilih untuk dicoba: `Design meets technology.` (EN)
+  dan `Desain bertemu teknologi.` (ID). Teks pendukung EN/ID sudah dipilih.
+  CTA Discuss your project dan View our work disetujui tanpa ikon panah;
+  pada tahap ini hero baru hanya diterapkan ke draft FigCraft Inggris.
+- Keputusan font Jay (2026-11-01): Instrument Serif + Manrope untuk EN dan ID.
+  Kedua versi desain awal serta salinan hero baru di FigCraft sudah memakai
+  pasangan ini dan disimpan. Implementasi font pada kode website masih memakai Sora.
+- Persiapan revisi landing page: seluruh delapan dokumen Markdown proyek
+  sudah dibaca. Tindak lanjut: menerima rincian revisi pertama dari Jay;
+  belum ada keputusan desain baru pada tahap pembacaan ini.
+- Salinan desain desktop dan prototipe FigCraft EN/ID dibuat dari localhost:4321,
+  tersimpan di `C:\Users\giana\Documents\Codex\2026-10-31\v\outputs\EAI-Tech\`.
+  Titik lanjut development/rilis website tetap mengikuti daftar di bawah.
 - Titik lanjut: Fase 0-3 selesai, GATE 3 lolos. Untuk rilis
   masih perlu: domain asli (ganti `site` di astro.config.mjs), hosting P-006,
   nomor WA P-001, copy final P-002/P-008/P-016, persetujuan tim P-003. Usulan teknis Fase 2 (pita
@@ -906,6 +1114,374 @@ perlu. Log historis tidak diubah agar terlihat mengikuti kondisi sekarang.
 - Dokumentasi: VISUAL-DNA (arahan Layanan), LAYOUT (Layanan desktop/HP),
   DESIGN (token `dark-card`, kartu layanan, pengecualian sudut) diperbarui.
 
+### 2026-11-01 WIB - Salinan desain dan prototipe FigCraft
+
+- Permintaan Jay: melihat landing page localhost:4321 dan memindahkan desainnya
+  ke FigCraft, termasuk prototipe yang bisa diklik.
+- Hasil: `EAI-Tech-Prototype.figcraft`, dua frame desktop EN/ID (lebar 1440 px,
+  viewport prototipe 900 px), enam bagian per bahasa, teks dan elemen UI native.
+  PNG seluruh halaman dan per bagian, font Sora beserta OFL, serta PETUNJUK.md
+  tersedia di folder output yang disebut dalam petunjuk lanjut aktif.
+- Interaksi: navigasi scroll ke bagian; lima kartu layanan dapat digeser
+  horizontal; cincin proses diklik untuk berganti empat tahap; FAQ membuka dan
+  menutup jawaban dengan auto layout; ID/EN; tautan WhatsApp; kembali ke atas.
+- Adaptasi: sticky scroll Layanan menjadi horizontal scroll; perubahan tahap
+  Cara Kerja menjadi klik cincin. Ilustrasi titik/pita canvas memakai gambar
+  diam. Lingkaran proses tetap berupa elemen vektor. Scope desktop, belum
+  salinan layout mobile.
+- Pemeriksaan: tampilan dibandingkan dengan browser, file disimpan dan dibuka
+  kembali, 39/39 pemeriksaan interaksi lulus melalui mode Present aplikasi FigCraft. Nomor WA
+  placeholder sumber dipertahankan; tidak ada pesan yang dikirim.
+- Website dan kode aplikasinya tidak diubah. Tidak ada commit/push.
+
+### 2026-11-01 WIB - Persiapan revisi landing page
+
+- Permintaan Jay: masuk ke folder EAI Tech dan membaca file Markdown sebelum
+  membahas revisi landing page.
+- Dibaca lengkap: AGENTS.md, PROGRESS.md, PRD.md, product.md, VISUAL-DNA.md,
+  LAYOUT.md, DESIGN.md dan CLAUDE.md.
+- Catatan konteks: sejumlah ringkasan/wireframe lama masih menyebut default
+  Indonesia, garis rangka dan tombol WA menempel. Riwayat revisi Jay terakhir
+  menetapkan default Inggris, penghapusan garis rangka, header tidak menempel,
+  dan penghapusan permanen tombol WA menempel di HP.
+- Belum ada implementasi revisi atau perubahan keputusan desain. Tindak
+  lanjut: rincian revisi dari Jay. Tidak ada commit/push.
+
+### 2026-11-01 WIB - Diskusi revisi | Referensi tipografi
+
+- Jay menyampaikan rencana revisi font, penambahan portofolio, isi FAQ,
+  pengelompokan layanan (termasuk desain dan 3D), What We Build dan hero;
+  rincian masing-masing belum ditentukan. Jay memilih membahas font dahulu.
+- Referensi https://hyperliquid.xyz/ dan https://outway.com/ diperiksa melalui
+  browser dan computed styles pada 2026-11-01.
+- Hyperliquid: h1 Teodor Light 300; paragraf hero ABC Diatype Regular.
+  Outway: judul hero Affairs; beberapa label/judul kategori JetBrains Mono;
+  stylesheet juga memuat Perfektta dan Plus Jakarta Sans pada sejumlah UI.
+- Pembahasan awal: pembagian peran serif untuk judul ekspresif dan sans-serif
+  untuk teks/UI. Dua keluarga font menjadi usulan, belum keputusan Jay.
+- Tindak lanjut: pilih arah karakter dan contoh pasangan font sebelum
+  menerapkannya. Aturan font Sora saat ini belum diganti. Tidak ada commit/push.
+
+### 2026-11-01 WIB - Perbandingan font di FigCraft
+
+- Arahan Jay: cukup dua contoh, pasangan pertama pada versi Indonesia dan
+  pasangan kedua pada versi Inggris; bukan empat contoh.
+- Dibuat halaman `Perbandingan Font · 2 Contoh` dalam salinan file FigCraft.
+  Indonesia: Instrument Serif (judul besar) + Manrope (teks/UI). Inggris:
+  DM Serif Display (judul besar) + DM Sans (teks/UI). Halaman Sora awal tetap
+  tersedia dalam file perbandingan.
+- Diterapkan ke contoh seluruh landing page; 30 layer judul memakai serif,
+  162 layer teks/UI memakai sans. Isi, ukuran dan posisi dasar dipertahankan.
+- Pemeriksaan: render hero ID/EN ditinjau; font report menunjukkan 0 font
+  hilang. Halaman perbandingan dibuka dan area hero kedua contoh diperbesar.
+- Hasil: `C:\Users\giana\Documents\Codex\2026-10-31\v\outputs\EAI-Tech-Font-Comparison\`:
+  file `.figcraft`, PNG hero/seluruh halaman, font dan lisensi, petunjuk;
+  ZIP tersedia di folder outputs. Pasangan final menunggu pilihan Jay.
+- Kode website belum diganti. Tidak ada commit/push.
+
+### 2026-11-01 WIB - Keputusan font | Instrument Serif + Manrope
+
+- Jay memilih Instrument Serif + Manrope dan meminta versi Inggris juga
+  menggunakan pasangan tersebut.
+- FigCraft: 15 layer judul display Inggris diubah ke Instrument Serif dan
+  82 layer teks/UI ke Manrope. Versi Indonesia sudah memakai pasangan ini.
+  Halaman diubah menjadi `Pilihan Font · Instrument Serif + Manrope`.
+- File .figcraft, PNG hero/seluruh halaman EN/ID, petunjuk dan ZIP pada folder
+  output EAI-Tech-Font-Comparison diperbarui. Versi Inggris diperbesar untuk
+  ditinjau di kanvas.
+- Pemeriksaan: seluruh layer teks pada kedua frame hanya memakai Instrument
+  Serif dan Manrope; font report menunjukkan 0 font hilang; render hero EN
+  ditinjau.
+- DESIGN bagian 2 dan identitas font di product.md diperbarui sebagai
+  keputusan desain. Penerapan font baru ke kode website belum dikerjakan
+  pada langkah FigCraft ini. Tidak ada commit/push.
+
+### 2026-11-01 WIB - Diskusi hero | Kandidat 2 dan isi aset
+
+- Jay mengajukan tiga kandidat: hero lama dengan logomark utuh di hero dan
+  efek cursor; komposisi tengah dengan aset samping seperti Northeast Tomato;
+  background gambar penuh seperti Outway. Jay memilih mengeksplorasi kandidat 2.
+- Referensi https://northeasttomato.com/ diperiksa langsung di browser:
+  pergerakan cursor mengubah translasi/rotasi dua aset; scroll menggesernya
+  ke luar dengan perpindahan vertikal berbeda.
+- Jay kurang menyukai usulan objek 3D abstrak/logomark di kanan dan bertanya
+  tentang HP di kiri, laptop di kanan, beserta isi layarnya.
+- Jenis perangkat, isi layar, karya portofolio dan efek final belum dipilih.
+  Arah diskusi: mockup menampilkan hasil karya atau satu produk contoh yang
+  mempunyai tampilan mobile dan desktop. Belum ada implementasi hero baru.
+- Tidak ada commit/push.
+
+### 2026-11-01 WIB - Hero | Aset demo dan pembahasan navbar
+
+- Jay memilih konsep demo dahulu. Untuk percobaan visual di FigCraft,
+  screenshot dari internet boleh digunakan sementara sebagai isi mockup.
+- Penempatan HP di kiri dan laptop di kanan disetujui Jay. Screenshot dan
+  isi produk spesifik belum ditentukan; aset tersebut tidak dianggap karya
+  atau proyek klien eAI Tech.
+- Jay meminta pembahasan berurutan dari navbar, lalu bagian hero di bawahnya.
+  Susunan navbar dan copy hero baru masih dalam pembahasan. Belum diterapkan.
+- Tidak ada commit/push.
+
+### 2026-11-01 WIB - Hero | Logo navbar di tengah
+
+- Jay menyetujui posisi logo navbar di tengah mengikuti referensi Northeast
+  Tomato. Usulan susunan yang dibahas: Services/Work di kiri, logo eAI Tech
+  di tengah, How it works/FAQ dan ID/EN di kanan.
+- Jay meminta melanjutkan ke pembahasan teks hero. Copy utama dan pendukung
+  masih berupa usulan; belum ada implementasi hero baru atau commit/push.
+
+### 2026-11-01 WIB - Hero | Judul opsi A untuk dicoba
+
+- Jay memilih mencoba opsi A: `Design meets technology.` (EN) dan
+  `Desain bertemu teknologi.` (ID), untuk hero kandidat 2 dengan teks tengah.
+- Bentuk usulan dua baris: `Design meets` / `technology.` dan
+  `Desain bertemu` / `teknologi.`, memakai Instrument Serif.
+- Pilihan ini mencakup judul. Teks pendukung dan CTA masih dalam pembahasan;
+  belum ada implementasi hero baru, commit atau push.
+
+### 2026-11-01 WIB - Hero | Teks pendukung draft dipilih
+
+- Jay menyetujui teks pendukung yang diusulkan untuk draft hero.
+- EN: `From websites and apps to 3D visuals and AI-powered systems, we bring your ideas to life.`
+- ID: `Dari website dan aplikasi hingga visual 3D dan sistem berbasis AI, kami mewujudkan idemu.`
+- Presentasi yang dibahas: Manrope, rata tengah, sekitar dua-tiga baris di
+  bawah judul Instrument Serif. Berikutnya membahas CTA sebelum menyusun
+  percobaan hero di FigCraft. Belum ada commit/push.
+
+### 2026-11-01 WIB - FigCraft | Draft hero kandidat 2, Inggris saja
+
+- Jay menyetujui dua CTA dengan teks tanpa ikon panah dan meminta percobaan
+  hero di FigCraft dalam bahasa Inggris saja, lebih tinggi dari hero lama
+  agar tampil satu layar penuh.
+- Hasil: halaman `Hero 02 · English`, hero 1440 × 900 termasuk navbar.
+  Logo di tengah, menu Services/Work di kiri dan How it works/FAQ/ID-EN di
+  kanan. Judul Instrument Serif `Design meets technology.` di tengah;
+  paragraf Manrope dan CTA sesuai copy yang dipilih.
+- Mockup HP kiri dan laptop kanan dibuat dari bentuk native dengan screenshot
+  publik sementara: produk Saleor storefront dan dashboard shadcn/ui.
+  Sumber dicatat di SOURCES.md. Screenshot tidak dianggap proyek eAI Tech.
+- Ekor logo lama pada What We Build pada salinan English ini dihapus agar
+  sesuai konsep baru. Halaman di bawah hero mengikuti prototipe sebelumnya.
+- Disimpan ke folder output `EAI-Tech-Hero-EN`: .figcraft, PNG hero, font,
+  lisensi, screenshot referensi, petunjuk dan ZIP. Area hero diperbesar pada
+  kanvas untuk tinjauan Jay.
+- Pemeriksaan: render ditinjau, ukuran hero 1440 × 900, 0 font hilang;
+  5/5 uji lulus (viewport, navigasi Services/Process/FAQ, dialog WhatsApp).
+  Tidak ada pesan yang dikirim.
+- Cakupan draft: efek cursor/parallax belum disimulasikan; Work/View our work
+  masih visual menunggu section portofolio; hero baru belum dibuat dalam
+  bahasa Indonesia. Kode website belum diubah. Tidak ada commit/push.
+
+### 2026-11-01 WIB - FigCraft | Satu file dan satu kanvas kerja
+
+- Jay meminta desain awal Indonesia/Inggris yang sudah memakai font terpilih
+  digabung dengan desain hero baru Inggris, ditempatkan berdampingan.
+- Dibuat file kerja utama `outputs\EAI-Tech\EAI-Tech.figcraft`, dengan satu
+  halaman `EAI Tech · Design Workspace`. Urutan kiri ke kanan: desain awal
+  Indonesia, desain awal Inggris, desain hero baru Inggris. Lebar masing-masing
+  1440 px, jarak 200 px. Ketiganya memuat seluruh section sampai footer.
+- Dua halaman lama yang tidak diperlukan dihapus dari salinan master, setelah
+  memastikan semua tujuan interaksi berada dalam tiga frame yang dipertahankan.
+  Tiga flow Present tetap tersedia. File sumber lama tidak dihapus.
+- Pemeriksaan: jumlah dan ID seluruh layer dalam ketiga desain sama sebelum
+  dan setelah pemindahan; posisi relatif anak, ukuran, teks, font, dan definisi
+  interaksi tidak berubah. Ketiganya hanya memakai Instrument Serif + Manrope,
+  font report menunjukkan 0 font hilang. Render gabungan ditinjau dan tersimpan
+  sebagai `EAI-Tech-Three-Designs.png`.
+- Kartu Recent Files EAI lama yang berulang dibersihkan tanpa menghapus file
+  di disk atau mengubah file BATANYO. File master aktif sudah tersimpan.
+- Petunjuk dan sumber aset di folder master diperbarui. Revisi berikutnya
+  menggunakan file master ini. Kode website belum diubah. Tidak ada commit/push.
+
+### 2026-11-01 WIB - Hero kandidat 3 | Generate background studio pertama
+
+- Jay meminta generate contoh dari prompt studio kreatif yang dibahas.
+  Gambar dibuat menggunakan tool image_gen bawaan, tanpa gambar referensi.
+- Hasil: satu ruang studio konseptual dengan tablet grafis di kiri bawah,
+  monitor eksplorasi bentuk 3D di kanan bawah, material gelap, cahaya hangat
+  dan daylight. Bagian tengah sengaja tenang dan gelap untuk headline putih.
+- Aset dan prompt persis disimpan dalam folder kerja utama FigCraft pada
+  `outputs\EAI-Tech\Assets\hero03-studio-v1.png` dan
+  `outputs\EAI-Tech\Assets\hero03-studio-v1-prompt.md`. Sumber asli hasil
+  generator tetap dipertahankan. Hasil gambar ditinjau langsung.
+- Tahap berikutnya: tinjauan Jay atas arah gambar, lalu komposisi teks dan
+  penempatan kandidat 3 di kanvas kerja yang sama bila diminta. Belum ada
+  penerapan ke FigCraft atau kode website, commit, atau push.
+
+### 2026-11-01 WIB - FigCraft | Hero kandidat 3 dengan background studio
+
+- Jay meminta gambar hasil generate pertama diterapkan pada desain hero
+  kandidat 3 untuk menilai hasilnya langsung di FigCraft.
+- Ditambahkan frame keempat pada file `outputs\EAI-Tech\EAI-Tech.figcraft`,
+  halaman yang sama `EAI Tech · Design Workspace`, di x=4920/y=0. Desain
+  Indonesia, Inggris, dan kandidat 2 tetap tersedia di sebelah kiri.
+- Hero baru 1440 × 900 memakai foto studio sebagai background penuh dengan
+  lapisan gradien teal gelap tipis. Navbar/logo di tengah dengan teks putih;
+  judul Instrument Serif 132 px, paragraf Manrope, tombol utama putih dan
+  tombol sekunder outline. Copy dan CTA sama dengan kandidat 2, tanpa ikon panah.
+- Section di bawah hero mengikuti salinan kandidat 2 sampai footer. Terdapat
+  empat flow Present. Semua tujuan interaksi internal pada salinan baru
+  menunjuk ke salinan tersebut; link bahasa pada footer tetap ke desain ID.
+  Work/View our work dan pilihan bahasa navbar tetap visual sementara.
+- Pemeriksaan: render 1440 × 900 ditinjau, frame dan flow ada di kanvas yang
+  sama, seluruh referensi tujuan interaksi diperiksa, 0 font hilang setelah
+  font dimuat kembali pada sesi aplikasi. Ini pemeriksaan struktur/render;
+  pengujian klik menyeluruh tidak diulang untuk percobaan visual ini.
+- File master sudah disimpan; preview `outputs\EAI-Tech\Hero-03-Studio-EN.png`.
+  Kode website belum diubah. Belum ada keputusan final pemilihan hero,
+  commit, atau push.
+
+### 2026-11-01 WIB - Hero kandidat 3 | Alternatif studio terang
+
+- Jay menilai versi gelap cukup baik dan meminta mencoba gambar kedua
+  dengan tema terang beserta rancangan penyesuaian hero.
+- Gambar dibuat memakai tool image_gen bawaan dengan studio gelap sebagai
+  edit target. Kamera dan letak tablet/monitor dipertahankan. Material berubah
+  menjadi putih hangat, mint pucat, kayu oak terang, dan hardware silver;
+  pencahayaan daylight lembut serta tanaman di tepi.
+- Rancangan teks: Instrument Serif dan Manrope tetap; headline/navbar teal
+  gelap, paragraf teal redup, tombol utama teal dan tombol sekunder outline.
+  Copy, susunan tengah, dan ukuran hero 1440 × 900 tetap untuk perbandingan.
+- Hasil dan prompt persis tersimpan di Assets/hero03-studio-light-v1.png
+  dan Assets/hero03-studio-light-v1-prompt.md pada folder kerja FigCraft utama.
+  Render ditinjau langsung; file gambar lama tetap dipertahankan.
+- Versi terang masih preview gambar, belum ditempatkan pada kanvas FigCraft
+  dan belum menjadi keputusan final. Tidak ada perubahan kode website,
+  commit, atau push.
+
+### 2026-11-01 WIB - Hero kandidat 3 | Generate galeri digital terang
+
+- Jay meminta gambar baru dengan objek dan suasana berbeda, tetap bertema
+  terang. Tiga arah dibahas: galeri ide digital, instalasi bentuk logo, dan
+  penggunaan produk digital. Jay memilih mencoba ide pertama.
+- Gambar dibuat dari awal menggunakan tool image_gen bawaan, tanpa referensi
+  studio sebelumnya: galeri putih hangat, lantai batu terang, sinar daylight,
+  panel studi desain dan diagram sistem di kanan, serta eksplorasi bentuk 3D
+  di atas pedestal. Area kiri disediakan untuk headline teal gelap.
+- Hasil dan prompt persis disimpan di Assets/hero03-gallery-light-v1.png dan
+  Assets/hero03-gallery-light-v1-prompt.md dalam folder kerja FigCraft utama.
+  Render ditinjau langsung. Semua karya pada gambar bersifat konsep demo.
+- Tahap masih preview aset; belum ditempatkan di FigCraft, belum memilih
+  versi final. Kode website tidak diubah. Tidak ada commit/push.
+
+### 2026-11-01 WIB - Hero kandidat 3 | Generate penggunaan produk digital
+
+- Jay meminta mencoba ide nomor 3 dari alternatif gambar terang: produk
+  digital yang digunakan seseorang dalam kehidupan sehari-hari.
+- Gambar dibuat dari awal dengan tool image_gen bawaan, tanpa referensi.
+  Hasil berupa foto editorial konseptual, tangan menggunakan aplikasi demo
+  di HP pada sisi kanan, teras kafe dengan daylight dan latar lembut di kiri.
+  Wajah berada di luar frame, dengan palet netral hangat, hijau dan aksen teal.
+- Hasil dan prompt persis tersimpan pada Assets/hero03-lifestyle-light-v1.png
+  dan Assets/hero03-lifestyle-light-v1-prompt.md dalam folder kerja FigCraft
+  utama. Render ditinjau langsung; konten aplikasi bersifat demo.
+- Masih preview gambar untuk tinjauan. Belum ditempatkan di FigCraft atau
+  dipilih sebagai versi final; kode website tidak diubah. Tidak ada commit/push.
+
+### 2026-11-01 WIB - FigCraft | Dua hero terang untuk perbandingan
+
+- Jay meminta foto penggunaan aplikasi terakhir dan lampiran studio terang
+  dipakai di FigCraft. Dua salinan penuh ditambahkan di halaman kerja yang
+  sama; file utama tetap `outputs\EAI-Tech\EAI-Tech.figcraft`.
+- Frame 05 `Light Studio · English` berada di x=6560/y=0, memakai lampiran
+  persis yang disalin ke Assets/hero03-studio-light-user-reference.png.
+  Teks tengah, headline teal gelap, paragraf dibagi tiga baris agar tidak
+  melewati tanaman, CTA teal dan sekunder terang. Lapisan terang lembut di
+  tengah membantu keterbacaan; foto dan UI tetap terpisah dan dapat diedit.
+- Frame 06 `Everyday Product · English` berada di x=8200/y=0, memakai
+  Assets/hero03-lifestyle-light-v1.png. Teks dan CTA digeser ke kiri; foto
+  tangan/HP tetap terlihat di kanan. Fade terang di kiri dan lapisan navbar
+  terang membantu keterbacaan.
+- Kedua hero 1440 × 900, English only, memakai Instrument Serif + Manrope,
+  copy dan CTA yang sama tanpa ikon panah. Section bawah mengikuti salinan
+  studio gelap sampai footer. Enam desain dan enam flow Present tersedia.
+- Pemeriksaan: render kedua hero ditinjau; tujuan interaksi internal mengarah
+  ke salinan masing-masing, link ID footer tetap ke desain Indonesia; 0 font
+  hilang. Pemeriksaan struktur/render, bukan uji klik menyeluruh ulang.
+- Master sudah disimpan. PNG: Hero-03-Light-Studio-EN.png,
+  Hero-03-Everyday-Product-EN.png, dan Hero-03-Light-Comparison.png. Kanvas
+  menampilkan kedua hero baru berdampingan. Belum ada pilihan final, perubahan
+  kode website, commit, atau push.
+
+### 2026-11-01 WIB - FigCraft | Pilih nomor 6, hapus studio, hero rounded
+
+- Jay menyukai nomor 6 dan meminta nomor 4 serta 5 dihapus. Jay juga meminta
+  hero diberi sudut rounded pada halaman putih, dengan navbar di luar bidangnya.
+- Dua frame studio dan flow-nya dihapus dari file kerja utama. Tidak ada
+  frame lain yang mempunyai link menuju kandidat yang dihapus. Aset sumber
+  dan PNG lama tetap tersimpan sebagai arsip, tanpa membuat file desain baru.
+- Frame nomor 6 dipindah ke x=4920 dan dinamai `06 · Hero 03 · Rounded Product
+  · English`. Halaman putih, navbar 100 px dipindah menjadi child root yang
+  terpisah dari area hero. Hero luar 800 px berisi frame foto 1376 × 756,
+  x=32/y=12, clip aktif, radius 32 px. Total satu layar tetap 1440 × 900.
+- Foto, fade keterbacaan, headline, paragraf, dan kedua CTA dipindahkan ke
+  frame rounded. Headline kiri Instrument Serif 118 px; paragraf/UI Manrope.
+  Warna dan copy dipertahankan, tanpa ikon panah. Logo dan Back to top kini
+  menarget navbar di y=0 agar kembali ke bagian paling atas.
+- Pemeriksaan: render ditinjau; empat frame dan empat flow tersisa, navbar
+  berada di luar frame rounded, tidak ada referensi interaksi yang putus,
+  0 font hilang. Posisi/tinggi seluruh section di bawah hero tidak berubah:
+  Services y=900, Process y=1800, FAQ y=2700. Uji klik menyeluruh tidak diulang.
+- Master sudah disimpan ke `outputs\EAI-Tech\EAI-Tech.figcraft`; preview
+  `outputs\EAI-Tech\Hero-06-Rounded-EN.png`. Kode website belum diubah.
+  Tidak ada commit/push.
+
+### 2026-11-01 WIB - Diskusi hero awal | Aset yang menjelaskan hasil kerja
+
+- Jay meminta kembali merevisi konsep hero pertama: logomark besar dinaikkan
+  agar berada di hero, lalu menanyakan pengganti yang lebih menjelaskan
+  pekerjaan eAI Tech dibanding logo 3D saja.
+- Komposisi native diperiksa: judul di kiri, snapshot logomark di kanan
+  bawah hero, dengan potongan lanjutannya pada section Layanan.
+- Usulan yang disiapkan untuk diskusi: wireframe → produk jadi (satu panel
+  produk demo sebagai fokus), kolase hasil desain/website/3D, atau alur kerja
+  otomasi yang divisualisasikan. Rekomendasi agent adalah wireframe → produk
+  jadi karena terkait langsung dengan judul awal "Dari ide jadi sistem
+  yang berjalan." Usulan belum menjadi keputusan Jay.
+- Tidak ada perubahan FigCraft, generate gambar, kode website, commit,
+  atau push pada tahap pembahasan ini.
+
+### 2026-11-01 WIB - FigCraft | Hero awal kolase dan hover interaktif
+
+- Setelah tertarik pada opsi kolase hasil karya, Jay menanyakan efek cursor.
+  Parallax berlapis dan hover terangkat dibahas; Jay meminta dibuat di FigCraft.
+- Hero awal Indonesia dan Inggris diperbarui pada file kerja yang sama.
+  Snapshot logo besar dan ekornya di section Layanan dihapus. Sebagai gantinya,
+  kolase 680 × 488 ditempatkan di x=720/y=126: mockup website konsep FORMA,
+  aplikasi manajemen proyek demo, dan tile studi bentuk 3D. Hero tetap
+  1440 × 682.63; posisi/tinggi section di bawahnya tidak berubah.
+- Website dan aplikasi dibuat dari layer native yang bisa diedit. Render
+  keramik dibuat melalui tool image_gen bawaan dan disimpan dengan prompt
+  persis di Assets/hero01-ceramic-study-v1*. Label konsep ID/EN disertakan
+  agar visual tidak dianggap pekerjaan klien nyata.
+- Satu master kolase dengan empat variant Rest/Website/App/3D disimpan pada
+  halaman komponen dalam file yang sama, dipakai oleh instance EN dan ID.
+  Hover memperbesar panel 2%, mengangkatnya sekitar 8–11 px, mengubah tilt
+  sekitar 1 derajat, dan memperkuat bayangan. Transisi Smart Animate 220–240 ms.
+- Area hover tetap dan area reset yang tidak tumpang tindih menjaga
+  perpindahan antar-panel stabil. Uji akhir Present: EN 6/6 dan ID 6/6
+  lulus, mencakup Rest, Website, App, 3D, celah di antara panel, dan keluar
+  kolase; keadaan juga stabil pada pemeriksaan kedua setelah transisi.
+- Pemeriksaan struktur: empat desain dan empat flow utama tetap ada;
+  0 referensi interaksi putus; 0 font hilang. Master tersimpan; PNG ID/EN
+  dan perbandingan beserta laporan hover tersedia pada folder output utama.
+- Cakupan: efek hover aktif di FigCraft. Parallax kontinu mengikuti posisi
+  cursor dan gerak scroll belum diterapkan ke website. Tidak ada perubahan
+  kode website, commit, atau push.
+
+### 2026-11-01 WIB - Layanan | Empat tambahan dan diskusi penamaan
+
+- Jay menyatakan revisi hero cukup untuk sekarang dan memulai pembahasan
+  Layanan. Tambahan yang diminta: Desain Grafis, 3D, editing (multimedia),
+  serta social media consulting.
+- Penamaan usulan untuk dibahas: Graphic Design, 3D Design & Visualization,
+  Video & Multimedia Editing, dan Social Media Strategy & Consulting.
+  Nama dan cakupan belum menjadi keputusan final; branding, produksi/shooting,
+  motion graphics, serta pengelolaan akun tidak diasumsikan otomatis termasuk.
+- Tambahan empat layanan berasal dari Jay. Pengelompokan kategori besar,
+  judul pengganti What We Build, copy, dan implementasi menunggu diskusi
+  lanjut. Tidak ada perubahan FigCraft, kode website, commit, atau push.
+
 ## Indeks Persetujuan
 
 | Objek/cakupan | Tautan entri persetujuan |
@@ -919,3 +1495,560 @@ perlu. Log historis tidak diubah agar terlihat mengikuti kondisi sekarang.
 | GATE 0 (Jay) | 2026-10-29 WIB - Development, Fase 0 Setup |
 | GATE 1 dan GATE 2 (Jay) | 2026-10-30 WIB - pernyataan "semuanya udah aman" di akhir revisi footer HP |
 | GATE 3 (Jay) | 2026-10-30 WIB - Development, Fase 3 SEO, performa & kesiapan rilis |
+
+### 2026-11-01 WIB - Layanan | What We Do dan arah tampilan baru
+
+- Keputusan Jay: judul section `What We Do` diterima; cara menampilkan
+  layanan perlu dirombak setelah penambahan layanan kreatif dan consulting.
+- Usulan untuk diskusi, belum disetujui: empat kelompok `Digital Products`
+  (Website, Apps, ERP System), `AI & Automation` (Automation, Agentic AI),
+  `Design & Visualization` (Graphic Design, 3D Design & Visualization), dan
+  `Content & Social Media` (Video & Multimedia Editing, Social Media Strategy
+  & Consulting). Nama publik tiap layanan juga masih berupa usulan sebelumnya.
+- Usulan tampilan: daftar empat kategori di kiri dengan ringkasan singkat;
+  kategori aktif menampilkan contoh visual, rincian layanan dan satu CTA di
+  kanan. Kategori pertama terbuka sejak awal. Pada HP dapat menjadi accordion.
+- Belum ada perubahan desain FigCraft, source website atau cakupan rinci
+  layanan. Pengelompokan, visual, interaksi dan copy menunggu pembahasan Jay.
+- Tindak lanjut: sepakati pengelompokan lalu bahas komposisi section sebelum
+  membuat draft FigCraft.
+
+### 2026-11-01 WIB - Layanan | Draft What We Do di desain 03 saja
+
+- Arahan Jay: coba rancangan layanan yang dibahas di FigCraft dan ubah hanya
+  desain 03. Persetujuan ini untuk percobaan tampilan; penamaan/copy belum final.
+- Dikerjakan: isi section layanan lama (id 1877) pada root 1856 diganti dengan
+  What We Do. Tetap 1440 × 900 di y=900; target navigasi id 1877 dipertahankan.
+- Komposisi: judul Instrument Serif, pengantar, daftar empat kategori di kiri,
+  showcase dan rincian di kanan, label layanan, CTA tanpa ikon panah. Kategori:
+  Digital Products (Website/Apps/ERP System), AI & Automation (Automation/Agentic
+  AI), Design & Visualization (Graphic Design/3D Design & Visualization), Content
+  & Social Media (Video & Multimedia Editing/Social Media Strategy & Consulting).
+- Prototipe: component set 4343, state Digital 4109 / AI 4183 / Design 4237 /
+  Content 4279; instance 4352 di section 1877. Klik kategori mengganti state
+  dengan dissolve 180 ms; CTA scroll ke kontak 2285. Master berada di halaman
+  komponen 3769 dalam file yang sama, di bawah komponen hero.
+- Visual: UI workspace+app, diagram workflow, poster+render keramik, editing
+  preview+content planning. Render/foto memakai ulang aset konsep yang sudah ada;
+  lainnya native editable. Label konsep/draft terlihat pada tampilan.
+- Pemeriksaan: lima klik (empat state dan kembali Digital) dicek langsung di
+  Present; hasil screenshot mengonfirmasi kategori aktif dan visual yang sesuai.
+  CTA berhasil scroll ke y=3681.31. 0 font hilang, 0 target interaksi terputus.
+  Perbandingan JSON sebelum/sesudah memastikan seluruh root 930/1394/3303 sama,
+  hero 1857 dan section 1949/2242/2285/2292 pada 03 sama; ukuran root tetap.
+- Bukti: work/services-draft/report.json, structural-checks.json, click-checks.json,
+  click-*.png; outputs/EAI-Tech/Services-03-What-We-Do-EN.png dan empat preview state.
+- Disimpan: outputs/EAI-Tech/EAI-Tech.figcraft (file kerja tunggal). Petunjuk dan
+  SOURCES diperbarui. Tidak ada perubahan website, commit, atau push.
+- Tindak lanjut: Jay meninjau draft 03; revisi pengelompokan, copy, dan komposisi
+  mengikuti hasil tinjauan sebelum diterapkan pada versi lain atau website.
+
+### 2026-11-01 WIB - Layanan | Nomor kategori dan ikon label layanan
+
+- Arahan Jay dari dua screenshot: hapus label sekunder kategori, perbesar
+  nomornya, tambahkan ikon pada label layanan lalu rapikan perataannya.
+- Dikerjakan hanya pada What We Do desain 03: empat teks ringkasan kategori
+  dihapus pada masing-masing dari empat state (16 layer). Nomor 01-04 naik
+  dari 11 menjadi 38 px Manrope Medium dengan angka tabular; judul kategori
+  digeser dan disejajarkan secara vertikal dengan nomor.
+- Sembilan label layanan diberi ikon native: browser, smartphone, grid ERP,
+  workflow, bot, pencil, cube, film, dan messages. Pil tinggi 36 px, teks
+  Manrope Medium 12 px, ikon mint 1.4 px; jarak ikon/teks dan antar-pil seragam.
+  Lebar teks diukur melalui auto-size font, lalu lebar pil disesuaikan agar
+  semua label satu baris. Seluruh state kategori diperbarui.
+- Pemeriksaan: preview utama dan state Content diperiksa visual; keempat
+  state dirender. Lima klik kategori dan CTA diuji ulang di Present, lulus.
+  0 font hilang dan 0 target terputus. Root 930/1394/3303, hero dan lima
+  section lain pada 03 tetap identik dengan snapshot sebelum perubahan.
+- Bukti: work/services-draft/refinement-report.json, structural-checks.json,
+  click-checks.json; Services-03-What-We-Do-EN.png dan empat preview state.
+- File kerja EAI-Tech.figcraft disimpan; petunjuk diperbarui. Website belum
+  diubah. Tindak lanjut: Jay meninjau hasil penyempurnaan desain 03.
+
+### 2026-11-01 WIB - Portofolio | Diskusi posisi section
+
+- Arahan Jay: What We Do cukup untuk sekarang; bahas lokasi portofolio,
+  terutama sesudah layanan atau sesudah How It Works.
+- Usulan: tempatkan portofolio sesudah What We Do dan sebelum How It Works.
+  Alur yang diusulkan: Hero, What We Do, Selected Work, How It Works, FAQ,
+  Contact, Footer. Pertimbangannya: calon klien memahami layanan, melihat
+  contoh hasil, lalu mempelajari cara bekerja sama.
+- Nama Selected Work masih usulan. Posisi, jenis karya, dan tampilan belum
+  dikunci; belum ada perubahan FigCraft, LAYOUT, atau website pada diskusi ini.
+- Tindak lanjut: Jay memilih posisi, kemudian bahas isi dan komposisi portofolio.
+
+### 2026-11-01 WIB - Project | Referensi Aperios dan komposisi homepage
+
+- Keputusan Jay: lokasi setelah What We Do diterima. Nama section `Project`;
+  tampilkan beberapa karya dengan pilihan `View All`. Halaman khusus Project
+  dibahas nanti; fokus sekarang hanya section di homepage.
+- Observasi referensi https://aperios-design.co.uk/ melalui web dan browser
+  1440 × 900: judul Featured Work besar, satu proyek pertama selebar konten,
+  kombinasi pasangan gambar berbeda ukuran dan posisi vertikal, beberapa
+  visual tunggal di tengah, nama/ringkasan di bawah gambar, serta View all
+  work di akhir menuju /projects. Homepage situs hidup memuat lebih banyak
+  karya daripada jumlah yang dibutuhkan untuk draft eAI Tech.
+- Usulan adaptasi, belum disetujui: tiga proyek pilihan; satu visual utama
+  landscape lebar lalu dua visual pendamping asimetris dengan pergeseran
+  vertikal ringan. Judul Project dan pengantar di atas; View All di bawah.
+  Latar terang setelah section layanan gelap, Instrument Serif untuk judul,
+  Manrope untuk nama proyek/kategori. Hover pembesaran visual dan reveal
+  saat scroll adalah usulan interaksi eAI Tech, belum klaim hasil pengujian
+  efek interaksi Aperios.
+- Belum menentukan karya nyata/konsep yang dipilih, belum mendesain halaman
+  Project khusus/detail, dan belum mengubah FigCraft atau website.
+- Tindak lanjut: Jay meninjau komposisi homepage dan memilih jumlah/isi karya.
+
+### 2026-11-01 WIB - Project | Draft homepage pada desain 03
+
+- Arahan Jay: coba kerjakan rancangan Project yang dibahas. Diterapkan hanya
+  pada desain 03, melanjutkan scope revisi sebelumnya, dalam file kerja yang sama.
+- Section baru 4617 disisipkan pada urutan ketiga, setelah What We Do 1877 dan
+  sebelum How It Works 1949. Ukuran 1440 × 1920, y=1800; root 1856 menjadi
+  6754.66 px tinggi. Nama layer section berikutnya disesuaikan 04/05/06/07.
+- Galeri: Studio Workspace sebagai cover utama 1360 × 600; Morrow 544 × 584
+  di kiri bawah, Forma Material Studies 656 × 500 di kanan dengan offset
+  vertikal 64 px. Nama proyek dan kategori di bawah gambar; tiap entri punya
+  label Concept Project. Header memakai Instrument Serif, metadata Manrope,
+  latar terang, rounded cover 18 px. View All di bagian bawah galeri.
+- Studio Workspace berupa UI native aplikasi desktop/mobile; Morrow berupa
+  poster native asli dengan tipografi dan bentuk vektor. Forma memakai ulang
+  render konsep keramik hero01. Tidak mengarang proyek klien, hasil bisnis,
+  atau klaim pekerjaan yang sudah selesai. Tidak ada generate gambar baru.
+- Interaksi: navbar Work 2344 dan hero CTA View our work 2355 scroll ke 4617.
+  Tiga component set cover: 4526/4601/4611, instance 4633/4707/4716, masing-
+  masing Rest/Hover. Hover membesarkan artwork 1.8% dalam crop tetap,
+  SmartAnimate 240 ms; keluar gambar mengembalikan Rest.
+- Batas draft: View All masih visual, sesuai arahan bahwa halaman khusus
+  Project dibahas nanti. Halaman detail proyek belum dibuat. Animasi reveal
+  berdasarkan scroll belum disimulasikan dalam prototipe FigCraft ini.
+- Pemeriksaan struktur: root 930/1394/3303 identik; What We Do identik; hero
+  1857 identik selain dua interaksi navigasi baru. Isi section bawah identik
+  selain nama layer/posisi yang bergeser 1920 px. Komponen hero dan layanan
+  lama identik. Empat flow tetap valid; 0 font hilang, 0 target terputus.
+- Uji Present: navbar Work, hero View our work, How It Works dan FAQ menuju
+  posisi benar; ketiga hover mengubah render tanpa mengubah scroll/frame;
+  CTA layanan masih menuju kontak, sekarang di y=5601.31. Semua lulus.
+- Bukti: work/project-draft/report.json, structural-checks.json, ui-checks.json,
+  hover-*.png; outputs/EAI-Tech/Project-03-Homepage-EN.png. PETUNJUK/SOURCES
+  diperbarui. File EAI-Tech.figcraft disimpan. Tidak ada perubahan website,
+  commit, atau push.
+- Tindak lanjut: Jay meninjau section homepage sebelum pemilihan karya final,
+  revisi komposisi, atau pembahasan halaman khusus Project.
+
+### 2026-11-01 WIB - How It Works | Diskusi diagram flow
+
+- Jay menyatakan Project sudah oke untuk saat ini, lalu meminta pendapat
+  tentang alternatif How It Works, terutama bentuk diagram flow.
+- Tampilan sekarang diperiksa dari subtree 1949 dan render tersimpan di
+  work/process-discussion/Current-How-It-Works-03.png: cincin titik di kiri,
+  judul dan satu tahap aktif di kanan, empat tahap placeholder Discuss your
+  needs / Plan / Build / Handover. Isi proses final tetap P-008.
+- Usulan untuk diskusi: empat tahap terlihat bersamaan dalam diagram
+  horizontal berjalur melengkung ringan. Judul di area terang, diagram pada
+  bidang hijau gelap rounded, node bernomor dan deskripsi singkat. Aksen
+  mint bergerak/mengisi koneksi seiring scroll adalah ide untuk website,
+  bukan perilaku yang sudah diimplementasikan.
+- Draft nama Discover / Plan / Create / Deliver. Create diusulkan agar
+  mencakup software, desain, 3D, multimedia dan consulting. Penjelasan tahap
+  masih draft, tidak menutup P-008 atau menetapkan proses operasional tim.
+- Alternatif tambahan yang dapat dipertimbangkan: timeline vertikal dengan
+  uraian tiap tahap. Belum ada perubahan pada desain FigCraft atau website.
+- Tindak lanjut: Jay memilih arah visual dan membahas isi tahap sebelum draft.
+
+### 2026-11-01 WIB - How It Works | Diagram flow interaktif pada desain 03
+
+- Arahan Jay: kerjakan rancangan flow yang dibahas. Scope dilanjutkan pada
+  desain 03 saja, Inggris, dalam file kerja FigCraft tunggal.
+- Dikerjakan: empat frame cincin lama (1950/2023/2096/2169) dihapus dari
+  section 1949, lalu diganti dengan header dan diagram flow. Section tetap
+  1440 × 900 di y=3720; tidak menggeser FAQ/kontak/footer atau mengubah root.
+- Komposisi: judul How It Works Instrument Serif di area terang, diagram
+  1360 × 520 pada x40/y264 dengan radius 28, empat nomor dalam lingkaran
+  80 px, nama tahap dan deskripsi singkat. Jalur cubic menghubungkan node
+  dengan ketinggian bervariasi. Keterangan hasil tahap berada di bawah.
+- State: Discover 4721, Plan 4757, Create 4793, Deliver 4829; component set
+  4865, instance 4873. Keempat tahap selalu terlihat. Klik tahap mengubah
+  fill node aktif, warna label, progres mint, counter dan outcome. Transisi
+  SmartAnimate 320 ms easeOut; Discover sebagai default. Semua elemen native.
+- Batas draft: copy tahap/outcome masih untuk pembahasan, tidak menutup
+  P-008. Progres berdasarkan scroll dan susunan vertikal HP belum dibuat;
+  prototipe desktop ini menggunakan klik tahap sebagai simulasi progres.
+- Pemeriksaan: seluruh root 930/1394/3303 identik; hero, What We Do, Project,
+  FAQ, kontak dan footer pada 03 identik; lima component set lama identik.
+  Ukuran/posisi root dan section sama, empat flow tetap sama. 0 font hilang,
+  0 target terputus. Pola tiga koneksi progres pada empat state sesuai tahap.
+- Uji Present: menu How it works menuju y3720; enam klik Plan/Create/Deliver/
+  Discover/Deliver/Discover mengubah render dan ringkasan yang sesuai tanpa
+  mengubah scroll/root. Semua lulus, hasil visual Plan dan Deliver diperiksa.
+- Bukti: work/process-draft/report.json, structural-checks.json, ui-checks.json,
+  step-*.png; outputs/EAI-Tech/How-It-Works-03-Flow-EN.png dan empat state PNG.
+  PETUNJUK/SOURCES diperbarui; EAI-Tech.figcraft disimpan. Tidak ada perubahan
+  website, commit atau push. Present ditutup, kanvas fokus ke How It Works.
+- Tindak lanjut: Jay meninjau diagram/copy draft dan memberi revisi bila perlu.
+
+### 2026-11-01 WIB - How It Works dipulihkan | Mulai diskusi FAQ
+
+- Arahan Jay: kembalikan How It Works ke versi sebelumnya. Lanjut membahas
+  pertanyaan FAQ, dimulai Apa itu eAI Tech; biaya dan lama pengerjaan tidak
+  dimasukkan karena fleksibel.
+- Pemulihan: riwayat 12 langkah eksperimen flow dicocokkan dahulu, lalu
+  dibatalkan dengan edit.undo. Section cincin dan ID lama dipulihkan, bukan
+  dibuat ulang. Komponen flow percobaan ikut dibatalkan. PNG flow dipertahankan
+  di disk sebagai arsip; file kerja utama tetap EAI-Tech.figcraft.
+- Verifikasi: seluruh subtree root 930/1394/1856/3303 serta halaman 3769 dan
+  929 identik dengan work/process-draft/before-nodes.json. What We Do, Project,
+  FAQ dan navigasi kembali tepat pada kondisi sebelum eksperimen. 0 font hilang.
+  Empat klik ring 1→2→3→4→1 lulus, tanpa mengubah scroll/frame. File disimpan.
+- Bukti: work/process-restore/report.json, ui-checks.json, ring-restored.png;
+  outputs/EAI-Tech/How-It-Works-03-Ring-EN.png. PETUNJUK/SOURCES diperbarui.
+- Usulan FAQ untuk diskusi, belum disetujui/diterapkan:
+  1. Apa itu eAI Tech?
+  2. Apakah saya bisa berkonsultasi meski ide proyeknya belum matang?
+  3. Bisakah saya menggunakan beberapa layanan dalam satu proyek?
+  4. Apakah eAI Tech bisa membantu mengembangkan proyek yang sudah ada?
+  5. Apa yang perlu saya siapkan sebelum proyek dimulai?
+  6. Bagaimana proses komunikasi dan revisi selama pengerjaan?
+  7. Apa saja yang saya terima setelah proyek selesai?
+  8. Bagaimana cara mulai bekerja sama dengan eAI Tech?
+- Daftar ini menghindari pertanyaan biaya dan durasi sesuai arahan Jay.
+  Jawaban tentang lingkup layanan, revisi dan serah terima tidak diasumsikan;
+  materi final tim tetap P-008. FAQ di FigCraft/website belum diubah.
+- Tindak lanjut: Jay memilih pertanyaan, lalu menyusun jawaban dan menerapkan
+  FAQ. Website, commit dan push tidak disentuh.
+
+### 2026-11-01 WIB - FAQ | Lima pertanyaan dipilih
+
+- Pilihan Jay: ambil nomor 1, 2, 3, 5, dan 8 dari delapan usulan FAQ.
+- Urutan draft yang dipilih, dinomori ulang:
+  1. Apa itu eAI Tech?
+  2. Apakah saya bisa berkonsultasi meski ide proyeknya belum matang?
+  3. Bisakah saya menggunakan beberapa layanan dalam satu proyek?
+  4. Apa yang perlu saya siapkan sebelum proyek dimulai?
+  5. Bagaimana cara mulai bekerja sama dengan eAI Tech?
+- Tetap mengikuti arahan sebelumnya: tanpa pertanyaan biaya atau durasi.
+- Jawaban belum disusun/disetujui. Tidak ada perubahan pada FigCraft,
+  website, commit, atau push pada tahap pemilihan pertanyaan ini.
+- Tindak lanjut: bahas jawaban kelima pertanyaan sebelum penerapan FAQ.
+
+### 2026-11-01 WIB - FAQ diterapkan | Diskusi halaman khusus Project
+
+- Arahan Jay: terapkan lima pertanyaan FAQ yang dipilih, kemudian bahas
+  halaman Project. Pesan continue melanjutkan pekerjaan dan pembahasan ini.
+- Dikerjakan pada desain 03 saja: lima pertanyaan EN padanan pilihan ID
+  mengganti empat pertanyaan lama. FAQ section 2242, container 2248; item
+  1-4 mempertahankan ID lama, item 5 merupakan duplikat dengan ID 4721.
+  Biaya dan durasi tidak lagi ada di subtree FAQ 03. Jawaban tetap placeholder.
+- Tata letak: teks dibatasi 600 px dan auto-height. Pertanyaan dua baris
+  mendapat header 142 px, lainnya 103 px. Ikon plus/minus tetap di tengah.
+  FAQ tertutup = 1162.56 px, naik 181.25 px; root 1856 = 6935.91 px.
+  Kontak/footer bergeser 181.25 px, isi keduanya dipertahankan.
+- Accordion: collection FAQ / Design 03 (VariableCollectionId:2), sepuluh
+  variable baru VariableID:25-34, satu pasangan open/closed per pertanyaan.
+  Binding plus dan jawaban serta conditional toggle diarahkan ke pasangan
+  masing-masing. Semua 24 variable lama tidak diubah.
+- Pemeriksaan: root 930/1394/3303, library 3769, hero/layanan/Project/How It
+  Works pada 03 identik. Kontak/footer identik setelah normalisasi posisi.
+  Empat flow tetap sama, 0 font hilang. Kelima binding jawaban dan tinggi
+  saat open/closed diperiksa melalui native API, lalu default ditutup lagi.
+  Semua lulus. Uji klik UI tidak dituntaskan: sesi Present sempat tidak
+  memiliki viewport valid/zoom sangat kecil. Tidak mengklaim klik UI lulus.
+- File dibuka ulang pada sesi MCP FigCraft yang baru (document id 3; jangan
+  mengandalkan id 2 dari log lama), kedua font dimuat untuk sesi ini, dan
+  EAI-Tech.figcraft disimpan. Preview FAQ-03-Five-Questions-EN.png; bukti
+  work/faq-draft/report.json, structural-checks.json, binding-checks.json.
+- Referensi halaman Project: https://aperios-design.co.uk/projects dilihat
+  melalui web dan browser 1440×900, termasuk hover Seeper. Halaman daftar
+  menampilkan nama, jenis pekerjaan dan nomor; hover memunculkan preview.
+- Usulan untuk diskusi, belum diterapkan: halaman Project dengan navbar
+  konsisten, judul besar dan intro, filter kategori sesuai karya tersedia,
+  galeri gambar dua kolom, lalu CTA/footer. Alternatif: daftar interaktif
+  dengan preview hover seperti Aperios. Arah visual serta perilaku membuka
+  detail per proyek masih menunggu pilihan Jay.
+- Belum ada halaman Project khusus/detail baru. View All tetap visual.
+  Jawaban FAQ tetap P-008. Tidak ada perubahan website, commit atau push.
+- Tindak lanjut: pilih galeri atau daftar untuk halaman Project, kemudian
+  susun komposisi dan pembahasan detail proyek.
+
+### 2026-11-01 WIB - Project List | Draft galeri dua kolom di FigCraft
+
+- Arahan Jay: tuangkan ide halaman List Project ke FigCraft untuk dilihat.
+  Dibuat sebagai halaman produk baru dalam kanvas/file kerja yang sama,
+  bukan file revisi terpisah. Halaman detail tidak termasuk pekerjaan ini.
+- Frame 4958, 07 · Project List · English, x6560/y0, width1440. Flow baru
+  dengan nama yang sama ditambahkan; empat flow homepage lama dipertahankan.
+- Layout: navbar 110, pengantar 244 (breadcrumb Home, Project 128 px Instrument
+  Serif, intro Manrope), galeri dua kolom, area kontak 431.78 dan footer
+  721.56. Kartu menggunakan tiga konsep lama: Studio Workspace, Morrow, Forma
+  Material Studies. Rasio gambar mengikuti bentuk karya; semua Concept Project.
+- Component set gallery 4957, instance 5012. State Category: All Projects
+  4730 (3 kartu, height1320), Digital Products 4839 (1 kartu, height720),
+  Design & Visualization 4926 (2 kartu, height1040). Filter kategori kosong
+  tidak ditambahkan. Source cover 4438/4512/4521 dipakai ulang sebagai native
+  instances dalam crop grid. Tidak ada generate atau pengambilan aset baru.
+- Halaman All setinggi2827.34; Digital2227.34; Design2547.34. Pengujian via
+  instance.setProperties memastikan jumlah/nama kartu, master variant, posisi
+  kontak (y1674/1074/1394) dan tinggi halaman sesuai; default dikembalikan All.
+- Navigasi: View All 4630 dari homepage 03 → root4958. Logo/navbar4959 dan
+  breadcrumb5007 kembali ke homepage03 (1856); Services/How it works/FAQ
+  navigate ke homepage lalu scroll ke1877/1949/2242. Back to top menuju
+  navbar List4959. Duplikat kontak4971 dan footer4978 mempertahankan gaya
+  dan tautan WA lama. Bahasa baru hanya EN; tautan ID baru tidak diarahkan
+  ke halaman lain yang tidak sesuai. Detail/kartu klik detail belum dibuat.
+- Pemeriksaan: root930/1394/3303 identik. Root1856 identik setelah mengecualikan
+  hanya nama dan interaksi View All. Lima component set lama identik. Empat
+  flow lama tetap sama, satu flow List baru; 0 font hilang, 0 target interaksi
+  terputus. Sembilan target changeTo kategori diverifikasi benar. Pengujian
+  native properties/layout/targets, tidak mengklaim uji klik GUI.
+- Hasil visual All dan Design diperiksa. Preview Project-List-EN.png,
+  Project-List-Overview-EN.png, Project-List-Filter-Digital-EN.png,
+  Project-List-Filter-Design-EN.png. Report work/project-list/report.json.
+- File EAI-Tech.figcraft disimpan. PETUNJUK/SOURCES/PROGRESS diperbarui.
+  Website, commit dan push tidak diubah. Fokus kanvas ke List Project.
+- Tindak lanjut: Jay meninjau halaman daftar, lalu revisi atau pembahasan
+  rancangan Detail Project sesuai arah berikutnya.
+
+### 2026-11-01 WIB - Detail Project | Diskusi struktur awal
+
+- Penilaian Jay: halaman List Project sudah pas. Lanjut meminta ide untuk
+  halaman Detail Project. Tidak ada revisi List yang diminta.
+- Usulan, belum diterapkan: studi kasus singkat yang dominan gambar, dengan
+  navbar konsisten dan breadcrumb Project / nama proyek. Hero berisi nama,
+  pengantar singkat, label layanan dan tipe Concept Project bila relevan.
+- Susunan usulan: cover lebar; Project Overview dan What We Created yang
+  menjelaskan tujuan/pekerjaan secara singkat; galeri hasil dengan variasi
+  gambar lebar dan pasangan gambar; Next Project dan Back to Projects;
+  kontak serta footer yang konsisten.
+- Template mendukung karya digital, desain grafis dan 3D; isi gambar dan
+  penjelasan menyesuaikan jenis proyek. Link Live Demo/Visit Website hanya
+  ditampilkan bila ada tautan yang benar-benar tersedia, belum ditambahkan.
+- Studio Workspace diusulkan sebagai contoh pertama untuk menguji template.
+  Tidak menetapkan klaim proyek klien, angka hasil bisnis, atau data proyek
+  yang belum tersedia. Karya konsep tetap diberi label Concept Project.
+- Belum ada halaman detail atau perubahan FigCraft/website pada tahap ide
+  ini. Tidak ada commit atau push. Tindak lanjut: Jay meninjau arah struktur
+  dan menentukan apakah dibuat contoh Detail Project berikutnya.
+
+### 2026-11-01 WIB - Detail Project | Referensi GG Design dari Jay
+
+- Jay menemukan dan menyukai referensi Detail Project:
+  https://ggdesign.it/work/crafting-a-premium-identity-for-modern-agritourism
+  Meminta dilihat untuk kemungkinan adaptasi dan penyempurnaan eAI Tech.
+- Halaman dibuka langsung di browser 1440×900 (web reader tidak dapat
+  mengaksesnya, browser berhasil). Hero dan bagian cerita/galeri diperiksa
+  lewat snapshot, screenshot, serta bounding box media pada DOM.
+- Observasi: navbar sangat sederhana, headline deskriptif dua baris besar
+  di tengah, tiga chip layanan, latar gelap bertekstur. Cover 1332×888;
+  sesudahnya tiga baris cerita (judul kiri, paragraf kanan, garis pembatas)
+  About the project / The Challenge / The Solution. Galeri terdiri dari
+  pasangan portrait dan gambar lebar secara bergantian, gap sempit. Total
+  tujuh gambar termasuk cover. Penutup CTA Let's talk berukuran besar.
+- Usulan adaptasi, belum disetujui: pertahankan urutan hero-cover-cerita-
+  galeri; gunakan hijau gelap/mint serta Instrument Serif + Manrope milik
+  eAI Tech. Nama proyek menjadi label kecil, headline besar menjelaskan ide
+  atau fokus proyek. Studio Workspace tetap kandidat contoh pertama dan
+  ditandai Concept Project.
+- Pengembangan yang diusulkan: Back to Projects dan Next Project agar alur
+  penjelajahan tersambung; caption singkat pada visual yang perlu konteks;
+  pilihan memperbesar gambar untuk detail antarmuka/3D. Copy cerita ringkas,
+  tidak mengarang angka hasil bisnis, klien atau hasil proyek yang belum ada.
+- Tidak mengklaim efek animasi spesifik GG Design yang belum diuji. Tidak
+  mengunduh/mengimpor artwork referensi. Belum ada perubahan FigCraft atau
+  website, commit maupun push pada tahap pembahasan ini.
+- Tindak lanjut: Jay menilai arah adaptasi GG Design sebelum dibuat draft
+  halaman Detail Project dalam file kerja yang sama.
+
+### 2026-11-02 WIB - Detail Project putih dan pemulihan MCP setelah update
+
+- Jay meminta rancangan detail dibuat di FigCraft, lalu mengoreksi latar
+  utama menjadi putih eAI Tech. Draft 08 · Project Detail · Studio Workspace
+  · English sudah tersimpan dalam EAI-Tech.figcraft, di kanan List Project.
+- Struktur mengikuti arah referensi GG Design: headline deskriptif besar,
+  chip Apps / ERP System / UI Design, cover lebar, About the project / The
+  Challenge / The Solution, pasangan visual desktop/mobile, papan fondasi
+  UI, Next Project, kontak dan footer. Ukuran 1440 × 5517,34.
+- Latar utama #F4F8F7; teks #0B1F1E dan warna garis/tombol disesuaikan.
+  Studio Workspace tetap Concept Project. Tidak ada klaim klien/hasil bisnis.
+  Semua visual halaman detail berupa layer native konsep yang sudah ada
+  atau dibuat untuk draft ini; tidak mengambil artwork GG Design.
+- Navigasi Studio dari homepage 03 dan List 07 menuju detail 08. Back to
+  Projects menuju List; logo menuju homepage; Contact dan Back to top
+  mengarah ke section detail yang sesuai. Hover Studio lama dipertahankan.
+- Sebelas area gambar/caption/judul/tombol membuka empat overlay: desktop,
+  mobile, fondasi UI dan Morrow. Close, Escape dan close-on-outside terpasang.
+  Next Morrow baru preview konsep, bukan halaman detail lengkap kedua.
+- Pemeriksaan native properties/targets: enam flow, 0 target tidak ditemukan,
+  0 font hilang; ukuran halaman dan overlay sesuai. Gambar overview dan
+  mobile preview diperiksa visual. Tidak mengklaim uji klik GUI. Report
+  work/project-detail/report.json dan preview Project-Detail-Studio-*.png.
+- Saat melanjutkan, FigCraft tidak dapat dihubungi. Jay menyebut baru update.
+  Log installer lokal menunjukkan 0.12.1 dihapus dan 0.14.0 berhasil dipasang
+  ke C:\Program Files\ArtCraft\FigCraft, sedangkan shortcut/MCP masih
+  menunjuk AppData\Local\Programs\ArtCraft\FigCraft yang sudah tanpa binary.
+- Shortcut Desktop FigCraft - AI MCP dan command server FigCraft dalam
+  ~/.codex/config.toml diperbaiki; parameter MCP tetap mcp --attach 7979.
+  Shortcut memakai --control 7979 dan akses baca/tulis automation terbatas
+  ke folder outputs workspace. Nilai konfigurasi lain diverifikasi tetap sama.
+- Aplikasi baru dibuka dengan file kerja; MCP inspect berhasil. Instrument
+  Serif dan Manrope dipasang per pengguna serta dimuat ulang, 0 layer perlu
+  refit. File disimpan kembali; kanvas difokuskan ke detail 08. Backup
+  shortcut/config/desain dan report tersedia di work/figcraft-repair/.
+- PETUNJUK, SOURCES dan petunjuk aktif diperbarui. Website, commit dan push
+  tidak diubah. Tindak lanjut: tinjauan Jay terhadap draft detail putih 08.
+
+### 2026-11-02 WIB - How It Works | Eksperimen flow vertikal pada duplikat 03
+
+- Jay menilai keseluruhan desain sudah bagus dan meminta satu eksperimen:
+  duplikat desain 03, lalu ubah hanya How It Works menjadi flow dari atas
+  ke bawah. Usulan Discover, Plan, Create, Review & Refine, Deliver disetujui
+  untuk dicoba, diawali label Start with an idea. Motion scroll untuk kode
+  website dibahas sebagai tahap selanjutnya, bukan implementasi saat ini.
+- Duplikat dibuat di workspace yang sama, frame 09 (5643), x=9840. Section
+  proses 5867 berada di y=3720, ukuran 1440 × 2176; total halaman 8211,91 px.
+  Kartu tahap bergantian di kiri/kanan garis utama, nomor di simpul tengah,
+  dengan label hasil singkat di sisi berlawanan. Discover menampilkan contoh
+  sorotan awal. Di bawah Plan ada empat cabang kategori layanan yang menyatu
+  kembali menuju Create. Seluruh visual berupa layer native yang bisa diedit.
+- Header memakai Instrument Serif; judul langkah/isi/icon memakai Manrope
+  dan vector native. Latar putih #F4F8F7, kartu putih, garis pucat dan aksen
+  teal/mint. Label DRAFT menandai copy proses; tidak menetapkan prosedur tim
+  atau jumlah revisi/dukungan yang belum disepakati dalam P-008.
+- Anotasi handoff pada section menjelaskan arah Motion: garis tergambar
+  mengikuti scroll, tiap tahap muncul saat masuk viewport, tahap aktif lebih
+  menonjol, cabang layanan bertemu lagi. Semua isi tetap terbaca tanpa motion.
+  Tidak mengklaim animasi scroll kontinu sudah berjalan di FigCraft.
+- Duplikasi otomatis meremap menu Services/Work/How it works/FAQ, CTA hero,
+  CTA layanan dan Back to top ke section duplikat. Tautan Project List dan
+  Detail tetap memakai halaman bersama. Flow baru ditambahkan; total tujuh.
+- FAQ duplikat diisolasi ke collection VariableCollectionId:3, variable 35–44.
+  Lima pertanyaan diuji terbuka bersamaan melalui variable native: tinggi
+  FAQ duplikat 1579,11 px, FAQ asli tetap 1162,56 px. Setelah ditutup kembali,
+  FAQ duplikat 1162,56 dan total halaman kembali 8211,91. Binding plus/jawaban
+  memakai variable baru; nilai 34 variable lama tidak berubah.
+- Verifikasi native sebelum/sesudah: enam frame lama dan seluruh halaman
+  komponen identik, enam flow lama identik. Section lain duplikat sama secara
+  visual setelah normalisasi ID/variable/offset; metadata override characters
+  pada lima teks FAQ tidak disalin oleh duplicate, isi/style/geometri sama.
+  Tidak ada target prototype terputus dan tidak ada font hilang. Tidak
+  mengklaim uji klik GUI. Preview section dan halaman lengkap diperiksa visual.
+- Bukti: work/process-vertical-09/report.json,
+  How-It-Works-09-Vertical-Flow-EN.png,
+  Design-09-Vertical-Flow-Overview-EN.png. EAI-Tech.figcraft disimpan;
+  kanvas fokus ke section 5867. PETUNJUK/SOURCES/PROGRESS diperbarui.
+  Website, commit dan push tidak diubah. Tindak lanjut: Jay meninjau versi 09.
+
+### 2026-11-02 WIB - Shortcut AI MCP | Launcher umum dan akses proyek disk D
+
+- Jay meminta pemeriksaan shortcut setelah update 0.14.0. Desktop AI MCP
+  sudah menunjuk binary baru dengan benar; shortcut taskbar bawaan MSI masih
+  tanpa --control. Proses yang berjalan tidak membuka port 7979. Uji membuka
+  Desktop AI MCP berhasil membuat koneksi, lalu shortcut taskbar AI diperbarui.
+- Jay melaporkan file D:\Projek\Web\Mini ERP\docs\assets\previews\mini-erp.figcraft
+  ditolak dengan automation path rejected. Penyebabnya flag read/write root
+  yang sebelumnya dibatasi ke outputs EAI Tech; flag ini juga membatasi
+  pembukaan file manual dalam aplikasi. Batas khusus proyek dilepas dari
+  shortcut umum sesuai kebutuhan Jay untuk membuka proyek lain.
+- Launcher baru ~/.codex/helpers/Start-FigCraft-AI.ps1 mencari binary lewat
+  App Paths Windows dan beberapa lokasi instalasi, menjalankan --control 7979,
+  atau memfokuskan sesi kontrol yang sudah aktif. Mutex mencegah peluncuran
+  bersamaan. Launcher berjalan tanpa console; error nyata dicatat/ditampilkan.
+  Tidak menutup paksa proses atau dokumen pengguna.
+- Shortcut Desktop dan pinned taskbar FigCraft - AI MCP memakai launcher
+  yang sama, dengan icon FigCraft. Shortcut sebelumnya dicadangkan dalam
+  work/figcraft-repair/. Konfigurasi MCP Codex diperiksa: command Program Files,
+  args mcp --attach 7979 sudah benar dan tidak perlu diubah lagi.
+- Jendela uji kosong tanpa perubahan ditutup secara normal. Fresh launch
+  berhasil, proses 36856 memakai --control 7979 tanpa automation roots.
+  Peluncuran ulang lewat pinned shortcut memakai proses yang sama. MCP
+  inspect berhasil. File mini-erp.figcraft terbuka dengan dua halaman,
+  0 repair dan dirty=false; tidak ada perubahan/simpan pada desain Mini ERP.
+- Bukti work/figcraft-repair/launcher-report.json dan log
+  ~/.codex/helpers/FigCraft-AI-launcher.log. PETUNJUK dan petunjuk aktif
+  diperbarui. Website/desain EAI, commit dan push tidak diubah.
+
+### 2026-11-06 WIB - Revisi | Landing page mengikuti frame 09 (arahan Jay)
+
+- Dikerjakan: FigCraft disambungkan lewat `figcraft-cli mcp --attach 7979`
+  (aplikasi dibuka ulang dengan `--control 7979`, desain tidak diubah). Tujuh
+  bagian homepage dibangun ulang dari frame 09: Hero, What We Do, Project, How
+  It Works, FAQ, ajakan WhatsApp, Footer. Font diganti ke Instrument Serif +
+  Manrope. Gambar HP, laptop, contoh layanan dan cover project diekspor dari
+  FigCraft ke src/assets/design. PRD, LAYOUT, DESIGN dan AGENTS diperbarui.
+- Keputusan Jay: portofolio masuk scope (F-006, S-002, S-003); frame 07 dan 08
+  dipakai; karya saat ini dummy; detail Morrow dan Forma dibuat di kode; menu
+  memakai "Project" dan ditambahkan ke footer; screenshot demo hero hanya untuk
+  pengembangan; landing page dulu, halaman baru menyusul; What We Do hanya
+  mengikuti scroll, tidak bisa diklik; animasi masuk hero dipakai; di HP efek
+  kursor mati, efek scroll tetap, What We Do tetap menahan layar.
+- Animasi: hero mengacu hasil ukur northeasttomato.com (DESIGN bagian 5.0).
+  Logomark titik, kartu Services menempel dan cincin Cara Kerja dihapus.
+- Bukti: build lolos. Playwright 1440 x 900, 1920 x 1080, 1366 x 640, 768 x
+  1024, 390 x 844 dan 375 x 667 tanpa error konsol dan tanpa geser horizontal
+  pada ukuran HP yang dicek. Nilai kursor terukur sekitar 11,5 px / 2,3 derajat
+  (HP) dan 13,4 px / 3,6 derajat (laptop). Ganti bahasa menjaga posisi scroll dan
+  kategori aktif, animasi masuk tidak berulang. Reduced motion: kategori dan alur
+  tampil utuh, perangkat diam. Tanpa JS: isi tampil dan gambar termuat.
+- Lighthouse HP: `/` 98/96/100/100, `/id/` 96/96/100/100, CLS 0. Accessibility
+  96 karena judul yang belum muncul masih samar saat dipindai, sama seperti
+  sebelumnya.
+- Belum: teks ID terjemahan agent perlu ditinjau; `og-en.png` dan `og-id.png`
+  masih gambar lama; tombol View All dan kartu Project belum punya tujuan; ukuran
+  label 9 px di frame dinaikkan ke 11 px agar terbaca; animasi belum dicek di HP
+  fisik. Belum di-commit.
+
+### 2026-11-06 WIB - Revisi | What We Do tanpa pengantar, daftar muncul mengikuti scroll (arahan Jay)
+
+- Dikerjakan: label "Our capabilities", kalimat pengantar dan garis di bawah
+  judul dihapus. Daftar kategori kosong di awal; 01 muncul saat bagian naik ke
+  layar, lalu 02 s.d. 04 muncul satu per satu mengikuti scroll dan hilang lagi
+  saat di-scroll balik. Isi kanan tetap dimulai dari 01.
+
+### 2026-11-06 WIB - Revisi | What We Do kartu bertumpuk (arahan Jay)
+
+- Jay memilih ide C dari tiga sketsa. Judul dan deskripsi kategori dihapus.
+  Isi kanan menjadi kartu terang berisi gambar, pil layanan dan tombol WhatsApp.
+  Kartu berikutnya naik menimpa kartu sebelumnya mengikuti scroll; kartu lama
+  mengecil sedikit dan tepinya tetap terlihat. Gambar dipakai apa adanya karena
+  latarnya sama dengan latar kartu, jadi tidak perlu ekspor ulang.
+
+### 2026-11-06 WIB - Development | Halaman List dan Detail Project (keputusan Jay)
+
+- Dikerjakan: `/projects`, `/id/projects`, dan detail tiga project di dua bahasa
+  (10 halaman statis). Filter kategori, perbesar gambar, gambar kartu membesar
+  saat pindah ke detail, tautan homepage, menu, footer, tombol bahasa, sitemap dan
+  hreflang. Detail Morrow dan Forma dibuat langsung di kode dengan template frame
+  08; teks dan potongan gambarnya dummy. Data project disatukan di
+  src/data/projects.ts.
+- Keputusan Jay: gambar membesar saat pindah ke detail, fade bergantian untuk
+  filter, galeri bisa diperbesar dengan animasi.
+- Bukti: build lolos, tidak ada error konsol atau tautan 404 pada alur yang
+  dicek. Filter, Esc, Next Project, kembali lewat browser, ganti bahasa dengan
+  posisi scroll tetap, dan menu ke bagian homepage berjalan. Tanpa JS filter
+  tersembunyi, tiga kartu tampil, gambar tetap link ke versi besar.
+- Lighthouse HP sebelum perbaikan label link: homepage 98/96/100/100, List
+  100/96/100/100 dan 98/96/100/100, Detail 100/96/100/100; CLS 0.
+- Deviasi dari frame 08: label "Preview project" menjadi "View project" karena
+  semua project kini punya detail; tidak ada pil bahasa di navbar detail, sesuai
+  frame.
+
+### 2026-11-06 WIB - Revisi | List dan Detail Project (arahan Jay)
+
+- List: breadcrumb, kalimat pengantar dan teks jumlah dihapus. Tab kategori
+  dirombak dari pil berangka "(03)" menjadi tab teks bergaris dengan angka kecil.
+- Project dummy ditambah menjadi tujuh: Terrace, Open Gallery, Still Studio dan
+  Flowline. Gambarnya dari aset konsep FigCraft yang sudah ada; teks ditulis agent.
+  Tab kini memuat empat kategori layanan. Homepage tetap tiga project pertama.
+- Detail: Back to Projects pindah ke kiri, logo di tengah, Contact di kanan.
+  Tombol Close tampilan besar pindah ke pojok kanan atas.
+
+### 2026-11-06 WIB - Revisi | How It Works diagram alur sederhana (arahan Jay)
+
+- Jay memilih opsi B. Kartu, ikon, label hasil, pil "Start with an idea" dan
+  "Ready for what's next", catatan penutup, serta label cabang dihapus. Tiap tahap
+  tinggal titik, nama dan satu kalimat. Cabang empat kategori tetap ada sebagai
+  pil kecil. Garis tetap tergambar mengikuti scroll.
+
+### 2026-11-06 WIB - Revisi | Judul Project dan How It Works tanpa pengantar (arahan Jay)
+
+- Label kecil "Selected work" dan "Our process" serta kalimat pengantar kedua
+  bagian dihapus dari homepage, di EN dan ID.

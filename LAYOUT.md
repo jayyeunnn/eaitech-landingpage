@@ -11,6 +11,42 @@
   BR-004; VISUAL-DNA bagian 2-4.
 - Peta dokumen: [AGENTS.md](AGENTS.md) bagian 1.
 
+## 0. Revisi Jay 2026-11-06 - susunan mengikuti FigCraft
+
+Acuan susunan landing page sekarang frame `09 · How It Works · Vertical Flow ·
+English` di file FigCraft EAI Tech. Bagian ini mengalahkan isi lama di bawah;
+wireframe dan catatan lama menjadi riwayat, kecuali yang tidak disebut di sini.
+
+| Urutan | Bagian | Mode | Susunan |
+|---|---|---|---|
+| 1 | Hero | T | Navbar logo di tengah (menu dua kiri, dua kanan, pil bahasa di kanan); judul serif tengah, kalimat pendukung, tombol WA dan tombol ke Project; HP di kiri dan laptop di kanan, miring dan terpotong tepi |
+| 2 | What We Do | G | Menahan layar; kiri daftar 01 s.d. 04, kanan contoh visual, judul, penjelasan, pil layanan, tombol WA kategori |
+| 3 | Project | T | Satu karya lebar, dua karya asimetris, tombol View All |
+| 4 | How It Works | T | Diagram alur sederhana (revisi Jay 2026-11-06): lima tahap di garis tengah, nama dan satu kalimat bergantian kiri-kanan, cabang empat kategori berupa pil kecil setelah Plan. Tanpa kartu, ikon, label hasil, pil awal dan akhir |
+| 5 | FAQ | G | Judul serif kapital, label FAQ kiri, lima pertanyaan kanan |
+| 6 | Ajakan WhatsApp | T | Satu link; kalimat ajakan, panah, judul serif besar |
+| 7 | Footer | G | Tiga kolom, kepanjangan logo, nama "eAI Tech" terpotong |
+
+- Menu: Services, Project, How it works, FAQ. Nama "Project" dipakai di semua
+  halaman dan ditambahkan ke footer (keputusan Jay; frame 09 menulis "Work").
+- What We Do tidak bisa diklik; kategori hanya berganti mengikuti scroll
+  (keputusan Jay).
+- Label "DRAFT" di frame tidak ditampilkan; label Concept Project tetap tampil.
+- HP: efek kursor mati, efek scroll tetap, What We Do tetap menahan layar
+  (keputusan Jay). Tanpa JS/reduced motion: empat kategori tampil berurutan.
+- What We Do (revisi Jay 2026-11-06): tanpa label kecil, kalimat pengantar, garis
+  di bawah judul, serta judul dan deskripsi kategori. Isi kanan berupa kartu
+  bertumpuk berisi gambar, pil layanan dan tombol WhatsApp.
+- S-002 List Project (frame 07, revisi Jay 2026-11-06): navbar sama dengan
+  homepage dan menu Project aktif; judul; tab kategori dengan angka kecil, tanpa
+  breadcrumb, kalimat pengantar dan teks jumlah; galeri dua kolom (project dibagi
+  selang-seling); ajakan WhatsApp; footer. HP: satu kolom, tab bisa digeser.
+- S-003 Detail Project (frame 08, revisi Jay 2026-11-06): navbar ringkas (Back to
+  Projects di kiri, logo di tengah, Contact di kanan; HP tombol kembali berupa
+  ikon); judul tengah dan chip; gambar utama; tiga baris cerita; galeri dua
+  gambar dan satu gambar lebar; project berikutnya; ajakan WhatsApp; footer.
+  Pilihan bahasa ada di footer. Project berikutnya berputar sesuai urutan data.
+
 ## 1. Shared Shell & Pola Layout
 
 - Satu halaman panjang (S-001) dengan enam bagian. Dua versi URL dengan susunan

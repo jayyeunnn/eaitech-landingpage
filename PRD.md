@@ -22,7 +22,8 @@
 - Pengguna: calon klien EAI Tech dan orang yang ingin tahu tentang EAI Tech.
 - PIC keputusan: tim EAI Tech secara bersama (cara tim memberi persetujuan: P-003).
   Jay anggota tim yang mengerjakan landing page ini sebagai tugas pertamanya.
-- Platform dan tahap: web, satu halaman (landing page), versi pertama.
+- Platform dan tahap: web, landing page ditambah halaman Project (revisi Jay
+  2026-11-06, lihat S-002 dan S-003), versi pertama.
 - Target waktu: belum ada tanggal target dari tim.
 - Keberhasilan: pengunjung memahami layanan EAI Tech lalu memulai chat WhatsApp
   dengan tim. Cara mengukurnya belum dibahas (P-007).
@@ -42,21 +43,36 @@ Daftar layanan final (dikonfirmasi Jay, 2026-10-28):
 Kolom kanan berasal dari draft teman tim yang kemungkinan dibuat dengan AI
 generator. Isinya hanya bahan awal; copy final belum ditentukan (P-002).
 
+Revisi Jay 2026-11-06 (pilih frame 09 di FigCraft): layanan tampil sebagai
+empat kategori, menggantikan daftar lima layanan di atas. Tabel di atas menjadi
+riwayat.
+
+| Kategori | Layanan |
+|---|---|
+| Digital Products | Website, Apps, ERP System |
+| AI & Automation | Automation, Agentic AI |
+| Design & Visualization | Graphic Design, 3D Design & Visualization |
+| Content & Social Media | Video & Multimedia Editing, Social Media Strategy & Consulting |
+
 ## 2. Scope & Fitur
 
 ### In Scope / Out of Scope
 
-- In scope: satu landing page publik dwibahasa; bagian Hero, Layanan, Cara Kerja,
-  FAQ, ajakan chat WhatsApp dan Footer.
-- Out of scope versi ini: form kontak, booking konsultasi, halaman tambahan,
-  Portofolio dan Testimoni (EAI Tech belum punya proyek klien), Tentang Tim.
+- In scope: landing page publik dwibahasa; bagian Hero, What We Do (Layanan),
+  Project, How It Works (Cara Kerja), FAQ, ajakan chat WhatsApp dan Footer.
+  Portofolio Project: bagian di landing page, halaman List Project dan halaman
+  Detail Project (keputusan Jay 2026-11-06, menggantikan pengecualian lama).
+- Out of scope versi ini: form kontak, booking konsultasi, Testimoni, Tentang
+  Tim, dan halaman lain selain S-001 s.d. S-003.
+- Urutan kerja (Jay 2026-11-06): landing page dulu; S-002 dan S-003 menyusul.
 
 ### Fitur dan acceptance - satu checklist fitur
 
 - [ ] **F-001 - Informasi layanan** - prioritas MUST.
   - Kebutuhan/sumber: pengunjung perlu tahu apa yang dikerjakan EAI Tech.
-  - Acceptance: DRAFT - kelima layanan pada Bagian 1 tampil dengan nama dan
-    penjelasan singkat dalam bahasa yang sedang aktif.
+  - Acceptance: DRAFT - keempat kategori layanan pada Bagian 1 (revisi Jay
+    2026-11-06) tampil dengan nama, penjelasan singkat dan daftar layanannya
+    dalam bahasa yang sedang aktif.
   - Bukti jika terpenuhi: -
 - [ ] **F-002 - Hubungi via WhatsApp** - prioritas MUST.
   - Kebutuhan/sumber: arahan Jay, kanal kontak utama untuk saat ini.
@@ -81,6 +97,14 @@ generator. Isinya hanya bahan awal; copy final belum ditentukan (P-002).
     Pengunjung menekan tombol ID/EN di header → semua teks halaman dan pesan
     awal WhatsApp ikut berganti.
   - Bukti jika terpenuhi: -
+- [ ] **F-006 - Portofolio Project** - prioritas MUST (Jay 2026-11-06).
+  - Kebutuhan/sumber: keputusan Jay; menampilkan karya tim. Tiga karya saat ini
+    dummy dan akan diganti project asli Jay dan tim.
+  - Acceptance: DRAFT - bagian Project di landing page menampilkan karya dengan
+    label Concept Project. Tombol View All membuka List Project; klik karya
+    membuka Detail Project. Detail Studio Workspace mengikuti frame 08; detail
+    Morrow dan Forma dibuat langsung di kode dengan template yang sama.
+  - Bukti jika terpenuhi: -
 
 ## 3. Alur, Screens & Aturan Bisnis
 
@@ -88,7 +112,9 @@ generator. Isinya hanya bahan awal; copy final belum ditentukan (P-002).
 
 | S-ID | Screen/tujuan | Role/akses | F-ID | Navigasi |
 |---|---|---|---|---|
-| S-001 | Landing page: Hero, Layanan, Cara Kerja, FAQ, ajakan WhatsApp, Footer | Publik, tanpa login | F-001 s.d. F-005 | Satu halaman; detail susunan di LAYOUT S-001 |
+| S-001 | Landing page: Hero, What We Do, Project, How It Works, FAQ, ajakan WhatsApp, Footer (frame 09, revisi Jay 2026-11-06) | Publik, tanpa login | F-001 s.d. F-006 | Detail susunan di LAYOUT S-001 |
+| S-002 | List Project (frame 07), `/projects` dan `/id/projects` | Publik, tanpa login | F-005, F-006 | Dari View All dan menu Project; filter kategori |
+| S-003 | Detail Project (frame 08), `/projects/{slug}` dan `/id/projects/{slug}` | Publik, tanpa login | F-005, F-006 | Dari kartu project; satu template untuk semua project |
 
 ### Flow
 
@@ -109,7 +135,7 @@ ClientRouter). Tanpa JS: link membuka halaman bahasa lain di bagian yang sama.
 |---|---|---|---|
 | BR-001 | Pesan awal WhatsApp mengikuti bahasa yang sedang aktif | F-002, F-005 | - |
 | BR-002 | Konten placeholder ditandai jelas dan wajib diganti konten final sebelum halaman dipublikasikan. Revisi Jay 2026-10-30: tanda tidak lagi tampil di halaman; penanda tetap di kode (`placeholder: true`) dan DOM tersembunyi (`data-placeholder`) untuk dicek sebelum publikasi | F-003, F-004, copy F-001 | Publikasi ditahan sampai konten final tersedia atau tim memutuskan lain |
-| BR-003 | Pesan awal dari tombol layanan menyebut nama layanan tersebut; tombol umum memakai pesan umum | F-002 | - |
+| BR-003 | Pesan awal dari tombol layanan menyebut nama layanan tersebut; tombol umum memakai pesan umum. Revisi 2026-11-06: tombol per layanan menjadi tombol per kategori dan menyebut nama kategori | F-002 | - |
 | BR-004 | Bahasa default Inggris (revisi Jay 2026-10-29; sebelumnya Indonesia); pergantian bahasa hanya lewat tombol ID/EN, tidak mengikuti setelan browser | F-005 | - |
 
 ### Role & Permission
